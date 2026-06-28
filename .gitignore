@@ -1,0 +1,32 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+
+.venv/
+venv/
+env/
+.pyinstaller/
+
+build/
+dist/
+build_mac/
+dist_mac/
+build_windows/
+dist_windows/
+installer/
+*.spec.bak
+Perfect Grid.spec
+
+Perfect Grid Pro Build/build_mac/
+Perfect Grid Pro Build/build_windows/
+Perfect Grid Pro Build/dist_mac/
+Perfect Grid Pro Build/dist_windows/
+Perfect Grid Pro Build/installer/
+Perfect Grid Pro Build/*.dmg
+Perfect Grid Pro Build/*.zip
+
+settings.json
+PerfectGrid_Temp/
+win-binaries/
+Perfect Grid Pro Build/
