@@ -12,7 +12,7 @@ SolidCompression=yes
 WizardStyle=modern
 
 [Files]
-Source: "dist_windows\Perfect Grid\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\dist_windows\Perfect Grid\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\Perfect Grid"; Filename: "{app}\Perfect Grid.exe"

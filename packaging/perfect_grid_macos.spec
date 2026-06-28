@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ["app.py"],
+    ["src/perfect_grid/app.py"],
     pathex=[],
-    binaries=[("win-binaries/ffmpeg.exe", "."), ("win-binaries/ffprobe.exe", ".")],
-    datas=[("presets_v2.json", ".")],
+    binaries=[("/usr/local/bin/ffmpeg", "."), ("/usr/local/bin/ffprobe", ".")],
+    datas=[("src/perfect_grid/presets_v2.json", ".")],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=["icon.ico"],
+    icon=["assets/icon.icns"],
 )
 coll = COLLECT(
     exe,
@@ -43,4 +43,9 @@ coll = COLLECT(
     upx_exclude=[],
     name="Perfect Grid",
 )
-
+app = BUNDLE(
+    coll,
+    name="Perfect Grid.app",
+    icon="assets/icon.icns",
+    bundle_identifier="app.perfectgrid.desktop",
+)

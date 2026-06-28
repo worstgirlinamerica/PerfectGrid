@@ -1,6 +1,6 @@
 # Release Checklist
 
-1. Update `APP_VERSION` in `app.py`.
+1. Update `APP_VERSION` in `src/perfect_grid/app.py`.
 2. Update `CHANGELOG.md`.
 3. Commit changes.
 4. Push `main`.

@@ -30,10 +30,10 @@ pyinstaller \
   --name "Perfect Grid" \
   --distpath dist_mac \
   --workpath build_mac \
-  --icon icon.icns \
-  --add-data "presets_v2.json:." \
+  --icon assets/icon.icns \
+  --add-data "src/perfect_grid/presets_v2.json:." \
   --add-binary "${FFMPEG_BIN}:." \
   --add-binary "${FFPROBE_BIN}:." \
-  app.py
+  src/perfect_grid/app.py
 
 echo "macOS build complete: dist_mac/Perfect Grid.app"

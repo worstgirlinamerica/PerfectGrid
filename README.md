@@ -79,7 +79,7 @@ Run from source:
 
 ```bash
 python -m pip install -r requirements.txt
-python app.py
+PYTHONPATH=src python -m perfect_grid.app
 ```
 
 Build scripts are in `scripts/`. GitHub Actions builds Windows and macOS release zips.

@@ -2,15 +2,26 @@ import sys, os, json, re, tempfile
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer
 from PyQt5.QtGui import QImage, QPixmap
-from engine import (
-    get_video_metadata,
-    generate_sheet,
-    build_preview_pool_ultrafast,
-    build_preview_pool_refined,
-    select_frames_from_pool_fast,
-    select_frames_from_pool_refined,
-    extract_final_frames_from_timestamps,
-)
+try:
+    from .engine import (
+        get_video_metadata,
+        generate_sheet,
+        build_preview_pool_ultrafast,
+        build_preview_pool_refined,
+        select_frames_from_pool_fast,
+        select_frames_from_pool_refined,
+        extract_final_frames_from_timestamps,
+    )
+except ImportError:
+    from engine import (
+        get_video_metadata,
+        generate_sheet,
+        build_preview_pool_ultrafast,
+        build_preview_pool_refined,
+        select_frames_from_pool_fast,
+        select_frames_from_pool_refined,
+        extract_final_frames_from_timestamps,
+    )
 
 APP_NAME = "Perfect Grid"
 APP_VERSION = "1.0.0"

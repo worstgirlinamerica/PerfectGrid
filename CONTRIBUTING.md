@@ -8,13 +8,13 @@ Use Python 3.10+.
 
 ```bash
 python -m pip install -r requirements.txt
-python app.py
+PYTHONPATH=src python -m perfect_grid.app
 ```
 
 Before opening a pull request, run:
 
 ```bash
-python -m py_compile app.py engine.py
+python -m py_compile src/perfect_grid/app.py src/perfect_grid/engine.py
 ```
 
 ## Useful Bug Reports
@@ -27,4 +27,3 @@ For video import/export bugs, include:
 - any terminal output if running from source
 
 Please do not upload private video files unless you are comfortable sharing them publicly.
-

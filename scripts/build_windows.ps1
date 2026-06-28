@@ -39,10 +39,10 @@ pyinstaller `
     --name "Perfect Grid" `
     --distpath "dist_windows" `
     --workpath "build_windows" `
-    --icon "icon.ico" `
-    --add-data "presets_v2.json;." `
+    --icon "assets\icon.ico" `
+    --add-data "src\perfect_grid\presets_v2.json;." `
     --add-binary "win-binaries\ffmpeg.exe;." `
     --add-binary "win-binaries\ffprobe.exe;." `
-    app.py
+    "src\perfect_grid\app.py"
 
 Write-Host "Windows build complete: dist_windows\Perfect Grid\Perfect Grid.exe"
