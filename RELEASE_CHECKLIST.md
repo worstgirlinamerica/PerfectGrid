@@ -13,5 +13,8 @@ git push origin v1.0.0
 ```
 
 7. Check the generated GitHub Release and download both zip files.
-8. Test the Windows zip on a Windows machine before sharing widely.
+8. Test `Perfect-Grid-Windows.zip` on a Windows machine.
+9. Test `Perfect-Grid-macOS.zip` on a Mac.
+10. Confirm the README install instructions still match the release assets.
 
+Do not commit generated `.zip`, `.dmg`, `.exe`, or `.app` files to the repository. Put user-downloadable builds on GitHub Releases.
