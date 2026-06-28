@@ -4,6 +4,8 @@ Perfect Grid makes polished video preview sheets from local video files.
 
 Drop in a video, choose a layout, adjust the metadata and timecode styling, then export a clean PNG contact sheet. It is built for editors, collectors, archivists, and anyone who wants quick visual summaries of video files without opening a full editing app.
 
+![Example preview sheet made with Perfect Grid](https://i.imgur.com/HVf0JjP.jpeg)
+
 ## What It Does
 
 - Creates PNG preview sheets from videos
