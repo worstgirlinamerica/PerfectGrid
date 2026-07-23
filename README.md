@@ -1,4 +1,7 @@
 # Perfect Grid
+[![Release v1.0.0](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/worstgirlinamerica/PerfectGrid/releases/tag/v1.0.0)
+[![Download macOS](https://img.shields.io/badge/download-macOS-lightgrey?logo=apple)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-macOS.zip)
+[![Download Windows](https://img.shields.io/badge/download-Windows-blue?logo=windows)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-Windows.zip)
 
 Perfect Grid makes polished video preview sheets from local video files.
 
