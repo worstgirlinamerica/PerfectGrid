@@ -1,5 +1,11 @@
 # Perfect Grid
-[![Release v1.0.0](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/worstgirlinamerica/PerfectGrid/releases/tag/v1.0.0)
+[![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
+[![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
+[![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white&style=for-the-badge)](https://python.org)
+[![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?logo=ffmpeg&logoColor=white&style=for-the-badge)](https://ffmpeg.org)
+
+
 [![Download macOS](https://img.shields.io/badge/download-macOS-lightgrey?logo=apple)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-macOS.zip)
 [![Download Windows](https://img.shields.io/badge/download-Windows-blue?logo=windows)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-Windows.zip)
 
