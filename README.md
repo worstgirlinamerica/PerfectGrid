@@ -2,21 +2,25 @@
 [![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
 [![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
 [![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?style=for-the-badge)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white&style=for-the-badge)](https://python.org)
-[![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?logo=ffmpeg&logoColor=white&style=for-the-badge)](https://ffmpeg.org)
-
-
-[![Download macOS](https://img.shields.io/badge/download-macOS-lightgrey?logo=apple)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-macOS.zip)
-[![Download Windows](https://img.shields.io/badge/download-Windows-blue?logo=windows)](https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-Windows.zip)
 
 Perfect Grid makes polished video preview sheets from local video files.
 
 Drop in a video, choose a layout, adjust the metadata and timecode styling, then export a clean PNG contact sheet. It is built for editors, collectors, archivists, and anyone who wants quick visual summaries of video files without opening a full editing app.
 
-![Example preview sheet made with Perfect Grid](https://i.imgur.com/HVf0JjP.jpeg)
+<p align="center">
+  <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Example preview sheet made with Perfect Grid">
+</p>
 
-## What It Does
+<p align="center">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-macOS.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS">
+  </a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-Windows.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Download for Windows">
+  </a>
+</p>
 
+## Features
 - Creates PNG preview sheets from videos
 - Lets you choose rows, columns, spacing, margins, and scaling
 - Shows useful file details like filename, size, resolution, duration, video codec, and audio codec
@@ -30,7 +34,7 @@ Drop in a video, choose a layout, adjust the metadata and timecode styling, then
 
 Go to the Releases page and download the build for your system.
 
-### Windows
+> ### Windows
 
 1. Download `Perfect-Grid-Windows.zip`.
 2. Right-click the zip and choose **Extract All**.
@@ -39,7 +43,7 @@ Go to the Releases page and download the build for your system.
 
 Windows may show a SmartScreen warning because the app is not code-signed yet. Choose **More info**, then **Run anyway** if you trust the download.
 
-### macOS
+> ### macOS
 
 1. Download `Perfect-Grid-macOS.zip`.
 2. Double-click the zip to extract it.
