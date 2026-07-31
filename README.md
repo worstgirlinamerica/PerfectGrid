@@ -3,7 +3,7 @@
 [![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
 [![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?style=for-the-badge)](LICENSE)
 
-Perfect Grid is an Open Source, free desktop app for creating polished video contact sheets and preview thumbnails from local video files.
+Perfect Grid is a free, open source desktop app for creating polished video contact sheets and preview thumbnails from local video files.
 
 Drop in a video, customize the layout, metadata, and timecode styling, then export a high-quality PNG contact sheet. Designed for editors, collectors, archivists, and anyone who wants a quick visual summary of a video.
 
@@ -37,15 +37,16 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
 
 1. Open Perfect Grid.
 2. Drag a video into the window.
-3. Choose your grid layout and styling (You will need to press refresh preview if you decide to change the layout to get the correct amount of frames)
-5. The previewed thumbnails **will appear low quality** for ease of use and fast working, however the exported sheet will use the selected quality on export.
-6. (Optional) Under 'Range', Click **Refine Picks** for smarter subject and motion based frame selection.
-7. You can change the export quality under the **range** tab from the default, 'Fast 1080p' to 'Detail 1440p' or 'Maximum 4K'
-8. Click **Export PNG**.
+3. Choose your grid layout and styling. If you change the layout, click **Refresh Preview** to regenerate the correct number of thumbnails.
+4. Preview thumbnails are intentionally lower quality for faster performance. The exported contact sheet will always use your selected export quality.
+5. (Optional) Under the **Range** tab, click **Refine Picks** for smarter subject- and motion-based frame selection.
+6. Choose an export quality under the **Range** tab: **Fast (1080p)**, **Detail (1440p)**, or **Maximum (4K)**.
+7. Click **Export PNG**.
 
 ## Download And Install
 
-Head to [releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/) and download the latest release for your OS.
+Download the latest release for your operating system from the [Releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) page.
+
 ### macOS
 
 1. Download `Perfect-Grid-macOS.zip`.
@@ -53,7 +54,7 @@ Head to [releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/la
 3. Drag Perfect Grid into your Applications folder
 4. Open `Perfect Grid.app`.
 
-If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open**, then confirm.
+> If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open**, then confirm.
 
 ### Windows
 
@@ -62,7 +63,7 @@ If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open*
 3. Open the extracted folder.
 4. Double-click `Perfect Grid.exe`.
 
-Windows may show a SmartScreen warning because the app is not code-signed yet. Choose **More info**, then **Run anyway** if you trust the download.
+> Windows may show a SmartScreen warning because the app is not code-signed yet. Choose **More info**, then **Run anyway** if you trust the download.
 
 ## Privacy
 
@@ -74,8 +75,7 @@ Perfect Grid runs entirely on your computer.
 - FFmpeg and FFprobe are bundled for local video processing
 
 ## Notes
-> ## Supported Formats
-Perfect Grid supports MP4, MOV, MKV, AVI, WebM, and most formats supported by FFmpeg.
+- Supports MP4, MOV, MKV, AVI, WebM, and most formats supported by FFmpeg.
 - Very large videos may take longer to preview or export.
 - AV1 and VP9 decoding may be slower on some systems.
 - macOS builds are currently unsigned, so Gatekeeper may display a security prompt on first launch.
