@@ -37,9 +37,11 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
 
 1. Open Perfect Grid.
 2. Drag a video into the window.
-3. Choose your grid layout and styling.
-4. (Optional) Click **Refine Picks** for smarter frame selection.
-5. Click **Export PNG**.
+3. Choose your grid layout and styling (You will need to press refresh preview if you decide to change the layout to get the correct amount of frames)
+5. The previewed thumbnails **will appear low quality** for ease of use and fast working, however the exported sheet will use the selected quality on export.
+6. (Optional) Under 'Range', Click **Refine Picks** for smarter subject and motion based frame selection.
+7. You can change the export quality under the **range** tab from the default, 'Fast 1080p' to 'Detail 1440p' or 'Maximum 4K'
+8. Click **Export PNG**.
 
 ## Download And Install
 
