@@ -14,11 +14,11 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-macOS.zip">
-    <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS">
+<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-macOS.zip">
+  <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS">
   </a>
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/download/v1.0.0/Perfect-Grid-Windows.zip">
-    <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Download for Windows">
+<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-Windows.zip">
+  <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Download for Windows">
   </a>
 </p>
 
