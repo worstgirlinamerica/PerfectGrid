@@ -43,7 +43,15 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
 
 ## Download And Install
 
-Download the latest release for your operating system.
+Head to [releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/) and download the latest release for your OS.
+### macOS
+
+1. Download `Perfect-Grid-macOS.zip`.
+2. Double-click the zip to extract it.
+3. Drag Perfect Grid into your Applications folder
+4. Open `Perfect Grid.app`.
+
+If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open**, then confirm.
 
 ### Windows
 
@@ -53,14 +61,6 @@ Download the latest release for your operating system.
 4. Double-click `Perfect Grid.exe`.
 
 Windows may show a SmartScreen warning because the app is not code-signed yet. Choose **More info**, then **Run anyway** if you trust the download.
-
-### macOS
-
-1. Download `Perfect-Grid-macOS.zip`.
-2. Double-click the zip to extract it.
-3. Open `Perfect Grid.app`.
-
-If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open**, then confirm.
 
 ## Privacy
 
