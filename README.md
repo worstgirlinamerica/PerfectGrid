@@ -3,12 +3,14 @@
 [![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
 [![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?style=for-the-badge)](LICENSE)
 
-Perfect Grid makes polished video preview sheets from local video files.
+Perfect Grid is an Open Source, free desktop app for creating polished video contact sheets and preview thumbnails from local video files.
 
-Drop in a video, choose a layout, adjust the metadata and timecode styling, then export a clean PNG contact sheet. It is built for editors, collectors, archivists, and anyone who wants quick visual summaries of video files without opening a full editing app.
+Drop in a video, customize the layout, metadata, and timecode styling, then export a high-quality PNG contact sheet. Designed for editors, collectors, archivists, and anyone who wants a quick visual summary of a video.
 
 <p align="center">
   <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Example preview sheet made with Perfect Grid">
+  <br>
+  <em>Example contact sheet generated with Perfect Grid.</em>
 </p>
 
 <p align="center">
@@ -21,20 +23,29 @@ Drop in a video, choose a layout, adjust the metadata and timecode styling, then
 </p>
 
 ## Features
-- Creates PNG preview sheets from videos
-- Lets you choose rows, columns, spacing, margins, and scaling
-- Shows useful file details like filename, size, resolution, duration, video codec, and audio codec
-- Adds optional timecode labels to each frame
-- Offers fast previews and refined frame picking
-- Saves custom presets
-- Supports batch processing
-- Runs as a desktop app on Windows and macOS
+
+- Generate high-quality PNG contact sheets
+- Fully customizable grid layouts
+- Optional timecode overlays
+- Display video metadata (resolution, codecs, duration, file size, etc.)
+- Smart frame selection with **Refine Picks**
+- Save and reuse custom presets
+- Batch processing support
+- Native desktop app for Windows and macOS
+
+## Basic Usage
+
+1. Open Perfect Grid.
+2. Drag a video into the window.
+3. Choose your grid layout and styling.
+4. (Optional) Click **Refine Picks** for smarter frame selection.
+5. Click **Export PNG**.
 
 ## Download And Install
 
-Go to the Releases page and download the build for your system.
+Download the latest release for your operating system.
 
-> ### Windows
+### Windows
 
 1. Download `Perfect-Grid-Windows.zip`.
 2. Right-click the zip and choose **Extract All**.
@@ -43,7 +54,7 @@ Go to the Releases page and download the build for your system.
 
 Windows may show a SmartScreen warning because the app is not code-signed yet. Choose **More info**, then **Run anyway** if you trust the download.
 
-> ### macOS
+### macOS
 
 1. Download `Perfect-Grid-macOS.zip`.
 2. Double-click the zip to extract it.
@@ -53,30 +64,19 @@ If macOS blocks the unsigned app, right-click `Perfect Grid.app`, choose **Open*
 
 ## Privacy
 
-Perfect Grid works locally on your computer.
+Perfect Grid runs entirely on your computer.
 
-- It does not include analytics or telemetry.
-- It does not upload your videos.
-- It does not call any web APIs.
-- Packaged builds include FFmpeg and FFprobe so video metadata and frames can be processed locally.
-
-## Basic Use
-
-1. Open Perfect Grid.
-2. Drag a video into the preview area.
-3. Adjust the grid, text, timecode, and range settings.
-4. Use **Refine Picks** if you want a smarter frame selection pass.
-5. Click **Export PNG**.
-
-## Supported Files
-
-Perfect Grid uses FFmpeg for video reading, so common formats such as MP4, MOV, MKV, AVI, and WebM should work. Some unusual codecs may be slower or less reliable depending on the system.
+- No analytics or telemetry
+- No uploads or cloud processing
+- No web API calls
+- FFmpeg and FFprobe are bundled for local video processing
 
 ## Notes
-
-- Very large videos can take longer to preview or export.
-- AV1 and VP9 files may use software decoding and can be slower.
-- The macOS app is currently unsigned, so macOS may show a security prompt the first time it opens.
+> ## Supported Formats
+Perfect Grid supports MP4, MOV, MKV, AVI, WebM, and most formats supported by FFmpeg.
+- Very large videos may take longer to preview or export.
+- AV1 and VP9 decoding may be slower on some systems.
+- macOS builds are currently unsigned, so Gatekeeper may display a security prompt on first launch.
 
 ## For Developers
 
