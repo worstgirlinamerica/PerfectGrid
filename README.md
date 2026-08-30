@@ -20,6 +20,9 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
 <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-Windows.zip">
   <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Download for Windows">
   </a>
+<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-x86_64.AppImage">
+  <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?style=for-the-badge&logo=linux&logoColor=white" alt="Download for Linux">
+  </a>
 </p>
 
 ## Features
