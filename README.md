@@ -1,7 +1,7 @@
 # Perfect Grid
-[![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?style=for-the-badge)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?style=for-the-badge)](LICENSE)
+[![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
+[![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
+[![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?)](LICENSE)
 
 Perfect Grid is a free, open source desktop app for creating polished video contact sheets and preview thumbnails from local video files.
 
