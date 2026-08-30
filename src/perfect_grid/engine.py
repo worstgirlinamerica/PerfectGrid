@@ -1,4 +1,11 @@
 import subprocess, json, os, shutil, re, math, hashlib, sys, platform
+from os import cpu_count as _cpu_count
+
+def _worker_count(n_tasks):
+    """Scale workers to CPU count — faster machines get more parallelism."""
+    cpus = _cpu_count() or 2
+    # use up to 75% of cores, min 2, max tasks
+    return min(n_tasks, max(2, int(cpus * 0.75)))
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageStat
 try:
@@ -474,7 +481,7 @@ def _build_pool(path, tmp, start, end, meta, preview_width, pool_size, fast_mode
             progress("Seeking thumbnails...")
         if fast_mode:
             timestamps = _build_thumbnail_timestamps(safe_start, safe_end, sample_count)
-            workers = min(4, max(1, len(timestamps)))
+            workers = _worker_count(len(timestamps))
             def extract_one(item):
                 idx, ts = item
                 out_path = os.path.join(workdir, f"pool_{idx + 1:03d}.jpg")
@@ -568,7 +575,12 @@ def build_preview_pool_ultrafast(path, tmp, start=0, end=100, meta=None, target_
     if not meta:
         return {"frames": [], "meta": meta, "start": start, "end": end}
     force_software = should_force_software_decode(meta)
-    preview_width = 120 if force_software else 150
+    # scale preview quality to available CPU cores — more cores = faster = better quality
+    cpus = _cpu_count() or 2
+    if force_software:
+        preview_width = 120 if cpus <= 4 else 150
+    else:
+        preview_width = 150 if cpus <= 4 else (180 if cpus <= 8 else 220)
     pool_size = max(1, int(target_count or 12))
     return _build_pool(path, tmp, start, end, meta, preview_width, pool_size, fast_mode=True, allow_faces=False, progress=progress)
 
@@ -646,7 +658,7 @@ def extract_final_frames_from_timestamps(path, timestamps, tmp, scale_width=1280
         meta = get_video_metadata(path)
     force_software = should_force_software_decode(meta)
     duration = float((meta or {}).get("duration", 0) or 0)
-    workers = min(4, max(1, len(timestamps)))
+    workers = _worker_count(len(timestamps))
 
     def extract_one(item):
         i, ts = item
@@ -733,6 +745,7 @@ def generate_sheet(frames, meta, out=None, bg=(255, 255, 255), margin=30, cols=4
         tc["size"] = max(1, int(tc.get("size", 24) * scale_factor))
     canvas = Image.new("RGB", (W, H), bg)
     draw = ImageDraw.Draw(canvas)
+
     def get_f(s):
         for p in [f"/Library/Fonts/{f_fam}.ttf", f"/System/Library/Fonts/Supplemental/{f_fam}.ttf", f"/System/Library/Fonts/{f_fam}.ttc", "/Library/Fonts/Arial.ttf"]:
             if os.path.exists(p):
@@ -741,23 +754,109 @@ def generate_sheet(frames, meta, out=None, bg=(255, 255, 255), margin=30, cols=4
                 except Exception:
                     pass
         return ImageFont.load_default()
+
+    def get_unicode_f(s, text):
+        # If the text contains Arabic/RTL codepoints, force GeezaPro first —
+        # it's built into every macOS install and has full Arabic coverage.
+        # PingFang (first in the old list) has no Arabic glyphs, so it was
+        # the source of the □□ boxes.
+        is_arabic = any(0x0600 <= ord(c) <= 0x06FF or 0x0750 <= ord(c) <= 0x077F for c in text)
+        priority = []
+        if is_arabic:
+            priority += [
+                "/System/Library/Fonts/GeezaPro.ttc",
+                "/System/Library/Fonts/ArabicUI.ttc",
+            ]
+        priority += [
+            "/System/Library/Fonts/PingFang.ttc",
+            "/System/Library/Fonts/Thonburi.ttc",
+            "/System/Library/Fonts/Supplemental/Arial Unicode MS.ttf",
+            "/Library/Fonts/Arial Unicode MS.ttf",
+            "C:/Windows/Fonts/msyh.ttc",
+            "C:/Windows/Fonts/simsun.ttc",
+            "C:/Windows/Fonts/arial.ttf",
+        ]
+        needed = {ord(c) for c in text if ord(c) > 127}
+        for p in priority:
+            if not os.path.exists(p):
+                continue
+            try:
+                from fontTools.ttLib import TTCollection, TTFont
+                def check_one(tt):
+                    cmap = tt.getBestCmap()
+                    return cmap and needed.issubset(cmap.keys())
+                if p.lower().endswith(".ttc"):
+                    faces = TTCollection(p).fonts
+                    # find the specific face index that has the needed glyphs
+                    face_idx = next((i for i, f in enumerate(faces) if check_one(f)), None)
+                    if face_idx is not None:
+                        return ImageFont.truetype(p, s, index=face_idx)
+                else:
+                    tt = TTFont(p, fontNumber=0, lazy=True)
+                    if check_one(tt):
+                        return ImageFont.truetype(p, s)
+            except Exception:
+                continue
+        return get_f(s)
+
+    def _needs_unicode(text):
+        return any(ord(c) > 127 for c in text)
+
+    def _fix_bidi(text):
+        def _bidi_part(s):
+            try:
+                import arabic_reshaper
+                from bidi.algorithm import get_display
+                cfg = arabic_reshaper.ArabicReshaper(configuration={
+                    'delete_tatweel': True,
+                    'support_ligatures': False,
+                })
+                return get_display(cfg.reshape(s))
+            except ImportError:
+                # arabic_reshaper not installed — bidi reorder only.
+                # PIL does not apply GSUB so letters won't join without reshaping,
+                # but at least the string reads in the correct visual direction.
+                try:
+                    from bidi.algorithm import get_display
+                    return get_display(s)
+                except Exception:
+                    return s[::-1]
+            except Exception:
+                return s
+        # Keep extension on the right in PIL's LTR draw order
+        if '.' in text and not text.startswith('.'):
+            stem, _, ext = text.rpartition('.')
+            return _bidi_part(stem) + '.' + ext
+        return _bidi_part(text)
+
     font = get_f(f_size)
     text_fill = (255, 255, 255) if bg == (0, 0, 0) else (0, 0, 0)
     h = int(meta["duration"] // 3600)
     m = int((meta["duration"] % 3600) // 60)
     s = int(meta["duration"] % 60)
+    # (key, label, value) — label is always ASCII, value may be unicode/RTL
     lines = [
-        ("name", f"File Name   : {meta['name']}"),
-        ("size", f"File Size   : {meta.get('size_display', str(meta.get('size', 0)) + ' MB')}"),
-        ("res", f"Resolution  : {meta['width']}x{meta['height']} / {meta['fps']} fps"),
-        ("dur", f"Duration    : {h:02}:{m:02}:{s:02}"),
-        ("video", f"Video       : {meta.get('video_line', 'Unknown')}"),
-        ("audio", f"Audio       : {meta.get('audio_line', 'Unknown')}"),
+        ("name",  "File Name   : ", meta['name']),
+        ("size",  "File Size   : ", meta.get('size_display', str(meta.get('size', 0)) + ' MB')),
+        ("res",   "Resolution  : ", f"{meta['width']}x{meta['height']} / {meta['fps']} fps"),
+        ("dur",   "Duration    : ", f"{h:02}:{m:02}:{s:02}"),
+        ("video", "Video       : ", meta.get('video_line', 'Unknown')),
+        ("audio", "Audio       : ", meta.get('audio_line', 'Unknown')),
     ]
     tx, ty = t_pos
-    for key, txt in lines:
+    for key, label, value in lines:
         if vis.get(key, True):
-            draw.text((tx, ty), txt, fill=text_fill, font=font)
+            if _needs_unicode(value):
+                # Reshape/bidi FIRST so get_unicode_f checks the codepoints
+                # that will actually be drawn (U+FExx shaped forms), not the
+                # original U+06xx codepoints. Mismatch was causing box glyphs.
+                shaped_value = _fix_bidi(value)
+                label_w = font.getlength(label) if hasattr(font, 'getlength') else draw.textlength(label, font=font)
+                draw.text((tx, ty), label, fill=text_fill, font=font)
+                uf = get_unicode_f(f_size, shaped_value)
+                draw.text((tx + int(label_w), ty), shaped_value, fill=text_fill, font=uf)
+            else:
+                draw.text((tx, ty), label + value, fill=text_fill, font=font)
             ty += (f_size + 8)
     g_top = max(ty + 20 + g_off[1], 1)
     g_left = max(margin + g_off[0], 1)
