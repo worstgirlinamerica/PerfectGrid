@@ -2,10 +2,8 @@ import subprocess, json, os, shutil, re, math, hashlib, sys, platform
 from os import cpu_count as _cpu_count
 
 def _worker_count(n_tasks):
-    """Scale workers to CPU count — faster machines get more parallelism."""
     cpus = _cpu_count() or 2
-    # use up to 75% of cores, min 2, max tasks
-    return min(n_tasks, max(2, int(cpus * 0.75)))
+    return min(n_tasks, max(2, cpus))
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageStat
 try:
@@ -575,12 +573,10 @@ def build_preview_pool_ultrafast(path, tmp, start=0, end=100, meta=None, target_
     if not meta:
         return {"frames": [], "meta": meta, "start": start, "end": end}
     force_software = should_force_software_decode(meta)
-    # scale preview quality to available CPU cores — more cores = faster = better quality
-    cpus = _cpu_count() or 2
     if force_software:
-        preview_width = 120 if cpus <= 4 else 150
+        preview_width = 160
     else:
-        preview_width = 150 if cpus <= 4 else (180 if cpus <= 8 else 220)
+        preview_width = 200
     pool_size = max(1, int(target_count or 12))
     return _build_pool(path, tmp, start, end, meta, preview_width, pool_size, fast_mode=True, allow_faces=False, progress=progress)
 
