@@ -25,6 +25,13 @@ Drop in a video, customize the layout, metadata, and timecode styling, then expo
   </a>
 </p>
 
+## What's New in 0.1.2
+- Added support for Linux, uses AppImage
+- Arabic/RTL support
+- Localization (EN/中文/PT)
+- Settings dialog
+(Set a default preset to use consistently, set a default output dir.)
+
 ## Features
 
 - Generate high-quality PNG contact sheets
