@@ -550,6 +550,8 @@ class PerfectGrid(QMainWindow):
         self.load_presets_from_file()
         self.load_settings()
         self._tr = get_tr(self.language)
+        if self.language != 'en':
+            self.retranslate_ui()
         self.apply_theme()
         if self.default_preset and self.default_preset in self.all_presets:
             self.current_preset_name = self.default_preset
@@ -572,7 +574,7 @@ class PerfectGrid(QMainWindow):
         if self.status_label.text() in ("Ready", "就绪", "Pronto", "Listo",
                                         "準備完了", "Prêt", "Bereit", "준비됨"):
             self.status_label.setText(self.tr("ready"))
-        if not self.path:
+        if not self.video_path:
             self.preview_label.setText(self.tr("drag_drop"))
 
         # Tab names
@@ -587,18 +589,18 @@ class PerfectGrid(QMainWindow):
         # Text tab
         self.lbl_meta_vis.setText(self.tr("meta_vis"))
         for k, cb in self.checks.items():
-            cb.setText(self.tr(cb._tr_key))
+            cb._lbl.setText(self.tr(cb._tr_key))
         self.btn_font.setText(self.tr("change_font"))
         self.lbl_tc.setText(self.tr("tc_label"))
-        self.tc_toggle.setText(self.tr("tc_enable"))
-        self.tc_shadow_toggle.setText(self.tr("tc_shadow"))
+        self.tc_toggle._lbl.setText(self.tr("tc_enable"))
+        self.tc_shadow_toggle._lbl.setText(self.tr("tc_shadow"))
         self.lbl_bg.setText(self.tr("bg_label"))
         self.btn_reset_text.setText(self.tr("reset_text"))
 
         # Range tab
         self.lbl_export_q.setText(self.tr("export_q") + ":")
         self.btn_refine.setText(self.tr("refine"))
-        self.auto_refine_toggle.setText(self.tr("auto_refine"))
+        self.auto_refine_toggle._lbl.setText(self.tr("auto_refine"))
         self.btn_reset_range.setText(self.tr("reset_range"))
 
         # Presets tab
