@@ -35,7 +35,7 @@ Drop in a video, pick your layout, and export a high-quality PNG contact sheet. 
 - Save and reuse custom presets
 - Batch processing
 - UI available in English, Chinese (中文), and Portuguese
-- Correct display of Arabic, CJK, and other non-Latin filenames on the sheet
+- RTL for correct display of Arabic, CJK, and other non-Latin filenames
 - Runs on Windows, macOS, and Linux
 
 ## Basic Usage
