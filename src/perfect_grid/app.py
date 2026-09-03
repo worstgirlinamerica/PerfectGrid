@@ -564,6 +564,58 @@ class PerfectGrid(QMainWindow):
     def tr(self, key):
         return self._tr(key)
 
+    def retranslate_ui(self):
+        """Update all visible widget text after a language change."""
+        # Bottom bar
+        self.btn_refresh.setText(self.tr("refresh"))
+        self.btn_export.setText(self.tr("export_png"))
+        if self.status_label.text() in ("Ready", "就绪", "Pronto", "Listo",
+                                        "準備完了", "Prêt", "Bereit", "준비됨"):
+            self.status_label.setText(self.tr("ready"))
+        if not self.path:
+            self.preview_label.setText(self.tr("drag_drop"))
+
+        # Tab names
+        tab_keys = ["tab_grid", "tab_text", "tab_range", "tab_presets", "tab_batch"]
+        for i, key in enumerate(tab_keys):
+            self.tabs.setTabText(i, self.tr(key))
+
+        # Grid tab
+        self.lbl_scale.setText(self.tr("scaling"))
+        self.btn_reset_grid.setText(self.tr("reset_grid"))
+
+        # Text tab
+        self.lbl_meta_vis.setText(self.tr("meta_vis"))
+        for k, cb in self.checks.items():
+            cb.setText(self.tr(cb._tr_key))
+        self.btn_font.setText(self.tr("change_font"))
+        self.lbl_tc.setText(self.tr("tc_label"))
+        self.tc_toggle.setText(self.tr("tc_enable"))
+        self.tc_shadow_toggle.setText(self.tr("tc_shadow"))
+        self.lbl_bg.setText(self.tr("bg_label"))
+        self.btn_reset_text.setText(self.tr("reset_text"))
+
+        # Range tab
+        self.lbl_export_q.setText(self.tr("export_q") + ":")
+        self.btn_refine.setText(self.tr("refine"))
+        self.auto_refine_toggle.setText(self.tr("auto_refine"))
+        self.btn_reset_range.setText(self.tr("reset_range"))
+
+        # Presets tab
+        self.btn_save_look.setText(self.tr("save_look"))
+        self.btn_load_preset.setText(self.tr("load"))
+        self.btn_del_preset.setText(self.tr("delete"))
+        self.btn_reset_all.setText(self.tr("reset_all"))
+
+        # Batch tab
+        self.btn_clear_batch.setText(self.tr("clear_list"))
+        self.btn_run_batch.setText(self.tr("run_batch"))
+
+        # Slider labels
+        if hasattr(self, "_slider_labels"):
+            for key, lbl in self._slider_labels.items():
+                lbl.setText(self.tr(key))
+
     # ─── ui construction ────────────────────────────────────────────────────────
 
     def _build_ui(self):
@@ -645,13 +697,13 @@ class PerfectGrid(QMainWindow):
         bottom_lay.setContentsMargins(0, 4, 0, 0)
         bottom_lay.setSpacing(6)
 
-        self.btn_refresh = QPushButton("Refresh Preview")
+        self.btn_refresh = QPushButton(self.tr("refresh"))
         self.btn_refresh.setObjectName("SecondaryButton")
         self.btn_refresh.setMinimumHeight(38)
         self.btn_refresh.clicked.connect(self.load_video_range)
         bottom_lay.addWidget(self.btn_refresh)
 
-        self.btn_export = QPushButton("Export PNG")
+        self.btn_export = QPushButton(self.tr("export_png"))
         self.btn_export.setObjectName("PrimaryButton")
         self.btn_export.setMinimumHeight(44)
         self.btn_export.clicked.connect(self.export_sheet)
@@ -664,7 +716,7 @@ class PerfectGrid(QMainWindow):
         self.loading_bar.hide()
         bottom_lay.addWidget(self.loading_bar)
 
-        self.status_label = QLabel("Ready")
+        self.status_label = QLabel(self.tr("ready"))
         self.status_label.setObjectName("StatusLabel")
         self.status_label.setWordWrap(True)
         self.status_label.setMinimumHeight(32)
@@ -674,7 +726,7 @@ class PerfectGrid(QMainWindow):
         main_layout.addWidget(self.left_panel, 1)
 
         # ── preview pane ─────────────────────────────────────────────────────────
-        self.preview_label = QLabel("Drag & Drop Video Here")
+        self.preview_label = QLabel(self.tr("drag_drop"))
         self.preview_label.setAlignment(Qt.AlignCenter)
         self.preview_label.setObjectName("PreviewPane")
         main_layout.addWidget(self.preview_label, 3)
@@ -683,7 +735,7 @@ class PerfectGrid(QMainWindow):
 
     # ─── slider factory ──────────────────────────────────────────────────────────
 
-    def create_slider(self, layout, name, mini, maxi, default, is_grid_size=False):
+    def create_slider(self, layout, name, mini, maxi, default, is_grid_size=False, tr_key=None):
         container = QWidget()
         v = QVBoxLayout(container)
         v.setContentsMargins(0, 4, 0, 4)
@@ -691,6 +743,10 @@ class PerfectGrid(QMainWindow):
 
         lbl = QLabel(name)
         lbl.setObjectName("FieldLabel")
+        if tr_key:
+            if not hasattr(self, "_slider_labels"):
+                self._slider_labels = {}
+            self._slider_labels[tr_key] = lbl
 
         row = QHBoxLayout()
         row.setSpacing(8)
@@ -726,28 +782,28 @@ class PerfectGrid(QMainWindow):
         v.setContentsMargins(10, 10, 10, 10)
         v.setSpacing(2)
 
-        lbl_scale = QLabel("Image Scaling Mode:")
-        lbl_scale.setObjectName("FieldLabel")
-        v.addWidget(lbl_scale)
+        self.lbl_scale = QLabel(self.tr("scaling"))
+        self.lbl_scale.setObjectName("FieldLabel")
+        v.addWidget(self.lbl_scale)
         self.scale_mode = StyledCombo()
         self.scale_mode.addItems(["Fill", "Fit", "Stretch"])
         self.scale_mode.currentIndexChanged.connect(self.update_preview)
         v.addWidget(self.scale_mode)
         v.addSpacing(6)
 
-        self.cols    = self.create_slider(v, "Columns",      1,    15,  4, is_grid_size=True)
-        self.rows    = self.create_slider(v, "Rows",         1,    15,  3, is_grid_size=True)
-        self.spacing = self.create_slider(v, "Gap Spacing",  0,   100,  0)
-        self.margin  = self.create_slider(v, "Page Margins", 0,   400, 30)
-        self.grid_x  = self.create_slider(v, "Grid X Offset",-800, 800, 0)
-        self.grid_y  = self.create_slider(v, "Grid Y Offset",-800, 800, 0)
+        self.cols    = self.create_slider(v, self.tr("sl_cols"),    1,    15,  4, is_grid_size=True, tr_key="sl_cols")
+        self.rows    = self.create_slider(v, self.tr("sl_rows"),    1,    15,  3, is_grid_size=True, tr_key="sl_rows")
+        self.spacing = self.create_slider(v, self.tr("sl_spacing"), 0,   100,  0, tr_key="sl_spacing")
+        self.margin  = self.create_slider(v, self.tr("sl_margin"),  0,   400, 30, tr_key="sl_margin")
+        self.grid_x  = self.create_slider(v, self.tr("sl_grid_x"), -800, 800,  0, tr_key="sl_grid_x")
+        self.grid_y  = self.create_slider(v, self.tr("sl_grid_y"), -800, 800,  0, tr_key="sl_grid_y")
 
         v.addSpacing(8)
-        reset = QPushButton("Reset Grid")
-        reset.clicked.connect(self.reset_grid_defaults)
-        v.addWidget(reset)
+        self.btn_reset_grid = QPushButton(self.tr("reset_grid"))
+        self.btn_reset_grid.clicked.connect(self.reset_grid_defaults)
+        v.addWidget(self.btn_reset_grid)
         v.addStretch()
-        self.tabs.addTab(tab, "Grid")
+        self.tabs.addTab(tab, self.tr("tab_grid"))
 
     def init_text_tab(self):
         tab = QWidget()
@@ -755,51 +811,52 @@ class PerfectGrid(QMainWindow):
         v.setContentsMargins(10, 10, 10, 10)
         v.setSpacing(2)
 
-        lbl_mv = QLabel("Metadata Visibility:")
-        lbl_mv.setObjectName("FieldLabel")
-        v.addWidget(lbl_mv)
+        self.lbl_meta_vis = QLabel(self.tr("meta_vis"))
+        self.lbl_meta_vis.setObjectName("FieldLabel")
+        v.addWidget(self.lbl_meta_vis)
 
         grid_v = QGridLayout()
         grid_v.setHorizontalSpacing(6)
         grid_v.setVerticalSpacing(4)
         self.checks = {}
-        fields = [("name","File Name"),("size","File Size"),("res","Resolution"),
-                  ("dur","Duration"),("video","Video"),("audio","Audio")]
-        for i, (k, label) in enumerate(fields):
-            cb = PixelCheckBox(label, checked=True)
+        check_keys = [("name","cb_name"),("size","cb_size"),("res","cb_res"),
+                      ("dur","cb_dur"),("video","cb_video"),("audio","cb_audio")]
+        for i, (k, tr_key) in enumerate(check_keys):
+            cb = PixelCheckBox(self.tr(tr_key), checked=True)
             cb.stateChanged.connect(self.update_vis)
+            cb._tr_key = tr_key
             self.checks[k] = cb
             grid_v.addWidget(cb, i // 2, i % 2)
         v.addLayout(grid_v)
         v.addSpacing(8)
 
-        btn_font = QPushButton("Change Font Family")
-        btn_font.clicked.connect(self.pick_font)
-        v.addWidget(btn_font)
+        self.btn_font = QPushButton(self.tr("change_font"))
+        self.btn_font.clicked.connect(self.pick_font)
+        v.addWidget(self.btn_font)
         v.addSpacing(4)
 
-        self.font_size = self.create_slider(v, "Header Font Size", 10,  80, 28)
-        self.text_x    = self.create_slider(v, "Header X Pos",      0, 1000, 30)
-        self.text_y    = self.create_slider(v, "Header Y Pos",       0,  500, 30)
+        self.font_size = self.create_slider(v, self.tr("sl_fsize"), 10,  80, 28, tr_key="sl_fsize")
+        self.text_x    = self.create_slider(v, self.tr("sl_tx"),     0, 1000, 30, tr_key="sl_tx")
+        self.text_y    = self.create_slider(v, self.tr("sl_ty"),     0,  500, 30, tr_key="sl_ty")
 
         v.addSpacing(10)
-        lbl_tc = QLabel("Timecode:")
-        lbl_tc.setObjectName("FieldLabel")
-        v.addWidget(lbl_tc)
-        self.tc_toggle = PixelCheckBox("Enable TC", checked=True)
+        self.lbl_tc = QLabel(self.tr("tc_label"))
+        self.lbl_tc.setObjectName("FieldLabel")
+        v.addWidget(self.lbl_tc)
+        self.tc_toggle = PixelCheckBox(self.tr("tc_enable"), checked=True)
         self.tc_toggle.stateChanged.connect(self.update_preview)
         v.addWidget(self.tc_toggle)
-        self.tc_size           = self.create_slider(v, "TC Size",          10, 80,  24)
-        self.tc_opacity        = self.create_slider(v, "TC Text Opacity",   0, 255, 255)
-        self.tc_shadow_toggle  = PixelCheckBox("Enable Shadow", checked=True)
+        self.tc_size           = self.create_slider(v, self.tr("sl_tcsize"),    10, 80,  24, tr_key="sl_tcsize")
+        self.tc_opacity        = self.create_slider(v, self.tr("sl_tcopacity"),  0, 255, 255, tr_key="sl_tcopacity")
+        self.tc_shadow_toggle  = PixelCheckBox(self.tr("tc_shadow"), checked=True)
         self.tc_shadow_toggle.stateChanged.connect(self.update_preview)
         v.addWidget(self.tc_shadow_toggle)
-        self.tc_shadow_opacity = self.create_slider(v, "Shadow Opacity",    0, 255, 180)
+        self.tc_shadow_opacity = self.create_slider(v, self.tr("sl_shopacity"),  0, 255, 180, tr_key="sl_shopacity")
 
         v.addSpacing(10)
-        lbl_bg = QLabel("Sheet Background:")
-        lbl_bg.setObjectName("FieldLabel")
-        v.addWidget(lbl_bg)
+        self.lbl_bg = QLabel(self.tr("bg_label"))
+        self.lbl_bg.setObjectName("FieldLabel")
+        v.addWidget(self.lbl_bg)
 
         bg_row = QHBoxLayout()
         self.bg_mode = StyledCombo()
@@ -815,11 +872,11 @@ class PerfectGrid(QMainWindow):
         v.addLayout(bg_row)
 
         v.addSpacing(6)
-        reset = QPushButton("Reset Text")
-        reset.clicked.connect(self.reset_text_defaults)
-        v.addWidget(reset)
+        self.btn_reset_text = QPushButton(self.tr("reset_text"))
+        self.btn_reset_text.clicked.connect(self.reset_text_defaults)
+        v.addWidget(self.btn_reset_text)
         v.addStretch()
-        self.tabs.addTab(tab, "Text")
+        self.tabs.addTab(tab, self.tr("tab_text"))
 
     def init_range_tab(self):
         tab = QWidget()
@@ -827,35 +884,35 @@ class PerfectGrid(QMainWindow):
         v.setContentsMargins(10, 10, 10, 10)
         v.setSpacing(2)
 
-        self.start_p = self.create_slider(v, "Start Time %",  0, 99, 0)
-        self.end_p   = self.create_slider(v, "End Time %",    1, 100, 100)
+        self.start_p = self.create_slider(v, self.tr("sl_start"), 0,  99,   0, tr_key="sl_start")
+        self.end_p   = self.create_slider(v, self.tr("sl_end"),   1, 100, 100, tr_key="sl_end")
         self.start_p.valueChanged.connect(self.load_video_range)
         self.end_p.valueChanged.connect(self.load_video_range)
 
         v.addSpacing(8)
-        lbl_q = QLabel("Export Quality:")
-        lbl_q.setObjectName("FieldLabel")
-        v.addWidget(lbl_q)
+        self.lbl_export_q = QLabel(self.tr("export_q") + ":")
+        self.lbl_export_q.setObjectName("FieldLabel")
+        v.addWidget(self.lbl_export_q)
         self.export_quality = StyledCombo()
         self.export_quality.addItems(EXPORT_PROFILES.keys())
         self.export_quality.setCurrentText(DEFAULT_EXPORT_PROFILE)
         v.addWidget(self.export_quality)
         v.addSpacing(8)
 
-        btn = QPushButton("Refine Picks")
-        btn.clicked.connect(self.run_refine_pass)
-        v.addWidget(btn)
+        self.btn_refine = QPushButton(self.tr("refine"))
+        self.btn_refine.clicked.connect(self.run_refine_pass)
+        v.addWidget(self.btn_refine)
 
-        self.auto_refine_toggle = PixelCheckBox("Auto refine after fast preview", checked=False)
+        self.auto_refine_toggle = PixelCheckBox(self.tr("auto_refine"), checked=False)
         self.auto_refine_toggle.stateChanged.connect(self.set_auto_refine)
         v.addWidget(self.auto_refine_toggle)
 
         v.addSpacing(8)
-        reset = QPushButton("Reset Range")
-        reset.clicked.connect(self.reset_range_defaults)
-        v.addWidget(reset)
+        self.btn_reset_range = QPushButton(self.tr("reset_range"))
+        self.btn_reset_range.clicked.connect(self.reset_range_defaults)
+        v.addWidget(self.btn_reset_range)
         v.addStretch()
-        self.tabs.addTab(tab, "Range")
+        self.tabs.addTab(tab, self.tr("tab_range"))
 
     def init_preset_tab(self):
         tab = QWidget()
@@ -866,16 +923,20 @@ class PerfectGrid(QMainWindow):
         v.addWidget(self.preset_list)
         h = QHBoxLayout()
         h.setSpacing(6)
-        for name, fn in [("Save", self.save_preset), ("Load", self.load_selected_preset), ("Delete", self.delete_preset)]:
-            b = QPushButton(name)
-            b.clicked.connect(fn)
+        self.btn_save_look   = QPushButton(self.tr("save_look"))
+        self.btn_load_preset = QPushButton(self.tr("load"))
+        self.btn_del_preset  = QPushButton(self.tr("delete"))
+        self.btn_save_look.clicked.connect(self.save_preset)
+        self.btn_load_preset.clicked.connect(self.load_selected_preset)
+        self.btn_del_preset.clicked.connect(self.delete_preset)
+        for b in [self.btn_save_look, self.btn_load_preset, self.btn_del_preset]:
             h.addWidget(b)
         v.addLayout(h)
-        reset_all = QPushButton("Reset All Defaults")
-        reset_all.clicked.connect(self.reset_all_defaults)
-        v.addWidget(reset_all)
+        self.btn_reset_all = QPushButton(self.tr("reset_all"))
+        self.btn_reset_all.clicked.connect(self.reset_all_defaults)
+        v.addWidget(self.btn_reset_all)
         v.addStretch()
-        self.tabs.addTab(tab, "Presets")
+        self.tabs.addTab(tab, self.tr("tab_presets"))
 
     def init_batch_tab(self):
         tab = QWidget()
@@ -884,14 +945,14 @@ class PerfectGrid(QMainWindow):
         v.setSpacing(6)
         self.batch_list = QListWidget()
         v.addWidget(self.batch_list)
-        btn_c = QPushButton("Clear List")
-        btn_c.clicked.connect(self.batch_list.clear)
-        v.addWidget(btn_c)
-        btn_r = QPushButton("Run Batch")
-        btn_r.clicked.connect(self.run_batch_processing)
-        v.addWidget(btn_r)
+        self.btn_clear_batch = QPushButton(self.tr("clear_list"))
+        self.btn_clear_batch.clicked.connect(self.batch_list.clear)
+        v.addWidget(self.btn_clear_batch)
+        self.btn_run_batch = QPushButton(self.tr("run_batch"))
+        self.btn_run_batch.clicked.connect(self.run_batch_processing)
+        v.addWidget(self.btn_run_batch)
         v.addStretch()
-        self.tabs.addTab(tab, "Batch")
+        self.tabs.addTab(tab, self.tr("tab_batch"))
 
     # ─── background color ────────────────────────────────────────────────────────
 
@@ -1016,9 +1077,10 @@ class PerfectGrid(QMainWindow):
             self.language           = lang_box.currentData()
             self._tr                = get_tr(self.language)
             self.default_output_dir = dir_edit.text().strip()
-            self.default_preset     = preset_box.currentText() if preset_box.currentText() != "— none —" else ""
+            self.default_preset     = preset_box.currentText() if preset_box.currentText() != self.tr("none") else ""
             self.save_settings()
             self.apply_theme()
+            self.retranslate_ui()
             dlg.accept()
 
         btn_ok.clicked.connect(accept)
@@ -1120,7 +1182,7 @@ class PerfectGrid(QMainWindow):
         self.preview_pool    = None
         self.preview_pool_key= None
         self.pool_mode       = "ultrafast"
-        self.preview_label.setText("Loading…")
+        self.preview_label.setText(self.tr("loading"))
         self.preview_label.setPixmap(QPixmap())
         if hasattr(self, "loading_bar"):
             self.loading_bar.show()
@@ -1137,7 +1199,7 @@ class PerfectGrid(QMainWindow):
         self.preview_pool_key = None
         self.pool_mode        = "ultrafast"
         self.set_status("Fast preview: seeking thumbnails…")
-        self.preview_label.setText("Loading fast preview…")
+        self.preview_label.setText(self.tr("loading"))
         self.preview_label.setPixmap(QPixmap())
         self.loading_bar.show()
         self.loading_bar.setRange(0, 0)
@@ -1243,7 +1305,7 @@ class PerfectGrid(QMainWindow):
     def reselect_from_pool(self):
         if not self.preview_pool or not self.preview_pool.get("frames"):
             self.current_frames = []
-            self.preview_label.setText("No preview frames found")
+            self.preview_label.setText(self.tr("no_frames"))
             self.set_status("No preview frames found. Try a different range or use an H.264 MP4 for fastest loading.")
             if hasattr(self, "loading_bar"):
                 self.loading_bar.hide()
