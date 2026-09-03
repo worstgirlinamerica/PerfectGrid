@@ -2,19 +2,19 @@
 
 ## 0.1.2
 
-- Complete UI overhaul with custom-painted widgets (sliders, checkboxes, dropdowns) matching the app theme
-- Added localization system — interface now available in English, Chinese (中文), and Portuguese
-- Fixed Arabic and RTL filenames rendering as boxes on the contact sheet — GeezaPro is now prioritized on macOS for Arabic text, with proper reshaping and bidi support
-- Faster and better-quality fast preview — preview thumbnails are now larger and sharper, and all CPU cores are used for frame extraction
-- Added preview debounce — changing settings quickly no longer fires redundant extractions
-- Added cache size cap to prevent unbounded disk use during long sessions
-- Settings dialog in the app menu, added theme/skin selection (soon to be fully customizable), default output directory, and default preset
-- Linux support — ships as a self-contained AppImage, no install required
+- Rewrote all UI widgets from scratch — sliders, checkboxes, and dropdowns are now custom-painted to match the app theme instead of using default OS controls
+- Added a localization system; the interface is now available in English, Chinese (中文), and Portuguese
+- Fixed Arabic and RTL filenames showing as boxes on the contact sheet — GeezaPro is now checked first on macOS for Arabic text, with proper character reshaping and bidi reordering
+- Faster previews — thumbnails are larger and sharper, frame extraction now uses all CPU cores
+- Added debounce to preview — tweaking settings quickly no longer kicks off a bunch of redundant extractions
+- Cache size is now capped so it doesn't grow forever during long sessions
+- Added a Settings dialog (app menu) with theme/skin selection, default output folder, and default preset
+- Linux build — ships as a self-contained AppImage, no install required
 
-## 1.0.0
+## 0.1.0
 
-- Initial public release setup.
-- Added Windows and macOS PyInstaller build scripts.
-- Added GitHub Actions artifacts and tagged-release publishing.
-- Bundled FFmpeg/FFprobe support for packaged apps.
-- Moved settings and user presets into per-user app data directories.
+- Initial public release
+- Windows and macOS builds via PyInstaller
+- GitHub Actions CI with artifact uploads and tagged release publishing
+- Bundled FFmpeg/FFprobe
+- Settings and presets stored in per-user app data directories

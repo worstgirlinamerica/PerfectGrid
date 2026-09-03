@@ -11,17 +11,28 @@ try:
         extract_final_frames_from_timestamps,
     )
 except ImportError:
-    from engine import (
-        get_video_metadata, generate_sheet,
-        build_preview_pool_ultrafast, build_preview_pool_refined,
-        select_frames_from_pool_fast, select_frames_from_pool_refined,
-        extract_final_frames_from_timestamps,
-    )
+    try:
+        from perfect_grid.engine import (
+            get_video_metadata, generate_sheet,
+            build_preview_pool_ultrafast, build_preview_pool_refined,
+            select_frames_from_pool_fast, select_frames_from_pool_refined,
+            extract_final_frames_from_timestamps,
+        )
+    except ImportError:
+        from engine import (
+            get_video_metadata, generate_sheet,
+            build_preview_pool_ultrafast, build_preview_pool_refined,
+            select_frames_from_pool_fast, select_frames_from_pool_refined,
+            extract_final_frames_from_timestamps,
+        )
 
 try:
     from .pg_i18n import get_tr, language_display_names
 except ImportError:
-    from pg_i18n import get_tr, language_display_names
+    try:
+        from perfect_grid.pg_i18n import get_tr, language_display_names
+    except ImportError:
+        from pg_i18n import get_tr, language_display_names
 
 APP_NAME    = "Perfect Grid"
 APP_VERSION = "1.0.0"
