@@ -33,14 +33,14 @@ Built for editors, collectors, archivists, and anyone who wants a quick visual s
 
 ## Features
 
-- Generate high-quality PNG contact sheets
+- Generate high-quality contact sheets with advanced video metadata display (resolution, codecs, duration, file size, etc.)
 - Fully customizable grid layouts
 - Optional timecode overlays
-- Video metadata display (resolution, codecs, duration, file size, etc.)
 - Smart frame selection with **Refine Picks**
 - Save and reuse custom presets
 - Batch processing
 - Runs on Windows, macOS, and Linux
+> If you experience __any__ errors, something doesn't work, or you have questions, please create an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) to report it.
 
 ## Localization
 
