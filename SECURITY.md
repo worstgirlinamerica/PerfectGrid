@@ -2,7 +2,4 @@
 
 Perfect Grid processes video files locally with FFmpeg/FFprobe.
 
-Please report security issues privately through GitHub's private vulnerability reporting. If private reporting is not available, open an issue with minimal detail and ask for a private contact path.
-
-Do not attach private video files to public issues.
-
+Please report any **security issues** or concerns privately through GitHub's private vulnerability reporting.
