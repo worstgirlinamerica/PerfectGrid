@@ -10,14 +10,14 @@
 </p>
 
 <p align="center">
-  <a href="docs/README.zh.md">Chinesisch</a> &nbsp;|&nbsp;
-  <a href="docs/README.pt.md">Portugiesisch</a> &nbsp;|&nbsp;
-  <a href="docs/README.es.md">Español</a> &nbsp;|&nbsp;
-  <a href="docs/README.ja.md">日本語</a> &nbsp;|&nbsp;
-  <a href="docs/README.fr.md">Französisch</a> &nbsp;|&nbsp;
-  <a href="docs/README.de.md">Deutsch</a> &nbsp;|&nbsp;
-  <a href="docs/README.ko.md">Koreanisch</a> &nbsp;|&nbsp;
-  <a href="docs/README.ar.md">Arabisch</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.zh.md">Chinesisch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">Portugiesisch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">Español</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ja.md">日本語</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">Französisch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.de.md">Deutsch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ko.md">Koreanisch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">Arabisch</a>
 </p>
 
 Perfect Grid ist eine kostenlose Open-Source-Desktop-Anwendung zum Erstellen von Video-Kontaktabzügen und Vorschaubildern aus lokalen Videodateien. Laden Sie ein Video hoch, wählen Sie Ihr Layout aus und exportieren Sie einen hochwertigen PNG-Kontaktabzug.
