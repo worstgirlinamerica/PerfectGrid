@@ -73,7 +73,7 @@ The app UI is available in 8 languages. Sheet filename rendering is a separate s
 6. Pick an export quality under **Range**: **Fast (1080p)**, **Detail (1440p)**, or **Maximum (4K)**.
 7. Click **Export PNG**.
 
-## Download And Install
+## Installation
 
 Download the latest release for your OS from the [Releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) page.
 
@@ -136,7 +136,8 @@ Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux release
 
 ## Contributing
 
-Bug reports are welcome. Useful ones include your OS, video format, and whether the issue was in preview, refine, export, or batch.
+Please report any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
+The most useful information to include is your OS, video format, and whether the issue was in preview, refine, export, or batch.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
 
