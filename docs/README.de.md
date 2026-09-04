@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/worstgirlinamerica/PerfectGrid/main/assets/icon.png" width="80" alt="Perfect Grid">
+  <img src="assets/icon.png" width="80" alt="Perfect Grid">
   <h1 align="center">Perfect Grid</h1>
 </p>
 
@@ -9,7 +9,18 @@
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="Lizenz">
 </p>
 
-Perfect Grid ist eine kostenlose Open-Source-Desktop-App zum Erstellen von Video-Kontaktabzügen und Vorschaubildern aus lokalen Videodateien. Fügen Sie ein Video hinzu, wählen Sie Ihr Layout aus und exportieren Sie einen hochwertigen PNG-Kontaktabzug.
+<p align="center">
+  <a href="docs/README.zh.md">Chinesisch</a> &nbsp;|&nbsp;
+  <a href="docs/README.pt.md">Portugiesisch</a> &nbsp;|&nbsp;
+  <a href="docs/README.es.md">Español</a> &nbsp;|&nbsp;
+  <a href="docs/README.ja.md">日本語</a> &nbsp;|&nbsp;
+  <a href="docs/README.fr.md">Französisch</a> &nbsp;|&nbsp;
+  <a href="docs/README.de.md">Deutsch</a> &nbsp;|&nbsp;
+  <a href="docs/README.ko.md">Koreanisch</a> &nbsp;|&nbsp;
+  <a href="docs/README.ar.md">Arabisch</a>
+</p>
+
+Perfect Grid ist eine kostenlose Open-Source-Desktop-Anwendung zum Erstellen von Video-Kontaktabzügen und Vorschauminibildern aus lokalen Videodateien. Laden Sie ein Video hoch, wählen Sie Ihr Layout aus und exportieren Sie einen hochwertigen PNG-Kontaktabzug.
 
 Entwickelt für Cutter, Sammler, Archivare und alle, die sich einen schnellen visuellen Überblick über ein Video verschaffen möchten.
 
@@ -36,7 +47,7 @@ Entwickelt für Cutter, Sammler, Archivare und alle, die sich einen schnellen vi
 - Erstellen Sie hochwertige Kontaktabzüge mit erweiterter Anzeige von Video-Metadaten (Auflösung, Codecs, Dauer, Dateigröße usw.)
 - Vollständig anpassbare Rasterlayouts
 - Optionale Timecode-Einblendungen
-- Intelligente Bildauswahl mit **„Refine Picks“**
+- Intelligente Bildauswahl mit **Refine Picks**
 - Speichern und Wiederverwenden benutzerdefinierter Voreinstellungen
 - Stapelverarbeitung
 - Läuft unter Windows, macOS und Linux
@@ -44,7 +55,7 @@ Entwickelt für Cutter, Sammler, Archivare und alle, die sich einen schnellen vi
 
 ## Lokalisierung
 
-Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf den Arbeitsblättern erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf die exportierte PNG-Datei gezeichnet, was eine skriptspezifische Schriftartverwaltung erfordert.
+Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf den Arbeitsblättern erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf das exportierte PNG gezeichnet, was eine skriptspezifische Schriftartverarbeitung erfordert.
 
 | Sprache | Benutzeroberfläche | Auf dem Arbeitsblatt |
 |---|---|---|
@@ -67,8 +78,8 @@ Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung de
 
 1. Öffne Perfect Grid.
 2. Ziehe ein Video in das Fenster.
-3. Passe das Rasterlayout und die Darstellung an. Wenn du das Layout änderst, klicke auf **Vorschau aktualisieren**, um die Miniaturansichten neu zu generieren.
-4. Die Vorschauen sind absichtlich in geringerer Qualität – beim Export wird immer die von dir gewählte Qualitätseinstellung verwendet.
+3. Passe das Rasterlayout und die Gestaltung an. Wenn du das Layout änderst, klicke auf **Vorschau aktualisieren**, um die Miniaturansichten neu zu generieren.
+4. Die Vorschau ist absichtlich in geringerer Qualität – beim Export wird immer die von dir gewählte Qualitätseinstellung verwendet.
 5. (Optional) Verwende auf der Registerkarte **Bereich** die Funktion **Auswahl verfeinern** für eine intelligentere Auswahl der Einzelbilder.
 6. Wähle unter **Bereich** eine Exportqualität aus: **Schnell (1080p)**, **Detail (1440p)** oder **Maximal (4K)**.
 7. Klicke auf **PNG exportieren**.
@@ -83,7 +94,7 @@ Laden Sie die neueste Version für Ihr Betriebssystem von der Seite [Veröffentl
 2. Doppelklicken Sie zum Entpacken darauf und ziehen Sie „Perfect Grid“ anschließend in den Ordner „Programme“.
 3. Öffnen Sie `Perfect Grid.app`.
 
-> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Klicken Sie mit der rechten Maustaste darauf → **Öffnen** → **Öffnen**, um diese Blockade zu umgehen. Falls sich die App immer noch nicht öffnen lässt, führen Sie folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Klicken Sie mit der rechten Maustaste darauf → **Öffnen** → **Öffnen**, um diese Sperre zu umgehen. Falls sich die App immer noch nicht öffnen lässt, führen Sie folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
@@ -91,7 +102,7 @@ Laden Sie die neueste Version für Ihr Betriebssystem von der Seite [Veröffentl
 2. Rechtsklick → **Alle extrahieren**, dann den Ordner öffnen.
 3. Doppelklick auf `Perfect Grid.exe`.
 
-> Windows SmartScreen zeigt möglicherweise eine Warnung an, da die App nicht codesigniert ist. Klicken Sie auf **Weitere Informationen** → **Trotzdem ausführen**.
+> Windows SmartScreen gibt möglicherweise eine Warnung aus, da die App nicht codesigniert ist. Klicken Sie auf **Weitere Informationen** → **Trotzdem ausführen**.
 
 ### Linux
 
@@ -102,7 +113,7 @@ chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 ./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 ```
 
-Keine Installation erforderlich – FFmpeg und alle Abhängigkeiten sind enthalten. Funktioniert auf den meisten x86_64-Distributionen (Ubuntu 22.04+, Fedora, Arch usw.).
+Keine Installation erforderlich – FFmpeg und alle Abhängigkeiten sind bereits enthalten. Funktioniert auf den meisten x86_64-Distributionen (Ubuntu 22.04+, Fedora, Arch usw.).
 
 > Falls ein FUSE-Fehler auftritt: `sudo apt install fuse` (Debian/Ubuntu) oder `sudo dnf install fuse` (Fedora).
 
@@ -137,7 +148,7 @@ Die Build-Skripte befinden sich in `scripts/`. GitHub Actions erstellt bei mit T
 ## Mitwirken
 
 Bitte teilen Sie uns mit, wenn Sie auf Fehler oder Probleme stoßen, indem Sie ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) erstellen. 
-Die hilfreichsten Informationen sind dabei Ihr Betriebssystem, das Videoformat und ob das Problem bei der Vorschau, der Verfeinerung, dem Export oder beim Batch-Verfahren aufgetreten ist.
+Die hilfreichsten Informationen sind dabei Ihr Betriebssystem, das Videoformat und ob das Problem in der Vorschau, bei der Verfeinerung, beim Export oder im Batch-Modus aufgetreten ist.
 
 Weitere Informationen finden Sie in der Datei [CONTRIBUTING.md](CONTRIBUTING.md).
 

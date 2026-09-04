@@ -1,15 +1,26 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/worstgirlinamerica/PerfectGrid/main/assets/icon.png" width="80" alt="Perfect Grid">
+  <img src="assets/icon.png" width="80" alt="Perfect Grid">
   <h1 align="center">Perfect Grid</h1>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid" alt="Lançamento no GitHub">
-  <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Transferências">
+  <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Downloads">
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="Licença">
 </p>
 
-O Perfect Grid é uma aplicação de ambiente de trabalho gratuita e de código aberto para criar folhas de contacto de vídeo e miniaturas de pré-visualização a partir de ficheiros de vídeo locais. Basta arrastar um vídeo, escolher o seu layout e exportar uma folha de contacto em formato PNG de alta qualidade.
+<p align="center">
+  <a href="docs/README.zh.md">Chinês</a> &nbsp;|&nbsp;
+  <a href="docs/README.pt.md">Português</a> &nbsp;|&nbsp;
+  <a href="docs/README.es.md">Espanhol</a> &nbsp;|&nbsp;
+  <a href="docs/README.ja.md">Japonês</a> &nbsp;|&nbsp;
+  <a href="docs/README.fr.md">Francês</a> &nbsp;|&nbsp;
+  <a href="docs/README.de.md">Alemão</a> &nbsp;|&nbsp;
+  <a href="docs/README.ko.md">Coreano</a> &nbsp;|&nbsp;
+  <a href="docs/README.ar.md">Árabe</a>
+</p>
+
+O Perfect Grid é uma aplicação de secretária gratuita e de código aberto para criar folhas de contacto de vídeo e miniaturas de pré-visualização a partir de ficheiros de vídeo locais. Basta arrastar um vídeo, escolher o layout e exportar uma folha de contacto em PNG de alta qualidade.
 
 Concebido para editores, colecionadores, arquivistas e qualquer pessoa que pretenda um resumo visual rápido de um vídeo.
 
@@ -33,18 +44,18 @@ Concebido para editores, colecionadores, arquivistas e qualquer pessoa que prete
 
 ## Funcionalidades
 
-- Crie folhas de contacto de alta qualidade com exibição avançada de metadados de vídeo (resolução, codecs, duração, tamanho do ficheiro, etc.)
+- Crie folhas de contacto de alta qualidade com apresentação avançada de metadados de vídeo (resolução, codecs, duração, tamanho do ficheiro, etc.)
 - Layouts de grelha totalmente personalizáveis
 - Sobreposições opcionais de código temporal
 - Seleção inteligente de fotogramas com **Refine Picks**
 - Guarde e reutilize predefinições personalizadas
 - Processamento em lote
 - Funciona no Windows, macOS e Linux
-> Se encontrar __qualquer__ erro, se algo não funcionar ou se tiver dúvidas, crie uma [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) para o comunicar.
+> Se encontrar __qualquer__ erro, se algo não funcionar ou se tiver dúvidas, crie um [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) para o comunicar.
 
 ## Localização
 
-A interface do utilizador da aplicação está disponível em 8 idiomas. A renderização dos nomes de ficheiros das folhas é um sistema separado — desenha os nomes de ficheiros como píxeis no PNG exportado, o que requer um tratamento de fontes específico do script.
+A interface do utilizador da aplicação está disponível em 8 idiomas. A representação dos nomes dos ficheiros das folhas é um sistema separado — desenha os nomes dos ficheiros como píxeis no PNG exportado, o que requer um tratamento de tipos de letra específico do script.
 
 | Idioma | IU | Na folha |
 |---|---|---|
@@ -61,15 +72,15 @@ A interface do utilizador da aplicação está disponível em 8 idiomas. A rende
 | Tailandês | — | — |
 | Devanagari (hindi, etc.) | — | — |
 
-> Atualmente, a renderização de nomes de ficheiros não ASCII no Linux não é suportada — os nomes de ficheiros em alfabetos não latinos serão apresentados como caixas. Isto será corrigido na próxima versão!
+> A renderização de nomes de ficheiros não ASCII no Linux não é atualmente suportada — os nomes de ficheiros em alfabetos não latinos serão apresentados como caixas. Isto será corrigido na próxima versão!
 
 ## Utilização básica
 
 1. Abra o Perfect Grid.
 2. Arraste um vídeo para dentro da janela.
 3. Ajuste o layout e o estilo da grelha. Se alterar o layout, clique em **Atualizar pré-visualização** para regenerar as miniaturas.
-4. As pré-visualizações têm uma qualidade inferior propositadamente — as exportações utilizam sempre a configuração de qualidade selecionada.
-5. (Opcional) No separador **Intervalo**, utilize **Aperfeiçoar Seleção** para uma seleção mais inteligente de fotogramas.
+4. As pré-visualizações têm uma qualidade inferior de forma intencional — as exportações utilizam sempre a configuração de qualidade selecionada.
+5. (Opcional) No separador **Intervalo**, utilize **Aperfeiçoar Seleções** para uma seleção mais inteligente de fotogramas.
 6. Escolha uma qualidade de exportação em **Intervalo**: **Rápido (1080p)**, **Detalhe (1440p)** ou **Máximo (4K)**.
 7. Clique em **Exportar PNG**.
 
@@ -104,7 +115,7 @@ chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 
 Não é necessária qualquer instalação — o FFmpeg e todas as dependências estão incluídos. Funciona na maioria das distribuições x86_64 (Ubuntu 22.04+, Fedora, Arch, etc.).
 
-> Se receber um erro de FUSE: `sudo apt install fuse` (Debian/Ubuntu) ou `sudo dnf install fuse` (Fedora).
+> Se receber um erro FUSE: `sudo apt install fuse` (Debian/Ubuntu) ou `sudo dnf install fuse` (Fedora).
 
 ## Privacidade
 
@@ -130,7 +141,7 @@ Para suporte completo a nomes de ficheiros em árabe/RTL ao compilar a partir do
 pip install arabic-reshaper python-bidi
 ```
 
-Os scripts de compilação encontram-se em `scripts/`. O GitHub Actions compila automaticamente as versões para Windows e Linux quando são enviadas alterações com etiquetas. A versão para macOS é compilada manualmente.
+Os scripts de compilação encontram-se em `scripts/`. O GitHub Actions compila automaticamente as versões para Windows e Linux quando são enviadas alterações marcadas. A versão para macOS é compilada manualmente.
 
 </details>
 
