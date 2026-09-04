@@ -1,11 +1,17 @@
-# Perfect Grid
-[![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?)](LICENSE)
+<p align="center">
+  <img src="assets/icon.png" width="80" alt="Perfect Grid">
+  <h1 align="center">Perfect Grid</h1>
+</p>
 
-Perfect Grid is a free, open source desktop app for creating video contact sheets and preview thumbnails from local video files.
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid" alt="GitHub Release">
+  <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Downloads">
+  <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="License">
+</p>
 
-Drop in a video, pick your layout, and export a high-quality PNG contact sheet. Built for editors, collectors, archivists, and anyone who wants a quick visual summary of a video.
+Perfect Grid is a free, open source desktop app for creating video contact sheets and preview thumbnails from local video files. Drop in a video, pick your layout, and export a high-quality PNG contact sheet.
+
+Built for editors, collectors, archivists, and anyone who wants a quick visual summary of a video.
 
 <p align="center">
   <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Example preview sheet made with Perfect Grid">
@@ -14,14 +20,14 @@ Drop in a video, pick your layout, and export a high-quality PNG contact sheet. 
 </p>
 
 <p align="center">
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS">
-  </a>
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-Windows.zip">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Download for Windows">
-  </a>
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-x86_64.AppImage">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?style=for-the-badge&logo=linux&logoColor=white" alt="Download for Linux">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Download for macOS">
+  </a>&#8203; &nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Download for Windows">
+  </a>&#8203; &nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Download for Linux">
   </a>
 </p>
 
@@ -34,9 +40,28 @@ Drop in a video, pick your layout, and export a high-quality PNG contact sheet. 
 - Smart frame selection with **Refine Picks**
 - Save and reuse custom presets
 - Batch processing
-- UI available in English, Chinese (中文), and Portuguese
-- RTL for correct display of Arabic, CJK, and other non-Latin filenames
 - Runs on Windows, macOS, and Linux
+
+## Localization
+
+The app UI is available in 8 languages. Sheet filename rendering is a separate system — it draws filenames as pixels on the exported PNG, which requires script-specific font handling.
+
+| Language | UI | On sheet |
+|---|---|---|
+| English | Yes | Yes |
+| Chinese (中文) | Yes | Yes (macOS, Windows) |
+| Portuguese (PT) | Yes | Yes |
+| Spanish (ES) | Yes | Yes |
+| Japanese (JA) | Yes | Yes (macOS, Windows) |
+| French (FR) | Yes | Yes |
+| German (DE) | Yes | Yes |
+| Korean (KO) | Yes | Yes (macOS, Windows) |
+| Arabic / RTL | — | Yes |
+| Hebrew | — | — |
+| Thai | — | — |
+| Devanagari (Hindi, etc.) | — | — |
+
+> Linux non-ASCII filename rendering is not currently supported — filenames in non-Latin scripts will show as boxes. This will be fixed in the next release!
 
 ## Basic Usage
 
@@ -62,7 +87,7 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Windows
 
-1. Download `Perfect-Grid-Windows.zip`.
+1. Download `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
 2. Right-click → **Extract All**, then open the folder.
 3. Double-click `Perfect Grid.exe`.
 
@@ -70,12 +95,12 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Linux
 
-1. Download `Perfect-Grid-x86_64.AppImage`.
+1. Download `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
 2. Make it executable and run it:
-   ```bash
-   chmod +x Perfect-Grid-x86_64.AppImage
-   ./Perfect-Grid-x86_64.AppImage
-   ```
+```bash
+chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+```
 
 No install needed — FFmpeg and all dependencies are bundled. Works on most x86_64 distros (Ubuntu 22.04+, Fedora, Arch, etc.).
 
@@ -83,11 +108,7 @@ No install needed — FFmpeg and all dependencies are bundled. Works on most x86
 
 ## Privacy
 
-Everything runs locally.
-
-- No analytics or telemetry
-- No uploads or cloud processing
-- FFmpeg and FFprobe are bundled
+Everything runs locally. No analytics, no telemetry, no uploads. FFmpeg and FFprobe are bundled.
 
 ## Notes
 
@@ -95,7 +116,8 @@ Everything runs locally.
 - AV1 and VP9 decoding can be slow on older hardware.
 - macOS builds are unsigned — see install note above.
 
-## For Developers
+<details>
+<summary>For Developers</summary>
 
 ```bash
 python -m pip install -r requirements.txt
@@ -109,6 +131,8 @@ pip install arabic-reshaper python-bidi
 ```
 
 Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux releases automatically on tagged pushes. macOS is built manually.
+
+</details>
 
 ## Contributing
 
