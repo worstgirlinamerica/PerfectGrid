@@ -2,7 +2,7 @@ import deepl
 import os
 
 key = os.environ["DEEPL_API_KEY"]
-translator = deepl.Translator(key + ":fx")
+translator = deepl.Translator(key)
 
 with open("README.md", "r", encoding="utf-8") as f:
     text = f.read()
