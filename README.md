@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="assets/icon.png" width="80" alt="Perfect Grid">
+  <img src="https://raw.githubusercontent.com/worstgirlinamerica/PerfectGrid/main/assets/icon.png" width="80" alt="Perfect Grid">
   <h1 align="center">Perfect Grid</h1>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid" alt="GitHub Release">
+  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="GitHub Release">
   <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Downloads">
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="License">
 </p>
@@ -53,27 +53,6 @@ Built for editors, collectors, archivists, and anyone who wants a quick visual s
 - Runs on Windows, macOS, and Linux
 > If you experience __any__ errors, something doesn't work, or you have questions, please create an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) to report it.
 
-## Localization
-
-The app UI is available in 8 languages. Sheet filename rendering is a separate system — it draws filenames as pixels on the exported PNG, which requires script-specific font handling.
-
-| Language | UI | On sheet |
-|---|---|---|
-| English | Yes | Yes |
-| Chinese (中文) | Yes | Yes (macOS, Windows) |
-| Portuguese (PT) | Yes | Yes |
-| Spanish (ES) | Yes | Yes |
-| Japanese (JA) | Yes | Yes (macOS, Windows) |
-| French (FR) | Yes | Yes |
-| German (DE) | Yes | Yes |
-| Korean (KO) | Yes | Yes (macOS, Windows) |
-| Arabic / RTL | — | Yes |
-| Hebrew | — | — |
-| Thai | — | — |
-| Devanagari (Hindi, etc.) | — | — |
-
-> Linux non-ASCII filename rendering is not currently supported — filenames in non-Latin scripts will show as boxes. This will be fixed in the next release!
-
 ## Basic Usage
 
 1. Open Perfect Grid.
@@ -121,6 +100,27 @@ No install needed — FFmpeg and all dependencies are bundled. Works on most x86
 
 Everything runs locally. No analytics, no telemetry, no uploads. FFmpeg and FFprobe are bundled.
 
+## Localization
+
+The app UI is available in 8 languages. Sheet filename rendering is a separate system — it draws filenames as pixels on the exported PNG, which requires script-specific font handling.
+
+| Language | UI | On sheet |
+|---|---|---|
+| English | Yes | Yes |
+| Chinese (中文) | Yes | Yes (macOS, Windows) |
+| Portuguese (PT) | Yes | Yes |
+| Spanish (ES) | Yes | Yes |
+| Japanese (JA) | Yes | Yes (macOS, Windows) |
+| French (FR) | Yes | Yes |
+| German (DE) | Yes | Yes |
+| Korean (KO) | Yes | Yes (macOS, Windows) |
+| Arabic / RTL | — | Yes |
+| Hebrew | — | — |
+| Thai | — | — |
+| Devanagari (Hindi, etc.) | — | — |
+
+> Linux non-ASCII filename rendering is not currently supported — filenames in non-Latin scripts will show as boxes. This will be fixed in the next release!
+
 ## Notes
 
 - Supports MP4, MOV, MKV, AVI, WebM, and anything FFmpeg can read.
@@ -147,7 +147,7 @@ Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux release
 
 ## Contributing
 
-Please let us know if you experience any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
+Please let us know if you experience any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new). 
 The most useful information to include is your OS, video format, and whether the issue was in preview, refine, export, or batch.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
