@@ -1,86 +1,146 @@
-# Perfect Grid
-
-[![GitHub Release](https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![Downloads](https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total?)](https://github.com/worstgirlinamerica/PerfectGrid/releases)
-[![License](https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid?)](LICENSE)
-
-Perfect Grid es una app de escritorio gratuita y de código abierto para crear hojas de contacto y miniaturas de vídeo a partir de archivos locales.
-
-Arrastra un vídeo, elige tu diseño y exporta un PNG de alta calidad. Hecha para editores, coleccionistas, archivistas y cualquiera que quiera un resumen visual rápido de un vídeo.
+<p align="center">
+  <img src="assets/icon.png" width="80" alt="Perfect Grid">
+  <h1 align="center">Perfect Grid</h1>
+</p>
 
 <p align="center">
-  <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Ejemplo de hoja de contacto generada con Perfect Grid">
+  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid" alt="Lanzamiento en GitHub">
+  <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Descargas">
+  <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="Licencia">
+</p>
+
+Perfect Grid es una aplicación de escritorio gratuita y de código abierto para crear hojas de contacto de vídeo y vistas previas en miniatura a partir de archivos de vídeo locales. Arrastra y suelta un vídeo, elige tu diseño y exporta una hoja de contacto en formato PNG de alta calidad.
+
+Diseñada para editores, coleccionistas, archiveros y cualquier persona que desee un resumen visual rápido de un vídeo.
+
+<p align="center">
+  <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Ejemplo de hoja de vista previa creada con Perfect Grid">
   <br>
   <em>Ejemplo de hoja de contacto generada con Perfect Grid.</em>
 </p>
 
 <p align="center">
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Descargar para macOS">
-</a>
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-Windows.zip">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows21&logoColor=white" alt="Descargar para Windows">
-</a>
-<a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/Perfect-Grid-x86_64.AppImage">
-  <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?style=for-the-badge&logo=linux&logoColor=white" alt="Descargar para Linux">
-</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Descargar para macOS">
+  </a>&#8203; &nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Descargar para Windows">
+  </a>&#8203; &nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Descargar para Linux">
+  </a>
 </p>
 
-## Funciones
+## Características
 
-- Genera hojas de contacto PNG de alta calidad
+- Genera hojas de contacto de alta calidad con visualización avanzada de metadatos de vídeo (resolución, códecs, duración, tamaño de archivo, etc.)
 - Diseños de cuadrícula totalmente personalizables
-- Superposición de código de tiempo opcional
-- Metadatos del vídeo (resolución, códecs, duración, tamaño, etc.)
-- Selección inteligente de fotogramas con **Refinar selección**
-- Guarda y reutiliza presets personalizados
+- Superposición opcional de códigos de tiempo
+- Selección inteligente de fotogramas con **Refine Picks**
+- Guarda y reutiliza ajustes preestablecidos personalizados
 - Procesamiento por lotes
-- Interfaz disponible en inglés, chino, portugués, español, japonés, francés, alemán y coreano
-- Renderizado correcto de nombres de archivo en árabe, CJK y otros scripts no latinos
-- Disponible para Windows, macOS y Linux
+- Funciona en Windows, macOS y Linux
+> Si experimentas __cualquier__ error, algo no funciona o tienes alguna pregunta, por favor, crea un [incidente](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) para informarnos.
+
+## Localización
+
+La interfaz de usuario de la aplicación está disponible en 8 idiomas. La representación de los nombres de archivo en las hojas es un sistema independiente: dibuja los nombres de archivo como píxeles en el PNG exportado, lo que requiere un manejo de fuentes específico del script.
+
+| Idioma | Interfaz de usuario | En la hoja |
+|---|---|---|
+| Inglés | Sí | Sí |
+| Chino (中文) | Sí | Sí (macOS, Windows) |
+| Portugués (PT) | Sí | Sí |
+| Español (ES) | Sí | Sí |
+| Japonés (JA) | Sí | Sí (macOS, Windows) |
+| Francés (FR) | Sí | Sí |
+| Alemán (DE) | Sí | Sí |
+| Coreano (KO) | Sí | Sí (macOS, Windows) |
+| Árabe / RTL | — | Sí |
+| Hebreo | — | — |
+| Tailandés | — | — |
+| Devanagari (hindi, etc.) | — | — |
+
+> Actualmente no se admite la visualización de nombres de archivo no ASCII en Linux; los nombres de archivo en alfabetos no latinos aparecerán como cuadros. ¡Esto se solucionará en la próxima versión!
 
 ## Uso básico
 
 1. Abre Perfect Grid.
 2. Arrastra un vídeo a la ventana.
-3. Ajusta el diseño de cuadrícula y el estilo. Si cambias el diseño, haz clic en **Actualizar vista previa**.
-4. Las vistas previas son de menor calidad a propósito — las exportaciones siempre usan la calidad que hayas seleccionado.
-5. (Opcional) En la pestaña **Rango**, usa **Refinar selección** para una selección de fotogramas más inteligente.
-6. Elige la calidad de exportación en **Rango**: **Rápido (1080p)**, **Detalle (1440p)** o **Máximo (4K)**.
+3. Ajusta la disposición y el estilo de la cuadrícula. Si cambias la disposición, haz clic en **Actualizar vista previa** para volver a generar las miniaturas.
+4. Las vistas previas son de menor calidad a propósito; las exportaciones siempre utilizan la configuración de calidad que hayas seleccionado.
+5. (Opcional) En la pestaña **Rango**, utiliza **Perfeccionar selección** para una selección de fotogramas más inteligente.
+6. Elige una calidad de exportación en **Rango**: **Rápida (1080p)**, **Detallada (1440p)** o **Máxima (4K)**.
 7. Haz clic en **Exportar PNG**.
 
-## Descargar e instalar
+## Instalación
 
-Descarga la última versión para tu sistema desde la página de [Releases](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
+Descarga la última versión para tu sistema operativo desde la página [Versiones](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 
 ### macOS
 
 1. Descarga `PerfectGrid-v0.1.2-macos-universal.zip`.
-2. Descomprime y arrastra Perfect Grid a Aplicaciones.
-3. Si macOS bloquea la app al abrirla por primera vez, ejecuta esto en la Terminal:
+2. Haz doble clic para extraerlo y, a continuación, arrastra Perfect Grid a la carpeta Aplicaciones.
+3. Abre `Perfect Grid.app`.
 
-```bash
-xattr -cr "/Applications/Perfect Grid.app"
-```
+> macOS bloqueará la aplicación la primera vez que la inicies, ya que no está firmada. Haz clic con el botón derecho → **Abrir** → **Abrir** para sortear el bloqueo. Si sigue sin abrirse, ejecuta esto en la Terminal: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. Descarga `Perfect-Grid-Windows.zip`.
-2. Descomprime en cualquier carpeta.
-3. Ejecuta `Perfect Grid.exe`.
+1. Descarga `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
+2. Haz clic con el botón derecho → **Extraer todo** y, a continuación, abre la carpeta.
+3. Haz doble clic en «Perfect Grid.exe».
+
+> Es posible que Windows SmartScreen te muestre una advertencia, ya que la aplicación no está firmada. Haz clic en **Más información** → **Ejecutar de todos modos**.
 
 ### Linux
 
-1. Descarga `Perfect-Grid-x86_64.AppImage`.
-2. Hazlo ejecutable y ábrelo:
-
+1. Descarga `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
+2. Hazlo ejecutable y ejecútalo:
 ```bash
-chmod +x Perfect-Grid-x86_64.AppImage
-./Perfect-Grid-x86_64.AppImage
+chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 ```
 
-FFmpeg está incluido — no necesitas instalarlo por separado.
+No es necesaria ninguna instalación: FFmpeg y todas las dependencias están incluidas. Funciona en la mayoría de distribuciones x86_64 (Ubuntu 22.04 o posterior, Fedora, Arch, etc.).
+
+> Si aparece un error de FUSE: `sudo apt install fuse` (Debian/Ubuntu) o `sudo dnf install fuse` (Fedora).
+
+## Privacidad
+
+Todo se ejecuta localmente. Sin análisis, sin telemetría, sin subidas de archivos. FFmpeg y FFprobe están incluidos.
+
+## Notas
+
+- Admite MP4, MOV, MKV, AVI, WebM y cualquier formato que FFmpeg pueda leer.
+- La decodificación de AV1 y VP9 puede ser lenta en hardware antiguo.
+- Las versiones para macOS no están firmadas; consulta la nota de instalación anterior.
+
+<details>
+<summary>Para desarrolladores</summary>
+
+```bash
+python -m pip install -r requirements.txt
+PYTHONPATH=src python -m perfect_grid.app
+```
+
+Para obtener compatibilidad total con nombres de archivo en árabe/RTL al compilar desde el código fuente:
+
+```bash
+pip install arabic-reshaper python-bidi
+```
+
+Los scripts de compilación se encuentran en `scripts/`. GitHub Actions compila automáticamente las versiones para Windows y Linux al enviar cambios etiquetados. La versión para macOS se compila manualmente.
+
+</details>
+
+## Cómo colaborar
+
+Por favor, avísanos si detectas algún fallo o error creando una [incidencia](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
+La información más útil que puedes incluir es tu sistema operativo, el formato de vídeo y si el problema se produjo en la vista previa, el refinado, la exportación o el procesamiento por lotes.
+
+Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para obtener más información.
 
 ## Licencia
 
-MIT. Consulta [LICENSE](../LICENSE).
+MIT. Consulta [LICENSE](LICENSE).
