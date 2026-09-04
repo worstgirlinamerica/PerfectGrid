@@ -1,0 +1,29 @@
+---
+name: Bug Report
+about: Report a bug or issue
+title: "[BUG] "
+labels: bug
+---
+
+## Description
+Brief description of the issue.
+
+## Steps to Reproduce
+- [ ] Step 1
+- [ ] Step 2
+- [ ] Step 3
+
+## What Happened
+What did you see?
+
+## What Should Happen
+What did you expect to see?
+
+## Environment
+- OS: 
+- Python version: 
+
+## Logs/Error Message
+```
+Paste any errors or logs here
+```
