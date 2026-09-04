@@ -10,14 +10,14 @@
 </p>
 
 <p align="center">
-  <a href="docs/README.zh.md">Chino</a> &nbsp;|&nbsp;
-  <a href="docs/README.pt.md">Portugués</a> &nbsp;|&nbsp;
-  <a href="docs/README.es.md">Español</a> &nbsp;|&nbsp;
-  <a href="docs/README.ja.md">Japonés</a> &nbsp;|&nbsp;
-  <a href="docs/README.fr.md">Francés</a> &nbsp;|&nbsp;
-  <a href="docs/README.de.md">Alemán</a> &nbsp;|&nbsp;
-  <a href="docs/README.ko.md">한국어</a> &nbsp;|&nbsp;
-  <a href="docs/README.ar.md">العربية</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.zh.md">Chino</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">Portugués</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">Español</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ja.md">Japonés</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">Francés</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.de.md">Alemán</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ko.md">한국어</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">العربية</a>
 </p>
 
 Perfect Grid es una aplicación de escritorio gratuita y de código abierto para crear hojas de contacto de vídeo y vistas previas en miniatura a partir de archivos de vídeo locales. Arrastra un vídeo, elige tu diseño y exporta una hoja de contacto en formato PNG de alta calidad.
