@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.png" width="80" alt="Perfect Grid">
+  <img src="https://raw.githubusercontent.com/worstgirlinamerica/PerfectGrid/main/assets/icon.png" width="80" alt="Perfect Grid">
   <h1 align="center">Perfect Grid</h1>
 </p>
 
