@@ -136,7 +136,7 @@ Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux release
 
 ## Contributing
 
-Please report any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
+Please let us know if you experience any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
 The most useful information to include is your OS, video format, and whether the issue was in preview, refine, export, or batch.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
