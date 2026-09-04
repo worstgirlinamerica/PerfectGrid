@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="assets/icon.png" width="80" alt="Perfect Grid">
+  <img src="https://raw.githubusercontent.com/worstgirlinamerica/PerfectGrid/main/assets/icon.png" width="80" alt="Perfect Grid">
   <h1 align="center">Perfect Grid</h1>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid" alt="Lanzamiento en GitHub">
+  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="Lanzamiento en GitHub">
   <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Descargas">
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="Licencia">
 </p>
@@ -20,9 +20,9 @@
   <a href="docs/README.ar.md">العربية</a>
 </p>
 
-Perfect Grid es una aplicación de escritorio gratuita y de código abierto para crear hojas de contacto de vídeo y vistas previas en miniatura a partir de archivos de vídeo locales. Arrastra y suelta un vídeo, elige tu diseño y exporta una hoja de contacto en formato PNG de alta calidad.
+Perfect Grid es una aplicación de escritorio gratuita y de código abierto para crear hojas de contacto de vídeo y vistas previas en miniatura a partir de archivos de vídeo locales. Arrastra un vídeo, elige tu diseño y exporta una hoja de contacto en formato PNG de alta calidad.
 
-Diseñada para editores, coleccionistas, archiveros y cualquiera que desee un resumen visual rápido de un vídeo.
+Diseñada para editores, coleccionistas, archiveros y cualquier persona que desee un resumen visual rápido de un vídeo.
 
 <p align="center">
   <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Ejemplo de hoja de vista previa creada con Perfect Grid">
@@ -53,33 +53,12 @@ Diseñada para editores, coleccionistas, archiveros y cualquiera que desee un re
 - Funciona en Windows, macOS y Linux
 > Si experimentas __cualquier__ error, algo no funciona o tienes alguna pregunta, por favor, crea un [incidente](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) para informarnos.
 
-## Localización
-
-La interfaz de usuario de la aplicación está disponible en 8 idiomas. La representación de los nombres de archivo en las hojas es un sistema independiente: dibuja los nombres de archivo como píxeles en el PNG exportado, lo que requiere un manejo de fuentes específico para el script.
-
-| Idioma | Interfaz de usuario | En la hoja |
-|---|---|---|
-| Inglés | Sí | Sí |
-| Chino (中文) | Sí | Sí (macOS, Windows) |
-| Portugués (PT) | Sí | Sí |
-| Español (ES) | Sí | Sí |
-| Japonés (JA) | Sí | Sí (macOS, Windows) |
-| Francés (FR) | Sí | Sí |
-| Alemán (DE) | Sí | Sí |
-| Coreano (KO) | Sí | Sí (macOS, Windows) |
-| Árabe / RTL | — | Sí |
-| Hebreo | — | — |
-| Tailandés | — | — |
-| Devanagari (hindi, etc.) | — | — |
-
-> Actualmente no se admite la visualización de nombres de archivo no ASCII en Linux; los nombres de archivo en alfabetos no latinos se mostrarán como cuadros. ¡Esto se solucionará en la próxima versión!
-
 ## Uso básico
 
 1. Abre Perfect Grid.
 2. Arrastra un vídeo a la ventana.
-3. Ajusta la disposición y el estilo de la cuadrícula. Si cambias la disposición, haz clic en **Actualizar vista previa** para volver a generar las miniaturas.
-4. Las vistas previas son de menor calidad a propósito; las exportaciones siempre utilizan la configuración de calidad seleccionada.
+3. Ajusta el diseño y el estilo de la cuadrícula. Si cambias el diseño, haz clic en **Actualizar vista previa** para volver a generar las miniaturas.
+4. Las vistas previas son de menor calidad a propósito; las exportaciones siempre utilizan la configuración de calidad que hayas seleccionado.
 5. (Opcional) En la pestaña **Rango**, utiliza **Perfeccionar selección** para una selección de fotogramas más inteligente.
 6. Elige una calidad de exportación en **Rango**: **Rápida (1080p)**, **Detallada (1440p)** o **Máxima (4K)**.
 7. Haz clic en **Exportar PNG**.
@@ -94,7 +73,7 @@ Descarga la última versión para tu sistema operativo desde la página [Version
 2. Haz doble clic para extraerlo y, a continuación, arrastra Perfect Grid a la carpeta Aplicaciones.
 3. Abre `Perfect Grid.app`.
 
-> macOS bloqueará la aplicación la primera vez que la inicies, ya que no está firmada. Haz clic con el botón derecho → **Abrir** → **Abrir** para superar este bloqueo. Si sigue sin abrirse, ejecuta esto en la Terminal: `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS bloqueará la aplicación al iniciarla por primera vez, ya que no está firmada. Haz clic con el botón derecho → **Abrir** → **Abrir** para superar este bloqueo. Si sigue sin abrirse, ejecuta esto en la Terminal: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
@@ -113,7 +92,7 @@ chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 ./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 ```
 
-No es necesaria ninguna instalación: FFmpeg y todas las dependencias están incluidas. Funciona en la mayoría de distribuciones x86_64 (Ubuntu 22.04+, Fedora, Arch, etc.).
+No es necesaria ninguna instalación: FFmpeg y todas las dependencias están incluidas. Funciona en la mayoría de distribuciones x86_64 (Ubuntu 22.04 y posteriores, Fedora, Arch, etc.).
 
 > Si aparece un error de FUSE: `sudo apt install fuse` (Debian/Ubuntu) o `sudo dnf install fuse` (Fedora).
 
@@ -121,11 +100,32 @@ No es necesaria ninguna instalación: FFmpeg y todas las dependencias están inc
 
 Todo se ejecuta localmente. Sin análisis, sin telemetría, sin subidas de archivos. FFmpeg y FFprobe están incluidos.
 
+## Localización
+
+La interfaz de usuario de la aplicación está disponible en 8 idiomas. La representación de los nombres de archivo en la hoja es un sistema independiente: dibuja los nombres de archivo como píxeles en el PNG exportado, lo que requiere un manejo de fuentes específico para el script.
+
+| Idioma | IU | En la hoja |
+|---|---|---|
+| Inglés | Sí | Sí |
+| Chino (中文) | Sí | Sí (macOS, Windows) |
+| Portugués (PT) | Sí | Sí |
+| Español (ES) | Sí | Sí |
+| Japonés (JA) | Sí | Sí (macOS, Windows) |
+| Francés (FR) | Sí | Sí |
+| Alemán (DE) | Sí | Sí |
+| Coreano (KO) | Sí | Sí (macOS, Windows) |
+| Árabe / RTL | — | Sí |
+| Hebreo | — | — |
+| Tailandés | — | — |
+| Devanagari (hindi, etc.) | — | — |
+
+> Actualmente no se admite la visualización de nombres de archivo no ASCII en Linux; los nombres de archivo en alfabetos no latinos aparecerán como cuadros. ¡Esto se solucionará en la próxima versión!
+
 ## Notas
 
 - Admite MP4, MOV, MKV, AVI, WebM y cualquier formato que FFmpeg pueda leer.
-- La decodificación de AV1 y VP9 puede resultar lenta en hardware antiguo.
-- Las versiones para macOS no están firmadas; consulta la nota de instalación anterior.
+- La decodificación de AV1 y VP9 puede resultar lenta en equipos antiguos.
+- Las compilaciones para macOS no están firmadas; consulta la nota de instalación anterior.
 
 <details>
 <summary>Para desarrolladores</summary>
@@ -145,13 +145,13 @@ Los scripts de compilación se encuentran en `scripts/`. GitHub Actions compila 
 
 </details>
 
-## Cómo colaborar
+## Colaborar
 
-Por favor, infórmanos si detectas algún fallo o error creando una [incidencia](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 
+Si detectas algún fallo o error, háznoslo saber creando una [incidencia](https://github.com/worstgirlinamerica/PerfectGrid/issues/new). 
 La información más útil que puedes incluir es tu sistema operativo, el formato de vídeo y si el problema se produjo en la vista previa, el refinado, la exportación o el procesamiento por lotes.
 
 Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para obtener más información.
 
 ## Licencia
 
-MIT. Consulta [LICENCIA](LICENCIA).
+MIT. Consulta [LICENSE](LICENSE).
