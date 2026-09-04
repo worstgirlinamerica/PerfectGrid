@@ -1,7 +1,5 @@
 # Localization in Perfect Grid
 
-## What's supported
-
 The UI is fully translated into:
 
 | Language | Code | Script | Works in UI | Works in filenames |
