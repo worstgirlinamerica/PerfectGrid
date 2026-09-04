@@ -18,7 +18,7 @@ languages = {
 }
 
 for code, deepl_code in languages.items():
-    result = translator.translate_text(text, target_lang=deepl_code, tag_handling="xml")
+    result = translator.translate_text(text, target_lang=deepl_code)
     with open(f"docs/README.{code}.md", "w", encoding="utf-8") as f:
         f.write(str(result))
     print(f"Wrote docs/README.{code}.md")
