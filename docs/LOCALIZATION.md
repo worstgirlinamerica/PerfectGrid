@@ -6,18 +6,18 @@ The UI is fully translated into:
 
 | Language | Code | Script | Works in UI | Works in filenames |
 |---|---|---|---|---|
-| English | `en` | Latin | ✅ | ✅ |
-| Chinese (Simplified) | `zh` | CJK | ✅ | ✅ |
-| Portuguese | `pt` | Latin | ✅ | ✅ |
-| Spanish | `es` | Latin | ✅ | ✅ |
-| Japanese | `ja` | CJK + Kana | ✅ | ✅ |
-| French | `fr` | Latin | ✅ | ✅ |
-| German | `de` | Latin | ✅ | ✅ |
-| Korean | `ko` | Hangul | ✅ | ✅ |
+| English | `en` | Latin | Yes | Yes |
+| Chinese (Simplified) | `zh` | CJK | Yes | Yes |
+| Portuguese | `pt` | Latin | Yes | Yes |
+| Spanish | `es` | Latin | Yes | Yes |
+| Japanese | `ja` | CJK + Kana | Yes | Yes |
+| French | `fr` | Latin | Yes | Yes |
+| German | `de` | Latin | Yes | Yes |
+| Korean | `ko` | Hangul | Yes | Yes |
 
 "Works in filenames" means: if you drag in a video whose filename is written in that language, the contact sheet will display the filename correctly.
 
-## What's not fully supported yet
+## What's not fully supported as of v0.1.2
 
 Some scripts need extra rendering work beyond what's currently implemented:
 
@@ -39,7 +39,7 @@ When you change the language in Settings and hit OK, `retranslate_ui()` runs and
 
 If a key is missing in a language, it falls back to English rather than crashing or showing a blank.
 
-## How filename rendering works
+## How Sheet Rendering works
 
 This is separate from UI translation. When you drag in a video, the app draws the filename onto the contact sheet image as pixels using PIL. Latin scripts draw fine with no extra handling. Non-Latin scripts need additional steps:
 
@@ -48,14 +48,6 @@ This is separate from UI translation. When you drag in a video, the app draws th
 **Arabic** — Arabic letters change shape depending on their position in a word. The app uses `arabic_reshaper` to convert logical codepoints into correct visual forms, then `python-bidi` to reverse the render order for right-to-left display. GeezaPro is prioritized for Arabic text on macOS.
 
 **Other RTL scripts** — The bidi reorder applies to Hebrew ranges too, so direction should be handled. Reshaping is Arabic-specific and not needed for Hebrew.
-
-## How other apps support every script
-
-The standard approach is [HarfBuzz](https://harfbuzz.github.io/) — an open source text shaping engine used by Chrome, Firefox, Android, LibreOffice, and most modern apps. It handles Arabic, Devanagari, Thai, and every other complex script using a single pipeline: Unicode text + a font file → correctly shaped, positioned glyphs ready to draw.
-
-In Python, the `uharfbuzz` binding exposes this. That single pipeline replaces `arabic_reshaper` + `python-bidi` and also covers Devanagari, Thai, and everything else. The reason Perfect Grid doesn't use it yet: it's a native C library that adds build complexity and needs to be bundled with the PyInstaller builds. It's the right next step for full Unicode filename support.
-
-The other half of the solution is bundling [Noto Sans](https://fonts.google.com/noto) — Google's font family designed to cover every Unicode script ("no tofu"). Once bundled, non-ASCII filenames will render correctly on Linux too.
 
 ## Adding a new UI language
 
