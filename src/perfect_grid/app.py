@@ -390,6 +390,7 @@ class PixelCheckBox(QWidget):
 
         self._box = _CheckBoxIndicator(self)
         self._lbl = QLabel(label)
+
         self._lbl.setStyleSheet("color:#c8c8c8;font-size:13px;background:transparent;")
         layout.addWidget(self._box)
         layout.addWidget(self._lbl)
@@ -667,19 +668,13 @@ class PerfectGrid(QMainWindow):
 
         # ── left panel ──────────────────────────────────────────────────────────
         self.left_panel = QWidget()
-        self.left_panel.setMinimumWidth(360)
-        self.left_panel.setMaximumWidth(440)
+        self.left_panel.setMinimumWidth(320)
         self.left_panel.setObjectName("LeftPanel")
         left_layout = QVBoxLayout(self.left_panel)
-        left_layout.setContentsMargins(0, 0, 0, 0)
+        left_layout.setContentsMargins(0, 0, 8, 0)
         left_layout.setSpacing(8)
 
-        self.sidebar_content = QWidget()
-        self.sidebar_content.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sidebar = QVBoxLayout(self.sidebar_content)
-        sidebar.setContentsMargins(0, 0, 0, 0)
         self.tabs = QTabWidget()
-        sidebar.addWidget(self.tabs)
 
         self.init_grid_tab()
         self.init_text_tab()
@@ -690,7 +685,11 @@ class PerfectGrid(QMainWindow):
         controls_scroll = QScrollArea()
         controls_scroll.setWidgetResizable(True)
         controls_scroll.setFrameShape(QFrame.NoFrame)
-        controls_scroll.setWidget(self.sidebar_content)
+        controls_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        controls_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        controls_scroll.setWidget(self.tabs)
+        controls_scroll.setStyleSheet("QScrollArea { border: none; } QScrollBar:vertical { width: 6px; margin: 34px 0 0 0; background: transparent; } QScrollBar::handle:vertical { background: #3a3a3a; border-radius: 3px; min-height: 20px; } QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }")
+        controls_scroll.viewport().setAutoFillBackground(True)
         left_layout.addWidget(controls_scroll, 1)
 
         # ── bottom buttons ───────────────────────────────────────────────────────
@@ -725,13 +724,20 @@ class PerfectGrid(QMainWindow):
         bottom_lay.addWidget(self.status_label)
 
         left_layout.addWidget(bottom, 0)
-        main_layout.addWidget(self.left_panel, 1)
-
-        # ── preview pane ─────────────────────────────────────────────────────────
         self.preview_label = QLabel(self.tr("drag_drop"))
         self.preview_label.setAlignment(Qt.AlignCenter)
         self.preview_label.setObjectName("PreviewPane")
-        main_layout.addWidget(self.preview_label, 3)
+
+        self._splitter = QSplitter(Qt.Horizontal)
+        self._splitter.addWidget(self.left_panel)
+        self._splitter.addWidget(self.preview_label)
+        self._splitter.setStretchFactor(0, 1)
+        self._splitter.setStretchFactor(1, 3)
+        self._splitter.setChildrenCollapsible(False)
+        self._splitter.setHandleWidth(6)
+        self._splitter.setStyleSheet("QSplitter::handle { background: #2a2a2a; } QSplitter::handle:hover { background: #3a3a3a; }")
+        self._splitter.setSizes([380, 1000])
+        main_layout.addWidget(self._splitter)
 
         self.setAcceptDrops(True)
 
@@ -745,6 +751,7 @@ class PerfectGrid(QMainWindow):
 
         lbl = QLabel(name)
         lbl.setObjectName("FieldLabel")
+
         if tr_key:
             if not hasattr(self, "_slider_labels"):
                 self._slider_labels = {}
@@ -1206,7 +1213,9 @@ class PerfectGrid(QMainWindow):
         self.loading_bar.show()
         self.loading_bar.setRange(0, 0)
         self._prune_cache_if_large()   # prune before each extraction, not just after
-        self._start_worker("ultrafast")
+        import platform
+        _is_apple_silicon = platform.machine() == "arm64" and platform.system() == "Darwin"
+        self._start_worker("refined" if _is_apple_silicon else "ultrafast")
 
     def _start_worker(self, mode):
         meta         = self.get_cached_meta(self.video_path)
