@@ -1,7 +1,7 @@
 [Setup]
 AppId={{1F86F69C-A43B-4C26-8EE7-31D2F6D03E65}
 AppName=Perfect Grid
-AppVersion=0.2.0
+AppVersion=0.2.1
 AppPublisher=Perfect Grid
 DefaultDirName={autopf}\Perfect Grid
 DefaultGroupName=Perfect Grid

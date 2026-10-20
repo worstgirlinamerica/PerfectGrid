@@ -35,6 +35,7 @@ pyinstaller \
   --add-binary "${FFMPEG_BIN}:." \
   --add-binary "${FFPROBE_BIN}:." \
   --collect-all av \
+  --collect-all PIL \
   src/perfect_grid/app.py
 
 echo "macOS build complete: dist_mac/Perfect Grid.app"

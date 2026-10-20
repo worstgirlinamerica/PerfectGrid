@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Fixed garbled/fallback-font metadata text on the macOS Intel build — PyInstaller wasn't bundling Pillow's FreeType support, so every `ImageFont.truetype` call failed silently and the overlay text rendered with PIL's default bitmap font. Build script now passes `--collect-all PIL`.
+- Fixed the macOS build crashing on launch (`AttributeError: module 'pkg_resources' has no attribute 'NullProvider'`) — newer `setuptools` releases (81+) removed the legacy `pkg_resources` API that PyInstaller's runtime hook still depends on. Pinned `setuptools<81` in requirements.
+- Added native macOS build jobs for both Apple Silicon (arm64) and Intel (x86_64) to CI, published as separate release assets instead of a single manually-built universal zip.
+
 ## 0.2.0
 
 - Replaced per-frame ffmpeg subprocess extraction with a persistent PyAV decode session — each extraction thread now opens a video once and seeks within it, instead of spawning (and on Intel, often double-spawning via a failed hwaccel attempt + software retry) a new ffmpeg process per thumbnail. Falls back to the old ffmpeg path automatically if PyAV can't handle a given file/codec.

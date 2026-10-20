@@ -35,7 +35,7 @@ except ImportError:
         from pg_i18n import get_tr, language_display_names
 
 APP_NAME    = "Perfect Grid"
-APP_VERSION = "0.2.0"
+APP_VERSION = "0.2.1"
 
 
 def _build_suffix():
