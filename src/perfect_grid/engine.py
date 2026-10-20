@@ -1,4 +1,4 @@
-import subprocess, json, os, shutil, re, math, hashlib, sys, platform
+import subprocess, json, os, shutil, re, math, hashlib, sys, platform, threading
 from os import cpu_count as _cpu_count
 
 def _worker_count(n_tasks):
@@ -10,6 +10,10 @@ try:
     import cv2
 except Exception:
     cv2 = None
+try:
+    import av
+except Exception:
+    av = None
 
 def resolve_binary(name):
     search_roots = [os.path.abspath(os.path.dirname(__file__))]
@@ -297,7 +301,77 @@ def _candidate_timestamps(target, safe_start, safe_end, index, count):
             candidates.append(ts)
     return candidates
 
-def _extract_single_frame(path, ts, out_path, scale_width, quality=3, force_software=False, accurate=True, timeout=None):
+# ─── PyAV fast path ─────────────────────────────────────────────────────────
+# One open decode session per worker THREAD (not per frame, not per process).
+# Each thread keeps its own av.open() around across tasks and just seeks
+# within it, instead of spawning+tearing-down a whole ffmpeg process (and on
+# Intel, often *two* of them — the failed hwaccel attempt, then the software
+# retry) for every single thumbnail. Falls back to the old subprocess path
+# per-call if av isn't installed or chokes on a given file/codec, so this is
+# a pure speed upgrade with the original behavior as a safety net.
+_pyav_tls = threading.local()
+_PYAV_MAX_SCAN_FRAMES = 240  # bail to ffmpeg fallback rather than spin forever
+
+def _pyav_get_container(path):
+    cur = getattr(_pyav_tls, "container", None)
+    cur_path = getattr(_pyav_tls, "container_path", None)
+    if cur is not None and cur_path == path:
+        return cur
+    if cur is not None:
+        try:
+            cur.close()
+        except Exception:
+            pass
+    container = av.open(path)
+    _pyav_tls.container = container
+    _pyav_tls.container_path = path
+    return container
+
+_PIL_QUALITY_FROM_FFMPEG_Q = {1: 97, 2: 95, 3: 92, 5: 85, 9: 70}
+
+def _extract_single_frame_pyav(path, ts, out_path, scale_width, quality=3, accurate=True):
+    if av is None:
+        return False
+    try:
+        container = _pyav_get_container(path)
+        stream = container.streams.video[0]
+    except Exception:
+        return False
+    target = max(0.0, float(ts))
+    try:
+        container.seek(int(target * 1_000_000), any_frame=False, backward=True)
+    except Exception:
+        return False
+    chosen = None
+    scanned = 0
+    try:
+        for frame in container.decode(stream):
+            chosen = frame
+            scanned += 1
+            ftime = frame.time
+            if not accurate or ftime is None or ftime >= target - 0.02 or scanned >= _PYAV_MAX_SCAN_FRAMES:
+                break
+    except Exception:
+        pass
+    if chosen is None:
+        return False
+    try:
+        img = chosen.to_image()
+        iw, ih = img.size
+        if iw <= 0 or ih <= 0:
+            return False
+        new_h = max(1, round(ih * (scale_width / iw)))
+        img = img.resize((int(scale_width), new_h), Image.Resampling.LANCZOS)
+        ext = os.path.splitext(out_path)[1].lower()
+        if ext in (".jpg", ".jpeg"):
+            img.save(out_path, quality=_PIL_QUALITY_FROM_FFMPEG_Q.get(int(quality), 90))
+        else:
+            img.save(out_path)
+        return True
+    except Exception:
+        return False
+
+def _extract_single_frame_ffmpeg(path, ts, out_path, scale_width, quality=3, force_software=False, accurate=True, timeout=None):
     ext = os.path.splitext(out_path)[1].lower()
     cmd = ["-y", "-ss", str(ts)]
     if not accurate:
@@ -307,6 +381,18 @@ def _extract_single_frame(path, ts, out_path, scale_width, quality=3, force_soft
         cmd += ["-q:v", str(quality)]
     cmd += [out_path]
     return _run_ffmpeg(cmd, force_software=force_software, timeout=timeout)
+
+def _extract_single_frame(path, ts, out_path, scale_width, quality=3, force_software=False, accurate=True, timeout=None):
+    # force_software is an ffmpeg-subprocess concept (vp9/av1 videotoolbox
+    # quirks); the PyAV path doesn't negotiate hwaccel at all yet, so it's
+    # unaffected either way and we just try it first.
+    if av is not None:
+        try:
+            if _extract_single_frame_pyav(path, ts, out_path, scale_width, quality=quality, accurate=accurate):
+                return True
+        except Exception:
+            pass
+    return _extract_single_frame_ffmpeg(path, ts, out_path, scale_width, quality=quality, force_software=force_software, accurate=accurate, timeout=timeout)
 
 def _rgb_distance(a, b):
     return math.sqrt(((a[0] - b[0]) ** 2) + ((a[1] - b[1]) ** 2) + ((a[2] - b[2]) ** 2))
@@ -577,7 +663,13 @@ def build_preview_pool_ultrafast(path, tmp, start=0, end=100, meta=None, target_
         preview_width = 160
     else:
         preview_width = 200
-    pool_size = max(1, int(target_count or 12))
+    needed = max(1, int(target_count or 12))
+    # Give ultrafast the same safety buffer refined gets. Without this,
+    # any failed/timed-out grab (common on Intel w/ HEVC Main10 hwaccel
+    # fallback) leaves fewer pool frames than grid slots, and
+    # select_frames_from_pool_fast silently re-picks already-used frames
+    # to fill the gap -> visible duplicate tiles in the grid.
+    pool_size = min(80, max(needed + max(4, int(needed * 0.3)), needed))
     return _build_pool(path, tmp, start, end, meta, preview_width, pool_size, fast_mode=True, allow_faces=False, progress=progress)
 
 def build_preview_pool_refined(path, tmp, start=0, end=100, meta=None, target_count=12, progress=None):
@@ -604,7 +696,11 @@ def select_frames_from_pool_fast(pool, count):
     for target_ts in targets:
         candidates = [f for f in frames if f["path"] not in used_paths]
         if not candidates:
-            candidates = frames
+            # Pool genuinely ran dry (extraction failures ate the buffer
+            # too). Reusing a frame here just duplicates a tile, so stop
+            # instead of faking it — caller/grid should end up a few
+            # tiles short rather than show the same shot twice.
+            break
         best = min(candidates, key=lambda f: abs(f["timestamp"] - target_ts))
         used_paths.add(best["path"])
         chosen.append({"path": best["path"], "timestamp": best["timestamp"]})
@@ -677,7 +773,7 @@ def extract_final_frames_from_timestamps(path, timestamps, tmp, scale_width=1280
             except Exception:
                 pass
             try:
-                ok = _extract_single_frame(path, attempt_ts, out_path, scale_width, quality=2, force_software=force_software)
+                ok = _extract_single_frame(path, attempt_ts, out_path, scale_width, quality=2, force_software=force_software, timeout=20)
             except Exception:
                 ok = False
             if not ok or not os.path.exists(out_path):

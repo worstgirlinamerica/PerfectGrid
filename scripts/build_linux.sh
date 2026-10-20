@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if ! python3 - <<'PY'
-import PyQt5, PIL, PyInstaller
+import PyQt5, PIL, PyInstaller, av
 PY
 then
   python3 -m pip install -r requirements.txt
@@ -34,6 +34,7 @@ pyinstaller \
   --add-data "src/perfect_grid/presets_v2.json:." \
   --add-binary "${FFMPEG_BIN}:." \
   --add-binary "${FFPROBE_BIN}:." \
+  --collect-all av \
   src/perfect_grid/app.py
 
 # Step 2: Download appimagetool

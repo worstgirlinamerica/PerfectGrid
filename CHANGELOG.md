@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Replaced per-frame ffmpeg subprocess extraction with a persistent PyAV decode session — each extraction thread now opens a video once and seeks within it, instead of spawning (and on Intel, often double-spawning via a failed hwaccel attempt + software retry) a new ffmpeg process per thumbnail. Falls back to the old ffmpeg path automatically if PyAV can't handle a given file/codec.
+- Fixed a bug where the "ultrafast" preview pool (used on Intel) had no buffer over the exact thumbnail count needed — a handful of failed extractions would silently exhaust it, causing the grid to reuse already-picked frames and show visible duplicate tiles
+- Fixed an unbounded timeout on final frame export that could let a stuck hwaccel→software fallback hang the whole export on Intel
+- Added a small version tag in the corner of the UI — shows the commit + a content hash of any uncommitted changes on dev/source runs, a clean version number on shipped builds
+
 ## 0.1.2
 
 - Rewrote all UI widgets from scratch — sliders, checkboxes, and dropdowns are now custom-painted to match the app theme instead of using default OS controls

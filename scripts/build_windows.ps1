@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $depsInstalled = $true
-python -c "import PyQt5, PIL, PyInstaller" 2>$null
+python -c "import PyQt5, PIL, PyInstaller, av" 2>$null
 if ($LASTEXITCODE -ne 0) {
     $depsInstalled = $false
 }
@@ -43,6 +43,7 @@ pyinstaller `
     --add-data "src\perfect_grid\presets_v2.json;." `
     --add-binary "win-binaries\ffmpeg.exe;." `
     --add-binary "win-binaries\ffprobe.exe;." `
+    --collect-all av `
     "src\perfect_grid\app.py"
 
 Write-Host "Windows build complete: dist_windows\Perfect Grid\Perfect Grid.exe"

@@ -1,4 +1,4 @@
-import sys, os, json, re, tempfile
+import sys, os, json, re, tempfile, subprocess, hashlib
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer, QRect, QRectF
 from PyQt5.QtGui import QImage, QPixmap, QColor, QPainter, QPen, QBrush, QPainterPath
@@ -35,7 +35,77 @@ except ImportError:
         from pg_i18n import get_tr, language_display_names
 
 APP_NAME    = "Perfect Grid"
-APP_VERSION = "1.0.0"
+APP_VERSION = "0.2.0"
+
+
+def _build_suffix():
+    """Short build identifier appended to the version string.
+
+    PyInstaller-frozen (shipped) builds have no .git dir bundled, so this
+    stays silent and the UI just shows a clean "v{APP_VERSION}". When running
+    from a source checkout (dev), it appends the short commit hash.
+
+    Uncommitted changes don't just get a flat "-dirty" flag — that string
+    never changes no matter what the uncommitted edits actually are, so
+    two completely different working trees on top of the same commit
+    show an identical tag (this bit us: copying in a fix and copying in
+    nothing both read "887fd62-dirty"). Instead, hash the actual content
+    of what's uncommitted (tracked-file diff + any untracked files' raw
+    bytes) and append *that*. Different edits -> different tag, with no
+    commit required. Still just a diagnostic nudge, not a substitute for
+    actually committing once the edits are good.
+    """
+    if getattr(sys, "frozen", False):
+        return ""
+    try:
+        here = os.path.dirname(os.path.abspath(__file__))
+        rev = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=here, capture_output=True, text=True, timeout=1,
+        )
+        if rev.returncode != 0:
+            return ""
+        h = rev.stdout.strip()
+
+        root = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=here, capture_output=True, text=True, timeout=1,
+        )
+        repo_root = root.stdout.strip() if root.returncode == 0 else here
+
+        diff = subprocess.run(
+            ["git", "diff", "HEAD", "--"],
+            cwd=here, capture_output=True, text=True, timeout=3,
+        )
+        diff_text = diff.stdout if diff.returncode == 0 else ""
+
+        untracked_blob = b""
+        listing = subprocess.run(
+            ["git", "ls-files", "--others", "--exclude-standard", "--full-name"],
+            cwd=here, capture_output=True, text=True, timeout=3,
+        )
+        if listing.returncode == 0:
+            for rel in listing.stdout.splitlines():
+                rel = rel.strip()
+                if not rel:
+                    continue
+                try:
+                    with open(os.path.join(repo_root, rel), "rb") as f:
+                        untracked_blob += f.read()
+                except Exception:
+                    pass
+
+        if not diff_text and not untracked_blob:
+            return f"+{h}" if h else ""  # clean tree, no content to hash
+
+        content_hash = hashlib.sha1(diff_text.encode("utf-8", "replace") + untracked_blob).hexdigest()[:8]
+        return f"+{h}-{content_hash}"
+    except Exception:
+        return ""
+
+
+def version_string():
+    return f"v{APP_VERSION}{_build_suffix()}"
 
 
 # ─── paths ────────────────────────────────────────────────────────────────────
@@ -722,6 +792,12 @@ class PerfectGrid(QMainWindow):
         self.status_label.setWordWrap(True)
         self.status_label.setMinimumHeight(32)
         bottom_lay.addWidget(self.status_label)
+
+        self.version_label = QLabel(version_string())
+        self.version_label.setObjectName("VersionLabel")
+        self.version_label.setStyleSheet("color: rgba(255,255,255,70); font-size: 10px;")
+        self.version_label.setAlignment(Qt.AlignRight)
+        bottom_lay.addWidget(self.version_label)
 
         left_layout.addWidget(bottom, 0)
         self.preview_label = QLabel(self.tr("drag_drop"))
