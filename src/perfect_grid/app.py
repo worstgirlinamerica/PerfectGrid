@@ -1,6 +1,6 @@
 import sys, os, json, re, tempfile, subprocess, hashlib
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer, QRect, QRectF
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer, QRect, QRectF, QEvent
 from PyQt5.QtGui import QImage, QPixmap, QColor, QPainter, QPen, QBrush, QPainterPath
 
 try:
@@ -599,7 +599,18 @@ class PerfectGrid(QMainWindow):
         self.preview_pool      = None
         self.preview_pool_key  = None
         self.pool_mode         = "ultrafast"
+        # Full-resolution rendered sheet, kept separately from the scaled-down
+        # QPixmap actually shown. Needed so a resize (window drag OR splitter
+        # drag) can re-scale from this source instead of stretching whatever
+        # smaller pixmap happened to be on screen already — that stretch-not-
+        # rescale is what made the preview "get small and never grow back".
+        self._preview_source_qimg = None
+        self._preview_rescale_timer = QTimer(self)
+        self._preview_rescale_timer.setSingleShot(True)
+        self._preview_rescale_timer.setInterval(20)
+        self._preview_rescale_timer.timeout.connect(self._rescale_preview_to_fit)
         self.auto_refine       = False
+        self.preview_quality   = "auto"   # "auto" | "fast" | "best" — see _resolve_default_pool_mode()
         self.current_preset_name = None
         self.custom_bg_color   = None   # None = use bg_mode black/white
 
@@ -803,6 +814,18 @@ class PerfectGrid(QMainWindow):
         self.preview_label = QLabel(self.tr("drag_drop"))
         self.preview_label.setAlignment(Qt.AlignCenter)
         self.preview_label.setObjectName("PreviewPane")
+        # QLabel's sizeHint() is driven by whatever pixmap is currently set —
+        # once a sheet image is on it, the label "wants" to be that image's
+        # exact pixel size. With Expanding + a small minimum, the splitter is
+        # free to give it any size (bigger OR smaller) instead of treating
+        # the last-rendered pixmap size as a floor/ceiling.
+        self.preview_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.preview_label.setMinimumSize(1, 1)
+        # Catches resizes from BOTH the window being dragged and the splitter
+        # handle being dragged (only the window resize would reach a
+        # QMainWindow.resizeEvent override — the splitter-handle case
+        # resizes this label directly without ever resizing the window).
+        self.preview_label.installEventFilter(self)
 
         self._splitter = QSplitter(Qt.Horizontal)
         self._splitter.addWidget(self.left_panel)
@@ -1089,6 +1112,14 @@ class PerfectGrid(QMainWindow):
                 self.default_output_dir = data.get("default_output_dir", "")
                 self.default_preset     = data.get("default_preset", "")
                 self.custom_bg_color    = data.get("custom_bg_color", None)
+                self.preview_quality    = data.get("preview_quality", "auto")
+                self.auto_refine        = bool(data.get("auto_refine", False))
+                # toggle widget exists by the time load_settings() runs (built in
+                # _build_ui() first) — sync it without re-firing stateChanged/save.
+                if hasattr(self, "auto_refine_toggle"):
+                    self.auto_refine_toggle.blockSignals(True)
+                    self.auto_refine_toggle.setChecked(self.auto_refine)
+                    self.auto_refine_toggle.blockSignals(False)
             except Exception:
                 pass
 
@@ -1102,6 +1133,8 @@ class PerfectGrid(QMainWindow):
                     "default_output_dir": self.default_output_dir,
                     "default_preset":     self.default_preset,
                     "custom_bg_color":    self.custom_bg_color,
+                    "preview_quality":    self.preview_quality,
+                    "auto_refine":        self.auto_refine,
                 }, f)
         except Exception:
             pass
@@ -1147,6 +1180,30 @@ class PerfectGrid(QMainWindow):
             preset_box.setCurrentText(self.default_preset)
         lay.addWidget(preset_box)
 
+        # ── thumbnail selection ──
+        lay.addWidget(self._section_label("Thumbnail Selection"))
+        quality_box = StyledCombo()
+        quality_options = [
+            ("auto", "Automatic (recommended)"),
+            ("fast", "Fastest — grab frames instantly"),
+            ("best", "Sharpest — skip blurry or awkward frames"),
+        ]
+        for value, label in quality_options:
+            quality_box.addItem(label, value)
+        cur_q_idx = next((i for i in range(quality_box.count()) if quality_box.itemData(i) == self.preview_quality), 0)
+        quality_box.setCurrentIndex(cur_q_idx)
+        lay.addWidget(quality_box)
+        quality_hint = QLabel(
+            "Fastest picks frames right away with no extra checks. Sharpest looks at "
+            "each candidate frame first and skips ones that are blurry, mid-blink, or "
+            "poorly framed — it takes a little longer per preview, but the grid comes "
+            "out cleaner. Automatic picks whichever of the two suits your computer, and "
+            "you can always override it here."
+        )
+        quality_hint.setWordWrap(True)
+        quality_hint.setStyleSheet("color: rgba(255,255,255,120); font-size: 11px;")
+        lay.addWidget(quality_hint)
+
         # ── buttons ──
         lay.addSpacing(8)
         btn_row = QHBoxLayout()
@@ -1163,6 +1220,7 @@ class PerfectGrid(QMainWindow):
             self._tr                = get_tr(self.language)
             self.default_output_dir = dir_edit.text().strip()
             self.default_preset     = preset_box.currentText() if preset_box.currentText() != self.tr("none") else ""
+            self.preview_quality    = quality_box.currentData()
             self.save_settings()
             self.apply_theme()
             self.retranslate_ui()
@@ -1269,6 +1327,7 @@ class PerfectGrid(QMainWindow):
         self.pool_mode       = "ultrafast"
         self.preview_label.setText(self.tr("loading"))
         self.preview_label.setPixmap(QPixmap())
+        self._preview_source_qimg = None
         if hasattr(self, "loading_bar"):
             self.loading_bar.show()
 
@@ -1286,12 +1345,32 @@ class PerfectGrid(QMainWindow):
         self.set_status("Fast preview: seeking thumbnails…")
         self.preview_label.setText(self.tr("loading"))
         self.preview_label.setPixmap(QPixmap())
+        self._preview_source_qimg = None
         self.loading_bar.show()
         self.loading_bar.setRange(0, 0)
         self._prune_cache_if_large()   # prune before each extraction, not just after
+        self._start_worker(self._resolve_default_pool_mode())
+
+    def _resolve_default_pool_mode(self):
+        """Which pool to build first when a video/range loads.
+
+        "fast"  -> always the dumb/instant nearest-timestamp pool (no face/
+                   blur scoring) — best for weaker hardware.
+        "best"  -> always build the scored "refined" pool directly, skipping
+                   the naive first pass entirely — worth it now that refine
+                   itself is fast (PyAV), for anyone whose machine can take it.
+        "auto"  -> the original hardware heuristic (Apple Silicon -> refined,
+                   everything else -> ultrafast), kept as the default so
+                   existing installs don't change behavior unless the user
+                   opts into Fastest/Best in Settings.
+        """
+        if self.preview_quality == "fast":
+            return "ultrafast"
+        if self.preview_quality == "best":
+            return "refined"
         import platform
         _is_apple_silicon = platform.machine() == "arm64" and platform.system() == "Darwin"
-        self._start_worker("refined" if _is_apple_silicon else "ultrafast")
+        return "refined" if _is_apple_silicon else "ultrafast"
 
     def _start_worker(self, mode):
         meta         = self.get_cached_meta(self.video_path)
@@ -1378,10 +1457,16 @@ class PerfectGrid(QMainWindow):
         return (self.video_path, self.start_p.value(), self.end_p.value())
 
     def reselect_from_pool_or_reload(self):
-        if self.preview_pool and self.preview_pool_key == self.get_pool_key():
+        needed = self.cols.value() * self.rows.value()
+        pool_big_enough = bool(self.preview_pool) and len(self.preview_pool.get("frames") or []) >= needed
+        if self.preview_pool and self.preview_pool_key == self.get_pool_key() and pool_big_enough:
             self.reselect_from_pool()
         else:
-            # Debounce: don't fire a new extraction on every slider tick
+            # Either the video/range changed, or the grid got bigger than the
+            # pool we already have (e.g. switching a 6x4 preset to 8x5) — the
+            # existing pool can't fill that without reusing/duplicating
+            # frames, so rebuild it. Still debounced so dragging the cols/rows
+            # sliders doesn't fire an extraction per tick.
             self._extraction_debounce.start()
 
     def _do_reload(self):
@@ -1392,6 +1477,8 @@ class PerfectGrid(QMainWindow):
     def reselect_from_pool(self):
         if not self.preview_pool or not self.preview_pool.get("frames"):
             self.current_frames = []
+            self.preview_label.setPixmap(QPixmap())
+            self._preview_source_qimg = None
             self.preview_label.setText(self.tr("no_frames"))
             self.set_status("No preview frames found. Try a different range or use an H.264 MP4 for fastest loading.")
             if hasattr(self, "loading_bar"):
@@ -1424,9 +1511,33 @@ class PerfectGrid(QMainWindow):
             self.font_family, self.get_tc_opts(), self.scale_mode.currentText(),
         )
         qimg = QImage(img.tobytes("raw", "RGB"), img.size[0], img.size[1], QImage.Format_RGB888)
+        # Keep QImage data alive past this call (PyQt doesn't always keep a
+        # ref to the backing bytes on its own) and remember it as the source
+        # to re-scale from on every future resize.
+        self._preview_source_qimg = qimg.copy()
+        self._rescale_preview_to_fit()
+
+    def _rescale_preview_to_fit(self):
+        """(Re)fit the cached full-res preview to the label's current size.
+
+        Called right after a render, and again — debounced — on every resize
+        of preview_label, whether that resize came from the window or from
+        dragging the splitter handle. Always scales from the cached source,
+        never from whatever's already on screen, so repeated resizes don't
+        compound quality loss or get stuck at a stale size.
+        """
+        if self._preview_source_qimg is None or self.preview_label.width() <= 1:
+            return
         self.preview_label.setPixmap(
-            QPixmap.fromImage(qimg).scaled(self.preview_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            QPixmap.fromImage(self._preview_source_qimg).scaled(
+                self.preview_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
         )
+
+    def eventFilter(self, obj, event):
+        if obj is self.preview_label and event.type() == QEvent.Resize:
+            self._preview_rescale_timer.start()
+        return super().eventFilter(obj, event)
 
     def get_tc_opts(self):
         return {
@@ -1499,6 +1610,7 @@ class PerfectGrid(QMainWindow):
 
     def set_auto_refine(self):
         self.auto_refine = self.auto_refine_toggle.isChecked()
+        self.save_settings()  # remember across runs, not just this session
 
     def pick_font(self):
         font, ok = QFontDialog.getFont()
@@ -1632,7 +1744,27 @@ class PerfectGrid(QMainWindow):
 # ─── entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    # Must be set before QApplication() exists. Without AA_UseHighDpiPixmaps,
+    # Qt/Fusion paints QSS-drawn chrome (rounded button fills, borders,
+    # the splitter handle) into a 1x backing pixmap on Retina displays and
+    # then the OS upscales it to 2x — every rounded corner and border line
+    # shows up chunky/aliased instead of smooth. This is the "atrocious
+    # artifacting" on the buttons: it's a HiDPI pixmap bug, not a stylesheet
+    # bug, so no amount of QSS tweaking fixes it on its own.
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
     app = QApplication(sys.argv)
+    # Force Fusion instead of the native macOS style. Without this, QPushButton
+    # (and other native-chrome widgets) still get painted by qmacstyle underneath
+    # our QSS — Aqua's own rounded-bezel corner highlight/shadow pokes out past
+    # our smaller QSS border-radius, showing up as little white dots at each
+    # corner. It's most visible on Intel Macs because the bezel's native corner
+    # treatment doesn't scale down cleanly there. Fusion fully respects
+    # stylesheets with no native chrome underneath, so the QSS-drawn rounded
+    # rect is the *only* thing painted — same reason we hand-paint the checkbox
+    # (_CheckBoxIndicator) and the combo arrow (StyledCombo) instead of trusting
+    # native painting for those.
+    app.setStyle(QStyleFactory.create("Fusion"))
     app.setApplicationName(APP_NAME)
     app.setApplicationVersion(APP_VERSION)
     app.setOrganizationName("Perfect Grid")
