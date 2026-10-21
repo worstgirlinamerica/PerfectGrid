@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+- Fixed resize preview glitches + added dynamic resizing of the sheet preview.
+- Extra bug fixes.
+- Added initial extraction pass quality options in settings.
+- Optimize and review all Intel Mac (x86_64) architectural changes since v0.2.0.
+
 ## 0.2.1
 
 - Fixed garbled/fallback-font metadata text on the macOS Intel build — PyInstaller wasn't bundling Pillow's FreeType support, so every `ImageFont.truetype` call failed silently and the overlay text rendered with PIL's default bitmap font. Build script now passes `--collect-all PIL`.
@@ -12,6 +18,9 @@
 - Fixed a bug where the "ultrafast" preview pool (used on Intel) had no buffer over the exact thumbnail count needed — a handful of failed extractions would silently exhaust it, causing the grid to reuse already-picked frames and show visible duplicate tiles
 - Fixed an unbounded timeout on final frame export that could let a stuck hwaccel→software fallback hang the whole export on Intel
 - Added a small version tag in the corner of the UI — shows the commit + a content hash of any uncommitted changes on dev/source runs, a clean version number on shipped builds
+
+## 0.1.2 -> 0.2.0
+- This is expected, we jumped versioning schemes for better accuracy in production and development.
 
 ## 0.1.2
 
