@@ -31,23 +31,26 @@ Built for editors, collectors, archivists, and anyone who wants a quick visual s
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Download for macOS">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Download for Windows">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Download for Linux">
   </a>
 </p>
+<p align="center"><sub>Badges link to the latest release — grab the file matching your OS (and chip, for macOS).</sub></p>
 
 ## Features
 
 - Generate high-quality contact sheets with advanced video metadata display (resolution, codecs, duration, file size, etc.)
-- Fully customizable grid layouts
+- Fully customizable grid layouts, with a resizable sidebar for more room to work
 - Optional timecode overlays
 - Smart frame selection with **Refine Picks**
+- PyAV-based extraction engine with hardware-aware preview generation, so previews stay fast across different CPUs/architectures
+- Adjustable initial-extraction-pass quality in Settings
 - Save and reuse custom presets
 - Batch processing
 - Runs on Windows, macOS, and Linux
@@ -69,7 +72,7 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### macOS
 
-1. Download `PerfectGrid-v0.1.2-macos-universal.zip`.
+1. Download the build for your chip: `PerfectGrid-<version>-macOS-arm64.zip` (Apple Silicon) or `PerfectGrid-<version>-macOS-x86_64.zip` (Intel). Not sure which you have? Apple menu → **About This Mac**.
 2. Double-click to extract, then drag Perfect Grid into Applications.
 3. Open `Perfect Grid.app`.
 
@@ -77,7 +80,7 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Windows
 
-1. Download `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
+1. Download `PerfectGrid-<version>-Windows-x86_64.zip`.
 2. Right-click → **Extract All**, then open the folder.
 3. Double-click `Perfect Grid.exe`.
 
@@ -85,11 +88,11 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Linux
 
-1. Download `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
+1. Download `PerfectGrid-<version>-Linux-x86_64.AppImage`.
 2. Make it executable and run it:
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-<version>-Linux-x86_64.AppImage
+./PerfectGrid-<version>-Linux-x86_64.AppImage
 ```
 
 No install needed — FFmpeg and all dependencies are bundled. Works on most x86_64 distros (Ubuntu 22.04+, Fedora, Arch, etc.).
@@ -141,7 +144,7 @@ For full Arabic/RTL filename support when running from source:
 pip install arabic-reshaper python-bidi
 ```
 
-Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux releases automatically on tagged pushes. macOS is built manually.
+Build scripts are in `scripts/`. GitHub Actions builds Windows, Linux, and macOS (arm64 + x86_64) releases automatically on tagged pushes.
 
 </details>
 
