@@ -10,17 +10,17 @@
 </p>
 
 <p align="center">
-  <a href="docs/README.zh.md">中文</a> &nbsp;|&nbsp;
-  <a href="docs/README.pt.md">葡萄牙语</a> &nbsp;|&nbsp;
-  <a href="docs/README.es.md">西班牙语</a> &nbsp;|&nbsp;
-  <a href="docs/README.ja.md">日语</a> &nbsp;|&nbsp;
-  <a href="docs/README.fr.md">法语</a> &nbsp;|&nbsp;
-  <a href="docs/README.de.md">德语</a> &nbsp;|&nbsp;
-  <a href="docs/README.ko.md">韩语</a> &nbsp;|&nbsp;
-  <a href="docs/README.ar.md">阿拉伯语</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.zh.md">中文</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">葡萄牙语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">西班牙语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ja.md">日语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">法语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.de.md">德语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ko.md">韩语</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">阿拉伯语</a>
 </p>
 
-Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频文件中创建视频联系表和预览缩略图。只需导入视频、选择布局，即可导出高质量的 PNG 联系表。
+Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频文件中创建视频接触表和预览缩略图。只需导入视频、选择布局，即可导出高质量的 PNG 接触表。
 
 专为剪辑师、收藏家、档案管理员以及任何希望快速直观地概览视频内容的人士打造。
 
@@ -31,65 +31,68 @@ Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频�
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="下载 macOS 版本">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Windows 版下载">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
-    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="下载 Linux 版">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Linux 版下载">
   </a>
 </p>
+<p align="center"><sub>徽章链接指向最新版本——请下载与您的操作系统（以及 macOS 的芯片类型）匹配的文件。</sub></p>
 
 ## 功能
 
-- 生成高质量的联系表，并显示高级视频元数据（分辨率、编解码器、时长、文件大小等）
-- 完全可自定义的网格布局
+- 生成高质量的接触表，并显示高级视频元数据（分辨率、编解码器、时长、文件大小等）
+- 完全可自定义的网格布局，配有可调整大小的侧边栏，提供更宽敞的操作空间
 - 可选的时间码叠加
-- 通过 **“优化选片”** 实现智能帧选择
+- 带 **“优化选帧”** 功能的智能帧选择
+- 基于 PyAV 的提取引擎，支持硬件感知预览生成，确保预览在不同 CPU/架构上均保持高速
+- 可在“设置”中调整初始提取阶段的质量
 - 保存并重复使用自定义预设
 - 批量处理
 - 支持 Windows、macOS 和 Linux 系统
-> 如果您遇到 __任何__ 错误、功能无法正常运行，或有任何疑问，请创建 [问题报告](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 进行反馈。
+> 如果您遇到__任何__错误、功能无法正常使用，或有任何疑问，请创建一个 [问题](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 进行反馈。
 
 ## 基本用法
 
 1. 打开 Perfect Grid。
 2. 将视频拖拽到窗口中。
 3. 调整网格布局和样式。如果更改了布局，请点击 **刷新预览** 以重新生成缩略图。
-4. 预览画质会刻意降低——导出时始终采用您选择的画质设置。
-5. （可选）在 **范围** 选项卡下，使用 **优化选取** 功能以实现更智能的帧选择。
+4. 预览画质故意设置较低——导出时始终采用您选择的画质设置。
+5. （可选）在 **范围** 选项卡下，使用 **优化选取** 功能进行更智能的帧选择。
 6. 在**范围**下选择导出质量：**快速 (1080p)**、**精细 (1440p)** 或 **最高 (4K)**。
-7. 点击**导出 PNG**。
+7. 点击 **导出 PNG**。
 
 ## 安装
 
-请从 [版本发布](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) 页面下载适用于您操作系统的最新版本。
+请从 [发布版本](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) 页面下载适用于您操作系统的最新版本。
 
 ### macOS
 
-1. 下载 `PerfectGrid-v0.1.2-macos-universal.zip`。
-2. 双击解压，然后将 Perfect Grid 拖拽到“应用程序”文件夹中。
+1. 下载适用于您芯片的版本：`PerfectGrid-<version>-macOS-arm64.zip`（Apple Silicon）或 `PerfectGrid-<version>-macOS-x86_64.zip`（Intel）。不确定您的系统使用哪种芯片？请点击 Apple 菜单 → **关于本机**。
+2. 双击解压，然后将 Perfect Grid 拖入“应用程序”文件夹。
 3. 打开 `Perfect Grid.app`。
 
-> 由于该应用未签名，macOS 会在首次启动时阻止其运行。请右键点击 → **打开** → **打开** 以绕过此限制。 如果仍然无法打开，请在终端中运行以下命令：`xattr -cr "/Applications/Perfect Grid.app"`
+> 由于该应用未签名，macOS 会在首次启动时阻止其运行。请右键点击 → **打开** → **打开** 以绕过此限制。如果仍无法打开，请在终端中运行以下命令：`xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. 下载 `PerfectGrid-v0.1.2-Windows-x86_64.zip`。
-2. 右键单击 → **全部解压**，然后打开该文件夹。
+1. 下载 `PerfectGrid-<版本>-Windows-x86_64.zip`。
+2. 右键点击 → **解压全部**，然后打开该文件夹。
 3. 双击 `Perfect Grid.exe`。
 
-> 由于该应用未进行代码签名，Windows SmartScreen 可能会发出警告。请点击 **更多信息** → **仍要运行**。
+> 由于该应用程序未进行代码签名，Windows SmartScreen 可能会发出警告。请点击 **更多信息** → **仍要运行**。
 
 ### Linux
 
-1. 下载 `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`。
+1. 下载 `PerfectGrid-<版本>-Linux-x86_64.AppImage`。
 2. 赋予其可执行权限并运行：
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-<version>-Linux-x86_64.AppImage
+./PerfectGrid-<version>-Linux-x86_64.AppImage
 ```
 
 无需安装——FFmpeg 及所有依赖项均已打包。可在大多数 x86_64 发行版上运行（Ubuntu 22.04 及以上、Fedora、Arch 等）。
@@ -98,11 +101,11 @@ chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 
 ## 隐私
 
-所有操作均在本地进行。无分析、无遥测、无上传。FFmpeg 和 FFprobe 已打包在内。
+所有操作均在本地运行。无分析、无遥测、无上传。FFmpeg 和 FFprobe 已打包在内。
 
 ## 本地化
 
-应用界面支持 8 种语言。工作表文件名的渲染采用独立机制——它将文件名作为像素绘制在导出的 PNG 文件上，这需要针对脚本进行专门的字体处理。
+应用界面支持 8 种语言。工作表文件名的渲染采用独立机制——它将文件名以像素形式绘制在导出的 PNG 文件上，这需要针对脚本进行特定的字体处理。
 
 | 语言 | 界面 | 工作表 |
 |---|---|---|
@@ -123,7 +126,7 @@ chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
 
 ## 注意事项
 
-- 支持 MP4、MOV、MKV、AVI、WebM 以及 FFmpeg 可读取的所有格式。
+- 支持 MP4、MOV、MKV、AVI、WebM 以及 FFmpeg 能读取的任何格式。
 - 在较旧的硬件上，AV1 和 VP9 的解码速度可能较慢。
 - macOS 版本未签名 — 请参阅上方的安装说明。
 
@@ -141,14 +144,14 @@ PYTHONPATH=src python -m perfect_grid.app
 pip install arabic-reshaper python-bidi
 ```
 
-构建脚本位于 `scripts/` 目录下。GitHub Actions 会在推送带标签的代码时自动构建 Windows 和 Linux 版本。macOS 版本需手动构建。
+构建脚本位于 `scripts/` 目录下。GitHub Actions 会在推送带标签的代码时自动构建 Windows、Linux 和 macOS（arm64 + x86_64）版本。
 
 </details>
 
 ## 贡献
 
-如果您遇到任何错误或问题，请通过创建 [问题](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 告知我们。
-请务必提供以下关键信息：您的操作系统、视频格式，以及问题发生在预览、优化、导出还是批量处理阶段。
+如果您遇到任何错误或问题，请通过创建 [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 告知我们。
+请务必提供以下关键信息：您的操作系统、视频格式，以及问题发生在“预览”、“优化”、“导出”还是“批量处理”阶段。
 
 更多详情请参阅 [CONTRIBUTING.md](CONTRIBUTING.md)。
 

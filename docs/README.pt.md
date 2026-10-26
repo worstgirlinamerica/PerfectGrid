@@ -10,19 +10,19 @@
 </p>
 
 <p align="center">
-  <a href="docs/README.zh.md">Chinês</a> &nbsp;|&nbsp;
-  <a href="docs/README.pt.md">Português</a> &nbsp;|&nbsp;
-  <a href="docs/README.es.md">Espanhol</a> &nbsp;|&nbsp;
-  <a href="docs/README.ja.md">Japonês</a> &nbsp;|&nbsp;
-  <a href="docs/README.fr.md">Francês</a> &nbsp;|&nbsp;
-  <a href="docs/README.de.md">Alemão</a> &nbsp;|&nbsp;
-  <a href="docs/README.ko.md">Coreano</a> &nbsp;|&nbsp;
-  <a href="docs/README.ar.md">Árabe</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.zh.md">Chinês</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">Português</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">Espanhol</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ja.md">Japonês</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">Francês</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.de.md">Alemão</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ko.md">Coreano</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">العربية</a>
 </p>
 
-O Perfect Grid é uma aplicação de secretária gratuita e de código aberto para criar folhas de contacto de vídeo e pré-visualizar miniaturas a partir de ficheiros de vídeo locais. Basta arrastar um vídeo, escolher o layout e exportar uma folha de contacto em formato PNG de alta qualidade.
+O Perfect Grid é uma aplicação de secretária gratuita e de código aberto para criar folhas de contacto de vídeo e miniaturas de pré-visualização a partir de ficheiros de vídeo locais. Basta arrastar um vídeo, escolher o layout e exportar uma folha de contacto em formato PNG de alta qualidade.
 
-Concebida para editores, colecionadores, arquivistas e qualquer pessoa que pretenda um resumo visual rápido de um vídeo.
+Concebido para editores, colecionadores, arquivistas e qualquer pessoa que pretenda um resumo visual rápido de um vídeo.
 
 <p align="center">
   <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="Exemplo de folha de pré-visualização criada com o Perfect Grid">
@@ -31,24 +31,27 @@ Concebida para editores, colecionadores, arquivistas e qualquer pessoa que prete
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Descarregar para macOS">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Descarregar para Windows">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Descarregar para Linux">
   </a>
 </p>
+<p align="center"><sub>Os ícones remetem para a versão mais recente — descarregue o ficheiro compatível com o seu sistema operativo (e chip, no caso do macOS).</sub></p>
 
 ## Funcionalidades
 
-- Crie folhas de contacto de alta qualidade com apresentação avançada de metadados de vídeo (resolução, codecs, duração, tamanho do ficheiro, etc.)
-- Layouts de grelha totalmente personalizáveis
+- Crie folhas de contacto de alta qualidade com exibição avançada de metadados de vídeo (resolução, codecs, duração, tamanho do ficheiro, etc.)
+- Layouts de grelha totalmente personalizáveis, com uma barra lateral redimensionável para mais espaço de trabalho
 - Sobreposições opcionais de código temporal
 - Seleção inteligente de fotogramas com **Refine Picks**
-- Guarde e reutilize predefinições personalizadas
+- Motor de extração baseado em PyAV com geração de pré-visualizações otimizada para o hardware, para que as pré-visualizações se mantenham rápidas em diferentes CPUs/arquiteturas
+- Qualidade da passagem inicial de extração ajustável nas Definições
+- Guardar e reutilizar predefinições personalizadas
 - Processamento em lote
 - Funciona no Windows, macOS e Linux
 > Se encontrar __qualquer__ erro, se algo não funcionar ou se tiver dúvidas, crie um [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) para o comunicar.
@@ -60,7 +63,7 @@ Concebida para editores, colecionadores, arquivistas e qualquer pessoa que prete
 3. Ajuste o layout e o estilo da grelha. Se alterar o layout, clique em **Atualizar Pré-visualização** para regenerar as miniaturas.
 4. As pré-visualizações têm uma qualidade inferior propositadamente — as exportações utilizam sempre a configuração de qualidade selecionada.
 5. (Opcional) No separador **Intervalo**, utilize **Aperfeiçoar Seleções** para uma seleção mais inteligente de fotogramas.
-6. Escolha uma qualidade de exportação em **Intervalo**: **Rápido (1080p)**, **Detalhado (1440p)** ou **Máximo (4K)**.
+6. Escolha uma qualidade de exportação em **Intervalo**: **Rápida (1080p)**, **Detalhada (1440p)** ou **Máxima (4K)**.
 7. Clique em **Exportar PNG**.
 
 ## Instalação
@@ -69,27 +72,27 @@ Descarregue a versão mais recente para o seu sistema operativo a partir da pág
 
 ### macOS
 
-1. Descarregue `PerfectGrid-v0.1.2-macos-universal.zip`.
+1. Descarregue a versão para o seu chip: `PerfectGrid-<versão>-macOS-arm64.zip` (Apple Silicon) ou `PerfectGrid-<versão>-macOS-x86_64.zip` (Intel). Não sabe qual é o seu? Menu Apple → **Sobre este Mac**.
 2. Clique duas vezes para extrair e, em seguida, arraste o Perfect Grid para a pasta «Aplicações».
-3. Abra o ficheiro `Perfect Grid.app`.
+3. Abra o `Perfect Grid.app`.
 
-> O macOS irá bloquear a aplicação na primeira vez que for iniciada, uma vez que não está assinada. Clique com o botão direito do rato → **Abrir** → **Abrir** para contornar este bloqueio. Se ainda assim não abrir, execute este comando no Terminal: `xattr -cr "/Applications/Perfect Grid.app"`
+> O macOS irá bloquear a aplicação na primeira vez que for iniciada, uma vez que não está assinada. Clique com o botão direito do rato → **Abrir** → **Abrir** para contornar o bloqueio. Se ainda assim não abrir, execute isto no Terminal: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. Descarregue o ficheiro `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
+1. Descarregue `PerfectGrid-<versão>-Windows-x86_64.zip`.
 2. Clique com o botão direito do rato → **Extrair tudo** e, em seguida, abra a pasta.
-3. Faça duplo-clique em `Perfect Grid.exe`.
+3. Clique duas vezes em `Perfect Grid.exe`.
 
-> O Windows SmartScreen poderá apresentar um aviso, uma vez que a aplicação não está assinada. Clique em **Mais informações** → **Executar na mesma**.
+> O Windows SmartScreen poderá apresentar um aviso, uma vez que a aplicação não possui assinatura de código. Clique em **Mais informações** → **Executar na mesma**.
 
 ### Linux
 
-1. Descarregue `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
+1. Descarregue `PerfectGrid-<versão>-Linux-x86_64.AppImage`.
 2. Torne-o executável e execute-o:
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-<versão>-Linux-x86_64.AppImage
+./PerfectGrid-<versão>-Linux-x86_64.AppImage
 ```
 
 Não é necessária qualquer instalação — o FFmpeg e todas as dependências estão incluídos. Funciona na maioria das distribuições x86_64 (Ubuntu 22.04+, Fedora, Arch, etc.).
@@ -98,11 +101,11 @@ Não é necessária qualquer instalação — o FFmpeg e todas as dependências 
 
 ## Privacidade
 
-Tudo é executado localmente. Sem análises, sem telemetria, sem uploads. O FFmpeg e o FFprobe estão incluídos.
+Tudo é executado localmente. Sem análises, sem telemetria, sem envios. O FFmpeg e o FFprobe estão incluídos.
 
 ## Localização
 
-A interface do utilizador da aplicação está disponível em 8 idiomas. A renderização dos nomes de ficheiros na folha é um sistema separado — desenha os nomes de ficheiros como píxeis no PNG exportado, o que requer um tratamento de tipos de letra específico do script.
+A interface do utilizador da aplicação está disponível em 8 idiomas. A renderização dos nomes dos ficheiros nas folhas é um sistema separado — desenha os nomes dos ficheiros como píxeis no PNG exportado, o que requer um tratamento de tipos de letra específico do script.
 
 | Idioma | IU | Na folha |
 |---|---|---|
@@ -135,13 +138,13 @@ python -m pip install -r requirements.txt
 PYTHONPATH=src python -m perfect_grid.app
 ```
 
-Para suporte completo a nomes de ficheiros em árabe/RTL ao compilar a partir do código-fonte:
+Para suporte completo a nomes de ficheiros em árabe/RTL ao executar a partir do código-fonte:
 
 ```bash
 pip install arabic-reshaper python-bidi
 ```
 
-Os scripts de compilação encontram-se em `scripts/`. O GitHub Actions compila automaticamente as versões para Windows e Linux quando são enviadas alterações com etiquetas. A versão para macOS é compilada manualmente.
+Os scripts de compilação encontram-se em `scripts/`. O GitHub Actions compila automaticamente versões para Windows, Linux e macOS (arm64 + x86_64) aquando de envios com etiquetas.
 
 </details>
 
@@ -154,4 +157,4 @@ Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para mais informações.
 
 ## Licença
 
-MIT. Consulte [LICENÇA](LICENÇA).
+MIT. Consulte [LICENSE](LICENSE).

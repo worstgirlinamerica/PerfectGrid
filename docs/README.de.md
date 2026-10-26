@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.zh.md">Chinesisch</a> &nbsp;|&nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">Portugiesisch</a> &nbsp;|&nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">Español</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.pt.md">Português</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.es.md)">Spanisch</a> &nbsp;|&nbsp;
   <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ja.md">日本語</a> &nbsp;|&nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">Französisch</a> &nbsp;|&nbsp;
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.fr.md">Français</a> &nbsp;|&nbsp;
   <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.de.md">Deutsch</a> &nbsp;|&nbsp;
   <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ko.md">Koreanisch</a> &nbsp;|&nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">Arabisch</a>
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/blob/main/docs/README.ar.md">العربية</a>
 </p>
 
 Perfect Grid ist eine kostenlose Open-Source-Desktop-Anwendung zum Erstellen von Video-Kontaktabzügen und Vorschaubildern aus lokalen Videodateien. Laden Sie ein Video hoch, wählen Sie Ihr Layout aus und exportieren Sie einen hochwertigen PNG-Kontaktabzug.
@@ -31,36 +31,39 @@ Entwickelt für Cutter, Sammler, Archivare und alle, die sich einen schnellen vi
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Download für macOS">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Download für Windows">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
-    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Für Linux herunterladen">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
+    <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Download für Linux">
   </a>
 </p>
+<p align="center"><sub>Die Badges verweisen auf die neueste Version – laden Sie die Datei herunter, die zu Ihrem Betriebssystem (und bei macOS auch zu Ihrem Chip) passt.</sub></p>
 
 ## Funktionen
 
 - Erstellen Sie hochwertige Kontaktabzüge mit erweiterter Anzeige von Video-Metadaten (Auflösung, Codecs, Dauer, Dateigröße usw.)
-- Vollständig anpassbare Rasterlayouts
+- Vollständig anpassbare Rasterlayouts mit einer in der Größe veränderbaren Seitenleiste für mehr Arbeitsfläche
 - Optionale Timecode-Einblendungen
 - Intelligente Bildauswahl mit **„Refine Picks“**
+- PyAV-basierte Extraktions-Engine mit hardwareoptimierter Vorschau-Erstellung, sodass die Vorschau auf verschiedenen CPUs und Architekturen stets schnell bleibt
+- Einstellbare Qualität des ersten Extraktionsdurchlaufs in den Einstellungen
 - Speichern und Wiederverwenden benutzerdefinierter Voreinstellungen
 - Stapelverarbeitung
 - Läuft unter Windows, macOS und Linux
-> Sollten Sie __irgendwelche__ Fehler feststellen, sollte etwas nicht funktionieren oder sollten Sie Fragen haben, erstellen Sie bitte ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new), um dies zu melden.
+> Sollten __irgendwelche__ Fehler auftreten, etwas nicht funktionieren oder Sie Fragen haben, erstellen Sie bitte ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new), um dies zu melden.
 
 ## Grundlegende Verwendung
 
-1. Öffne Perfect Grid.
-2. Ziehe ein Video in das Fenster.
-3. Passe das Rasterlayout und das Design an. Wenn du das Layout änderst, klicke auf **Vorschau aktualisieren**, um die Miniaturansichten neu zu generieren.
-4. Die Vorschauen sind absichtlich in geringerer Qualität – beim Export wird immer die von dir gewählte Qualitätseinstellung verwendet.
+1. Öffnen Sie Perfect Grid.
+2. Zieh ein Video in das Fenster.
+3. Passe das Rasterlayout und die Darstellung an. Wenn du das Layout änderst, klicke auf **Vorschau aktualisieren**, um die Miniaturansichten neu zu generieren.
+4. Die Vorschauen sind absichtlich von geringerer Qualität – beim Export wird immer die von dir gewählte Qualitätseinstellung verwendet.
 5. (Optional) Verwenden Sie auf der Registerkarte **Bereich** die Funktion **Auswahl verfeinern** für eine intelligentere Auswahl der Einzelbilder.
-6. Wählen Sie unter **Bereich** eine Exportqualität aus: **Schnell (1080p)**, **Detail (1440p)** oder **Maximal (4K)**.
+6. Wähle unter **Bereich** eine Exportqualität aus: **Schnell (1080p)**, **Detail (1440p)** oder **Maximal (4K)**.
 7. Klicken Sie auf **PNG exportieren**.
 
 ## Installation
@@ -69,30 +72,30 @@ Laden Sie die neueste Version für Ihr Betriebssystem von der Seite [Veröffentl
 
 ### macOS
 
-1. Laden Sie `PerfectGrid-v0.1.2-macos-universal.zip` herunter.
-2. Doppelklicken Sie zum Entpacken darauf und ziehen Sie „Perfect Grid“ anschließend in den Ordner „Programme“.
+1. Lade die für deinen Chip geeignete Version herunter: `PerfectGrid-<Version>-macOS-arm64.zip` (Apple Silicon) oder `PerfectGrid-<Version>-macOS-x86_64.zip` (Intel). Du bist dir nicht sicher, welche Version du hast? Apple-Menü → **Über diesen Mac**.
+2. Doppelklicken Sie zum Entpacken und ziehen Sie „Perfect Grid“ anschließend in den Ordner „Programme“.
 3. Öffnen Sie `Perfect Grid.app`.
 
-> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Klicken Sie mit der rechten Maustaste darauf → **Öffnen** → **Öffnen**, um diese Sperre zu umgehen. Falls sich die App immer noch nicht öffnen lässt, führen Sie folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Rechtsklick → **Öffnen** → **Öffnen**, um die Blockierung zu umgehen. Sollte sich die App dennoch nicht öffnen lassen, führen Sie folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. Laden Sie `PerfectGrid-v0.1.2-Windows-x86_64.zip` herunter.
-2. Rechtsklick → **Alle extrahieren**, dann den Ordner öffnen.
-3. Doppelklick auf `Perfect Grid.exe`.
+1. Lade `PerfectGrid-<Version>-Windows-x86_64.zip` herunter.
+2. Klicke mit der rechten Maustaste → **Alle extrahieren** und öffne anschließend den Ordner.
+3. Doppelklicke auf `Perfect Grid.exe`.
 
 > Windows SmartScreen zeigt möglicherweise eine Warnung an, da die App nicht codesigniert ist. Klicken Sie auf **Weitere Informationen** → **Trotzdem ausführen**.
 
 ### Linux
 
-1. Lade `PerfectGrid-v0.1.2-Linux-x86_64.AppImage` herunter.
-2. Mach die Datei ausführbar und führe sie aus:
+1. Laden Sie `PerfectGrid-<version>-Linux-x86_64.AppImage` herunter.
+2. Machen Sie die Datei ausführbar und führen Sie sie aus:
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-<version>-Linux-x86_64.AppImage
+./PerfectGrid-<version>-Linux-x86_64.AppImage
 ```
 
-Keine Installation erforderlich – FFmpeg und alle Abhängigkeiten sind im Paket enthalten. Funktioniert auf den meisten x86_64-Distributionen (Ubuntu 22.04+, Fedora, Arch usw.).
+Keine Installation erforderlich – FFmpeg und alle Abhängigkeiten sind bereits enthalten. Funktioniert auf den meisten x86_64-Distributionen (Ubuntu 22.04+, Fedora, Arch usw.).
 
 > Falls ein FUSE-Fehler auftritt: `sudo apt install fuse` (Debian/Ubuntu) oder `sudo dnf install fuse` (Fedora).
 
@@ -102,9 +105,9 @@ Alles läuft lokal. Keine Analysen, keine Telemetrie, keine Uploads. FFmpeg und 
 
 ## Lokalisierung
 
-Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf dem Blatt erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf das exportierte PNG gezeichnet, was eine skriptspezifische Schriftartverarbeitung erfordert.
+Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf den Arbeitsblättern erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf das exportierte PNG gezeichnet, was eine skriptspezifische Schriftartverarbeitung erfordert.
 
-| Sprache | Benutzeroberfläche | Auf dem Blatt |
+| Sprache | Benutzeroberfläche | Auf dem Arbeitsblatt |
 |---|---|---|
 | Englisch | Ja | Ja |
 | Chinesisch (中文) | Ja | Ja (macOS, Windows) |
@@ -141,16 +144,16 @@ Für vollständige Unterstützung arabischer/RTL-Dateinamen bei der Ausführung 
 pip install arabic-reshaper python-bidi
 ```
 
-Die Build-Skripte befinden sich in `scripts/`. GitHub Actions erstellt Windows- und Linux-Versionen automatisch bei getaggten Pushes. Die macOS-Version wird manuell erstellt.
+Die Build-Skripte befinden sich in `scripts/`. GitHub Actions erstellt bei mit Tags versehenen Pushes automatisch Windows-, Linux- und macOS-Versionen (arm64 + x86_64).
 
 </details>
 
 ## Mitwirken
 
 Bitte teilen Sie uns Fehler oder Probleme mit, indem Sie ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) erstellen. 
-Die hilfreichsten Informationen sind Ihr Betriebssystem, das Videoformat und ob das Problem bei der Vorschau, der Verfeinerung, dem Export oder der Stapelverarbeitung aufgetreten ist.
+Die hilfreichsten Informationen sind dabei Ihr Betriebssystem, das Videoformat und die Angabe, ob das Problem bei der Vorschau, der Verfeinerung, dem Export oder der Stapelverarbeitung aufgetreten ist.
 
-Weitere Informationen finden Sie in [CONTRIBUTING.md](CONTRIBUTING.md).
+Weitere Informationen finden Sie in der Datei [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Lizenz
 
