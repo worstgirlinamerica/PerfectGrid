@@ -74,9 +74,14 @@ jobs:
           # the real packaged ffmpeg/ffprobe through encode -> probe ->
           # frame-extract and fails the build loudly instead of shipping a
           # silent "No preview frames found."
-          & "dist_windows\Perfect Grid\Perfect Grid.exe" --self-test
-          if ($LASTEXITCODE -ne 0) {
-            Write-Error "Self-test failed with exit code $LASTEXITCODE"
+          # Use Start-Process -Wait -PassThru instead of the call operator:
+          # this is a --windowed (GUI-subsystem) exe, and PowerShell's `&`
+          # does not reliably block on those, so $LASTEXITCODE was read
+          # before the process had actually finished (always null/blank).
+          $proc = Start-Process -FilePath "dist_windows\Perfect Grid\Perfect Grid.exe" `
+            -ArgumentList "--self-test" -NoNewWindow -Wait -PassThru
+          if ($proc.ExitCode -ne 0) {
+            Write-Error "Self-test failed with exit code $($proc.ExitCode)"
             exit 1
           }
       - name: Package Windows app
