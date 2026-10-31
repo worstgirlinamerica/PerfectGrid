@@ -65,6 +65,20 @@ jobs:
             --add-binary "win-binaries\ffmpeg.exe;." `
             --add-binary "win-binaries\ffprobe.exe;." `
             "src\perfect_grid\app.py"
+      - name: Smoke-test packaged build
+        shell: pwsh
+        run: |
+          # Runs the exact bundled .exe end users get, headless (--self-test
+          # exits before QApplication is created, so no display is needed).
+          # This is what would've caught the Chocolatey-shim bug: it drives
+          # the real packaged ffmpeg/ffprobe through encode -> probe ->
+          # frame-extract and fails the build loudly instead of shipping a
+          # silent "No preview frames found."
+          & "dist_windows\Perfect Grid\Perfect Grid.exe" --self-test
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Self-test failed with exit code $LASTEXITCODE"
+            exit 1
+          }
       - name: Package Windows app
         shell: pwsh
         run: Compress-Archive -Path "dist_windows\Perfect Grid\*" -DestinationPath "PerfectGrid-${{ github.ref_name }}-Windows-x86_64.zip" -Force
@@ -99,6 +113,11 @@ jobs:
           chmod +x scripts/build_linux.sh
           ./scripts/build_linux.sh
           mv "Perfect-Grid-x86_64.AppImage" "PerfectGrid-${{ github.ref_name }}-Linux-x86_64.AppImage"
+      - name: Smoke-test packaged build
+        run: |
+          # --appimage-extract-and-run avoids needing FUSE on the runner and
+          # runs the literal shipped AppImage, bundled binaries and all.
+          "./PerfectGrid-${{ github.ref_name }}-Linux-x86_64.AppImage" --appimage-extract-and-run --self-test
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
         with:
@@ -134,6 +153,11 @@ jobs:
         run: |
           chmod +x scripts/build_macos.sh
           ./scripts/build_macos.sh
+      - name: Smoke-test packaged build
+        run: |
+          # Runs the actual binary inside the .app bundle, bundled
+          # ffmpeg/ffprobe and all, on both the arm64 and x86_64 runners.
+          "dist_mac/Perfect Grid.app/Contents/MacOS/Perfect Grid" --self-test
       - name: Package macOS app
         run: |
           cd dist_mac

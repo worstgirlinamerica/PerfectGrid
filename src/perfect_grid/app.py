@@ -1,4 +1,4 @@
-import sys, os, json, re, tempfile, subprocess, hashlib
+import sys, os, json, re, tempfile, subprocess, hashlib, platform
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject, QTimer, QRect, QRectF, QEvent
 from PyQt5.QtGui import QImage, QPixmap, QColor, QPainter, QPen, QBrush, QPainterPath
@@ -1775,9 +1775,85 @@ class PerfectGrid(QMainWindow):
         except Exception:
             pass
 
+# ─── self-test ──────────────────────────────────────────────────────────────
+# Exercises the exact chain that broke silently on Windows: resolve the
+# bundled ffmpeg/ffprobe binaries, encode a throwaway clip with them, probe
+# it with get_video_metadata(), and pull a real frame out of it. Run after
+# every packaged build on every platform (see .github/workflows/build.yml)
+# so a bundling regression — Chocolatey shims, a missing static binary, a
+# codesign/quarantine issue, a bad PATH — fails CI instead of shipping
+# silently to a user's "No preview frames found" screen.
+#
+# Exit codes: 0 = pass, 1 = ffmpeg/ffprobe not runnable, 2 = metadata/frame
+# extraction produced no data, 3 = unhandled exception.
+
+def run_self_test():
+    import shutil as _shutil
+    from .engine import FFMPEG, FFPROBE, _run_ffmpeg, _WIN_NO_WINDOW
+
+    def fail(code, msg):
+        _safe_self_test_print(f"[self-test] FAIL: {msg}")
+        return code
+
+    def _safe_self_test_print(msg):
+        try:
+            print(msg)
+        except Exception:
+            pass
+
+    tmp_dir = tempfile.mkdtemp(prefix="pg_selftest_")
+    try:
+        _safe_self_test_print(f"[self-test] platform={platform.system()} ffmpeg={FFMPEG} ffprobe={FFPROBE}")
+
+        if not (os.path.isabs(FFMPEG) or _shutil.which(FFMPEG)):
+            return fail(1, f"ffmpeg not resolvable: {FFMPEG!r}")
+        if not (os.path.isabs(FFPROBE) or _shutil.which(FFPROBE)):
+            return fail(1, f"ffprobe not resolvable: {FFPROBE!r}")
+
+        clip_path = os.path.join(tmp_dir, "probe.mp4")
+        try:
+            ok = _run_ffmpeg([
+                "-y", "-f", "lavfi", "-i", "testsrc=duration=1:size=320x240:rate=10",
+                "-pix_fmt", "yuv420p", clip_path,
+            ], force_software=True, timeout=30)
+        except Exception as e:
+            return fail(3, f"ffmpeg invocation raised: {e!r}")
+        if not ok or not os.path.exists(clip_path) or os.path.getsize(clip_path) == 0:
+            return fail(1, "ffmpeg could not encode a test clip")
+
+        try:
+            meta = get_video_metadata(clip_path)
+        except Exception as e:
+            return fail(3, f"get_video_metadata raised: {e!r}")
+        if not meta or not meta.get("size"):
+            return fail(2, f"get_video_metadata returned no usable data: {meta!r}")
+
+        frame_path = os.path.join(tmp_dir, "frame.jpg")
+        try:
+            frame_cmd = [FFMPEG, "-y", "-i", clip_path, "-frames:v", "1", frame_path]
+            result = subprocess.run(
+                frame_cmd, check=False, stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL, timeout=30, creationflags=_WIN_NO_WINDOW,
+            )
+        except Exception as e:
+            return fail(3, f"frame extraction raised: {e!r}")
+        if result.returncode != 0 or not os.path.exists(frame_path) or os.path.getsize(frame_path) == 0:
+            return fail(2, "no frame was extracted from the test clip")
+
+        _safe_self_test_print(f"[self-test] PASS: {meta.get('size_display', '?')}, duration ok, frame extracted")
+        return 0
+    except Exception as e:
+        return fail(3, f"unhandled: {e!r}")
+    finally:
+        import shutil as _shutil2
+        _shutil2.rmtree(tmp_dir, ignore_errors=True)
+
 # ─── entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(run_self_test())
+
     # Must be set before QApplication() exists. Without AA_UseHighDpiPixmaps,
     # Qt/Fusion paints QSS-drawn chrome (rounded button fills, borders,
     # the splitter handle) into a 1x backing pixmap on Retina displays and
