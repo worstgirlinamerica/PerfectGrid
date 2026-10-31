@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+- Fixed the Windows build bundling Chocolatey's `ffmpeg.exe`/`ffprobe.exe` shims instead of real binaries — on a machine without Chocolatey installed, the shim couldn't find its target, failed, and (since it's a console-subsystem exe launched from our windowed app) made Windows flash a console window first. Showed up as "drag a video in, a terminal pops up, then it fails and says no frames." CI and `scripts/build_windows.ps1` now bundle a real static ffmpeg build instead.
+- Suppressed the console-window flash from ffmpeg/ffprobe subprocess calls on Windows more generally (`CREATE_NO_WINDOW`), so this can't recur even on a packaging slip.
+- Fixed the in-app version tag being able to drift from the actual release tag (shipped v0.2.2 showed "v0.2.1" because `APP_VERSION` wasn't bumped before tagging). Tagged CI release builds now bake in the exact version from the git tag at build time instead of relying on a hand-maintained constant.
+
 ## 0.2.2
 - Fixed resize preview glitches + added dynamic resizing of the sheet preview.
 - Extra bug fixes.

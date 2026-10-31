@@ -16,6 +16,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+      - name: Write build version from tag
+        shell: pwsh
+        run: |
+          # Bakes the exact tag being built into the app so the in-app
+          # version tag can't drift from it the way APP_VERSION in app.py
+          # did for v0.2.2 (that constant didn't get bumped before
+          # tagging, so the shipped build showed "v0.2.1"). Only writes
+          # this on an actual "vX.Y.Z" tag push — a workflow_dispatch run
+          # off a branch has no such tag, so app.py's APP_VERSION fallback
+          # (plus dev commit-hash suffix) is used instead, same as always.
+          if ("${{ github.ref_name }}" -match '^v(\d+\.\d+\.\d+.*)$') {
+            "VERSION = `"$($Matches[1])`"" | Set-Content -Path "src\perfect_grid\_build_version.py"
+          }
       - name: Install FFmpeg (real static binaries, not Chocolatey shims)
         shell: pwsh
         run: |
@@ -68,6 +81,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+      - name: Write build version from tag
+        run: |
+          TAG="${{ github.ref_name }}"
+          if [[ "$TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+.*)$ ]]; then
+            echo "VERSION = \"${BASH_REMATCH[1]}\"" > src/perfect_grid/_build_version.py
+          fi
       - name: Install system dependencies
         run: |
           sudo apt-get update -qq
@@ -101,6 +120,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+      - name: Write build version from tag
+        run: |
+          TAG="${{ github.ref_name }}"
+          if [[ "$TAG" =~ ^v([0-9]+\.[0-9]+\.[0-9]+.*)$ ]]; then
+            echo "VERSION = \"${BASH_REMATCH[1]}\"" > src/perfect_grid/_build_version.py
+          fi
       - name: Install FFmpeg
         run: brew install ffmpeg
       - name: Install Python dependencies
