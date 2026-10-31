@@ -1789,7 +1789,18 @@ class PerfectGrid(QMainWindow):
 
 def run_self_test():
     import shutil as _shutil
-    from .engine import FFMPEG, FFPROBE, _run_ffmpeg, _WIN_NO_WINDOW
+    # Same fallback chain as the top-of-file engine import: a PyInstaller
+    # frozen build runs this file as a top-level script, not as a submodule
+    # of the perfect_grid package, so the relative `.engine` import raises
+    # ImportError there even though it works fine in a normal dev/package
+    # run. Mirror the existing pattern instead of assuming one import style.
+    try:
+        from .engine import FFMPEG, FFPROBE, _run_ffmpeg, _WIN_NO_WINDOW
+    except ImportError:
+        try:
+            from perfect_grid.engine import FFMPEG, FFPROBE, _run_ffmpeg, _WIN_NO_WINDOW
+        except ImportError:
+            from engine import FFMPEG, FFPROBE, _run_ffmpeg, _WIN_NO_WINDOW
 
     def fail(code, msg):
         _safe_self_test_print(f"[self-test] FAIL: {msg}")
