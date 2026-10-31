@@ -32,23 +32,40 @@ def resolve_binary(name):
 FFMPEG = resolve_binary("ffmpeg")
 FFPROBE = resolve_binary("ffprobe")
 
+# Every ffmpeg/ffprobe call below is a console-subsystem process. When this
+# app runs as a windowed (console-less) build on Windows, spawning one of
+# those without this flag makes Windows allocate and briefly flash a brand
+# new console window for each call (the "a terminal pops up" symptom). This
+# is a no-op on macOS/Linux.
+_WIN_NO_WINDOW = subprocess.CREATE_NO_WINDOW if platform.system() == "Windows" else 0
+
+def _safe_print(msg):
+    # A --windowed/no-console PyInstaller build has sys.stdout/stderr set to
+    # None (not just redirected) once frozen, so a bare print() here would
+    # raise AttributeError and replace the real error we're trying to log
+    # with a confusing new one. Swallow quietly in that case.
+    try:
+        print(msg)
+    except Exception:
+        pass
+
 def _run_ffmpeg(cmd_args, force_software=False, timeout=None):
     if not force_software and platform.system() == "Darwin":
         hw_cmd = [FFMPEG, "-hwaccel", "videotoolbox"] + cmd_args
         try:
-            result = subprocess.run(hw_cmd, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout)
+            result = subprocess.run(hw_cmd, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout, creationflags=_WIN_NO_WINDOW)
         except subprocess.TimeoutExpired:
             return False
         if result.returncode == 0:
             return True
     try:
-        result = subprocess.run([FFMPEG] + cmd_args, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout)
+        result = subprocess.run([FFMPEG] + cmd_args, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout, creationflags=_WIN_NO_WINDOW)
     except subprocess.TimeoutExpired:
         return False
     return result.returncode == 0
 
 def _run_capture(cmd):
-    return subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, creationflags=_WIN_NO_WINDOW)
 
 def _parse_rate(rate_str):
     if not rate_str:
@@ -208,7 +225,7 @@ def get_video_metadata(path):
         "-of", "json", path
     ]
     try:
-        data = json.loads(subprocess.check_output(cmd))
+        data = json.loads(subprocess.check_output(cmd, creationflags=_WIN_NO_WINDOW))
         streams = data.get("streams", [])
         v = next((s for s in streams if s.get("codec_type") == "video"), {})
         a = next((s for s in streams if s.get("codec_type") == "audio"), {})
@@ -240,7 +257,7 @@ def get_video_metadata(path):
             "audio_line": ", ".join(audio_parts),
         }
     except Exception as e:
-        print(f"Metadata Error: {e}")
+        _safe_print(f"Metadata Error: {e}")
         return None
 
 def detect_effective_end_time(path, meta, start_t, requested_end_t):
@@ -973,7 +990,7 @@ def generate_sheet(frames, meta, out=None, bg=(255, 255, 255), margin=30, cols=4
             cy = g_top + (i // cols) * (th + spacing)
             canvas.paste(img.convert("RGB"), (int(cx), int(cy)))
         except Exception as e:
-            print(f"Error pasting frame {i}: {e}")
+            _safe_print(f"Error pasting frame {i}: {e}")
     if out:
         canvas.save(out)
     return canvas

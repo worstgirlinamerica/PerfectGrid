@@ -1439,7 +1439,10 @@ class PerfectGrid(QMainWindow):
         self.loading_bar.hide(); self.loading_bar.setRange(0, 0)
 
     def on_extract_error(self, msg):
-        print(f"Frame extraction error: {msg}")
+        try:
+            print(f"Frame extraction error: {msg}")
+        except Exception:
+            pass  # frozen --windowed build has no stdout to print to
         self.set_status(f"Extraction error: {msg}")
         if self.extract_thread is not None:
             self.extract_thread.quit(); self.extract_thread.wait()

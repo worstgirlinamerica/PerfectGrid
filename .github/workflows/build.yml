@@ -16,8 +16,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - name: Install FFmpeg
-        run: choco install ffmpeg -y
+      - name: Install FFmpeg (real static binaries, not Chocolatey shims)
+        shell: pwsh
+        run: |
+          # `choco install ffmpeg` only puts tiny *shim* launchers in
+          # C:\ProgramData\chocolatey\bin — they redirect to the real exe
+          # under chocolatey\lib at run time. Bundling the shim itself (as
+          # this job used to do) ships a launcher that can't find its
+          # target on an end user's machine: it fails, and because it's a
+          # console-subsystem exe started from our windowed app, Windows
+          # pops a console window for it first. Pull an actual static
+          # build instead so what we bundle is self-contained.
+          Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip" -OutFile "ffmpeg.zip"
+          Expand-Archive -Path "ffmpeg.zip" -DestinationPath "ffmpeg_extracted"
+          $binDir = Get-ChildItem -Path "ffmpeg_extracted" -Directory | Select-Object -First 1
+          New-Item -ItemType Directory -Force -Path "win-binaries" | Out-Null
+          Copy-Item (Join-Path $binDir.FullName "bin\ffmpeg.exe") "win-binaries\ffmpeg.exe"
+          Copy-Item (Join-Path $binDir.FullName "bin\ffprobe.exe") "win-binaries\ffprobe.exe"
       - name: Install Python deps
         run: pip install -r requirements.txt arabic-reshaper python-bidi
       - name: Build Windows app
@@ -34,8 +49,8 @@ jobs:
             --hidden-import "perfect_grid.engine" `
             --hidden-import "perfect_grid.pg_i18n" `
             --add-data "src\perfect_grid\presets_v2.json;." `
-            --add-binary "C:\ProgramData\chocolatey\bin\ffmpeg.exe;." `
-            --add-binary "C:\ProgramData\chocolatey\bin\ffprobe.exe;." `
+            --add-binary "win-binaries\ffmpeg.exe;." `
+            --add-binary "win-binaries\ffprobe.exe;." `
             "src\perfect_grid\app.py"
       - name: Package Windows app
         shell: pwsh

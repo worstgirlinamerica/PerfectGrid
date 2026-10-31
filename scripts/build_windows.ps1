@@ -15,20 +15,25 @@ New-Item -ItemType Directory -Force -Path "win-binaries" | Out-Null
 $ffmpeg = Join-Path "win-binaries" "ffmpeg.exe"
 $ffprobe = Join-Path "win-binaries" "ffprobe.exe"
 
-if (!(Test-Path $ffmpeg)) {
-    $pathFfmpeg = (Get-Command "ffmpeg.exe" -ErrorAction SilentlyContinue).Source
-    if (!$pathFfmpeg) {
-        throw "ffmpeg.exe was not found. Put ffmpeg.exe in win-binaries\ or install FFmpeg and add it to PATH."
-    }
-    Copy-Item $pathFfmpeg $ffmpeg
-}
-
-if (!(Test-Path $ffprobe)) {
-    $pathFfprobe = (Get-Command "ffprobe.exe" -ErrorAction SilentlyContinue).Source
-    if (!$pathFfprobe) {
-        throw "ffprobe.exe was not found. Put ffprobe.exe in win-binaries\ or install FFmpeg and add it to PATH."
-    }
-    Copy-Item $pathFfprobe $ffprobe
+# NOTE: don't fall back to whatever ffmpeg.exe/ffprobe.exe happens to be on
+# PATH here. If you installed FFmpeg via `choco install ffmpeg`, PATH
+# resolves to a tiny *shim* launcher in chocolatey\bin, not a real binary —
+# it redirects to chocolatey\lib at run time. Copying that shim into the
+# bundle ships a launcher with nothing to redirect to once it leaves this
+# machine: it fails silently, and because it's a console-subsystem exe
+# started from our windowed app, Windows flashes a console window for it
+# first (looks like "the app opens a terminal, then fails"). Put real
+# binaries in win-binaries\ yourself (e.g. a static build from
+# https://www.gyan.dev/ffmpeg/builds/), or let this script fetch one.
+if (!(Test-Path $ffmpeg) -or !(Test-Path $ffprobe)) {
+    Write-Host "ffmpeg.exe/ffprobe.exe not found in win-binaries\ — downloading a static build..."
+    Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip" -OutFile "ffmpeg_dl.zip"
+    Expand-Archive -Path "ffmpeg_dl.zip" -DestinationPath "ffmpeg_dl_extracted" -Force
+    $binDir = Get-ChildItem -Path "ffmpeg_dl_extracted" -Directory | Select-Object -First 1
+    Copy-Item (Join-Path $binDir.FullName "bin\ffmpeg.exe") $ffmpeg -Force
+    Copy-Item (Join-Path $binDir.FullName "bin\ffprobe.exe") $ffprobe -Force
+    Remove-Item "ffmpeg_dl.zip" -Force
+    Remove-Item "ffmpeg_dl_extracted" -Recurse -Force
 }
 
 $env:PYINSTALLER_CONFIG_DIR = if ($env:PYINSTALLER_CONFIG_DIR) { $env:PYINSTALLER_CONFIG_DIR } else { Join-Path (Get-Location) ".pyinstaller" }
