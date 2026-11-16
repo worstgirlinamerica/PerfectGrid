@@ -1935,7 +1935,7 @@ if __name__ == "__main__":
     if sys.platform == "win32":
         try:
             import ctypes
-            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("PerfectGrid.PerfectGrid")
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(f"PerfectGrid.{APP_NAME}.{APP_VERSION}")
         except Exception:
             pass
 
