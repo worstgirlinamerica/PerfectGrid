@@ -35,8 +35,8 @@ jobs:
             --hidden-import "perfect_grid.engine" `
             --hidden-import "perfect_grid.pg_i18n" `
             --add-data "src\perfect_grid\presets_v2.json;." `
-            --add-binary "C:\ProgramData\chocolatey\bin\ffmpeg.exe;." `
-            --add-binary "C:\ProgramData\chocolatey\bin\ffprobe.exe;." `
+            --add-binary "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe;." `
+            --add-binary "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe;." `
             "src\perfect_grid\app.py"
       - name: Package Windows app
         shell: pwsh
