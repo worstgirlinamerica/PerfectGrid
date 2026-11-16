@@ -646,6 +646,10 @@ class PerfectGrid(QMainWindow):
             icon_file = asset_path("icon.ico")
             if os.path.exists(icon_file):
                 self.setWindowIcon(QIcon(icon_file))
+        elif sys.platform == "linux":
+            icon_file = asset_path("icon.png")
+            if os.path.exists(icon_file):
+                self.setWindowIcon(QIcon(icon_file))
 
         # state
         self.video_path        = None
@@ -1928,6 +1932,13 @@ if __name__ == "__main__":
     # rect is the *only* thing painted — same reason we hand-paint the checkbox
     # (_CheckBoxIndicator) and the combo arrow (StyledCombo) instead of trusting
     # native painting for those.
+    if sys.platform == "win32":
+        try:
+            import ctypes
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("PerfectGrid.PerfectGrid")
+        except Exception:
+            pass
+
     app.setStyle(QStyleFactory.create("Fusion"))
     app.setApplicationName(APP_NAME)
     app.setApplicationVersion(APP_VERSION)
@@ -1936,16 +1947,7 @@ if __name__ == "__main__":
         _icon_file = asset_path("icon.ico")
         if os.path.exists(_icon_file):
             app.setWindowIcon(QIcon(_icon_file))
-        # Without a distinct AppUserModelID, Windows groups this process
-        # under the generic "Python"/pythonw taskbar icon instead of ours,
-        # since it hasn't been told this is its own standalone app.
-        try:
-            import ctypes
-            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-                f"PerfectGrid.{APP_NAME}.{APP_VERSION}"
-            )
-        except Exception:
-            pass
-    win = PerfectGrid()
-    win.show()
-    sys.exit(app.exec_())
+    elif sys.platform == "linux":
+        _icon_file = asset_path("icon.png")
+        if os.path.exists(_icon_file):
+            app.setWindowIcon(QIcon(_icon_file))

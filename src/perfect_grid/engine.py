@@ -27,24 +27,26 @@ def resolve_binary(name):
 
 FFMPEG = resolve_binary("ffmpeg")
 FFPROBE = resolve_binary("ffprobe")
+_WIN_NO_WINDOW = 0x08000000 if platform.system() == "Windows" else 0
 
 def _run_ffmpeg(cmd_args, force_software=False, timeout=None):
+    kwargs = dict(check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout, creationflags=_WIN_NO_WINDOW)
     if not force_software and platform.system() == "Darwin":
         hw_cmd = [FFMPEG, "-hwaccel", "videotoolbox"] + cmd_args
         try:
-            result = subprocess.run(hw_cmd, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout)
+            result = subprocess.run(hw_cmd, **kwargs)
         except subprocess.TimeoutExpired:
             return False
         if result.returncode == 0:
             return True
     try:
-        result = subprocess.run([FFMPEG] + cmd_args, check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout)
+        result = subprocess.run([FFMPEG] + cmd_args, **kwargs)
     except subprocess.TimeoutExpired:
         return False
     return result.returncode == 0
 
 def _run_capture(cmd):
-    return subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return subprocess.run(cmd, check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, creationflags=_WIN_NO_WINDOW)
 
 def _parse_rate(rate_str):
     if not rate_str:
@@ -204,7 +206,7 @@ def get_video_metadata(path):
         "-of", "json", path
     ]
     try:
-        data = json.loads(subprocess.check_output(cmd))
+        data = json.loads(subprocess.check_output(cmd, creationflags=_WIN_NO_WINDOW))
         streams = data.get("streams", [])
         v = next((s for s in streams if s.get("codec_type") == "video"), {})
         a = next((s for s in streams if s.get("codec_type") == "audio"), {})
