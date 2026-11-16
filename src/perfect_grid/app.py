@@ -1951,3 +1951,8 @@ if __name__ == "__main__":
         _icon_file = asset_path("icon.png")
         if os.path.exists(_icon_file):
             app.setWindowIcon(QIcon(_icon_file))
+
+    win = PerfectGrid()
+    win.show()
+    sys.exit(app.exec_())
+    
