@@ -743,7 +743,7 @@ def generate_sheet(frames, meta, out=None, bg=(255, 255, 255), margin=30, cols=4
     draw = ImageDraw.Draw(canvas)
 
     def get_f(s):
-        for p in [f"/Library/Fonts/{f_fam}.ttf", f"/System/Library/Fonts/Supplemental/{f_fam}.ttf", f"/System/Library/Fonts/{f_fam}.ttc", "/Library/Fonts/Arial.ttf"]:
+        for p in [f"/Library/Fonts/{f_fam}.ttf", f"/System/Library/Fonts/Supplemental/{f_fam}.ttf", f"/System/Library/Fonts/{f_fam}.ttc", "/Library/Fonts/Arial.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", "/usr/share/fonts/truetype/freefont/FreeSans.ttf"]:
             if os.path.exists(p):
                 try:
                     return ImageFont.truetype(p, s)
