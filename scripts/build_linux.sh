@@ -32,6 +32,7 @@ pyinstaller \
   --distpath dist_linux \
   --workpath build_linux \
   --add-data "src/perfect_grid/presets_v2.json:." \
+  --add-data "assets:assets" \
   --add-binary "${FFMPEG_BIN}:." \
   --add-binary "${FFPROBE_BIN}:." \
   src/perfect_grid/app.py

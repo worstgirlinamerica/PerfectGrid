@@ -362,6 +362,8 @@ QProgressBar::chunk {{background:{accent};border-radius:1px;}}
 QMessageBox, QInputDialog {{background:{bg_card};}}
 QMessageBox QLabel, QInputDialog QLabel {{color:{text};}}
 """.format(**_T)
+if sys.platform == "win32":
+    DARK_QSS = DARK_QSS.replace("padding:8px 14px", "padding:8px 18px")
 
 
 # ─── custom widgets ────────────────────────────────────────────────────────────
