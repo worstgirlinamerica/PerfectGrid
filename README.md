@@ -4,7 +4,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="GitHub Release">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
+    <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="GitHub Release">
+  </a>
   <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Downloads">
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="License">
 </p>
@@ -31,13 +33,13 @@ Built for editors, collectors, archivists, and anyone who wants a quick visual s
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Download for macOS">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Download for Windows">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Download for Linux">
   </a>
 </p>
@@ -51,6 +53,7 @@ Built for editors, collectors, archivists, and anyone who wants a quick visual s
 - Save and reuse custom presets
 - Batch processing
 - Runs on Windows, macOS, and Linux
+
 > If you experience __any__ errors, something doesn't work, or you have questions, please create an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) to report it.
 
 ## Basic Usage
@@ -69,7 +72,7 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### macOS
 
-1. Download `PerfectGrid-v0.1.2-macos-universal.zip`.
+1. Download the macOS zip from the [latest release](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 2. Double-click to extract, then drag Perfect Grid into Applications.
 3. Open `Perfect Grid.app`.
 
@@ -77,7 +80,7 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Windows
 
-1. Download `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
+1. Download the Windows zip from the [latest release](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 2. Right-click → **Extract All**, then open the folder.
 3. Double-click `Perfect Grid.exe`.
 
@@ -85,11 +88,12 @@ Download the latest release for your OS from the [Releases](https://github.com/w
 
 ### Linux
 
-1. Download `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
+1. Download the AppImage from the [latest release](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 2. Make it executable and run it:
+
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-*-Linux-x86_64.AppImage
+./PerfectGrid-*-Linux-x86_64.AppImage
 ```
 
 No install needed — FFmpeg and all dependencies are bundled. Works on most x86_64 distros (Ubuntu 22.04+, Fedora, Arch, etc.).
@@ -147,7 +151,7 @@ Build scripts are in `scripts/`. GitHub Actions builds Windows and Linux release
 
 ## Contributing
 
-Please let us know if you experience any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new). 
+Please let us know if you experience any bugs or errors by creating an [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
 The most useful information to include is your OS, video format, and whether the issue was in preview, refine, export, or batch.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
