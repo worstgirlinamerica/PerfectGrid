@@ -4,7 +4,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="Version GitHub">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
+    <img src="https://img.shields.io/github/v/release/worstgirlinamerica/PerfectGrid?color=E95420" alt="Version GitHub">
+  </a>
   <img src="https://img.shields.io/github/downloads/worstgirlinamerica/PerfectGrid/total" alt="Téléchargements">
   <img src="https://img.shields.io/github/license/worstgirlinamerica/PerfectGrid" alt="Licence">
 </p>
@@ -31,13 +33,13 @@ Conçue pour les monteurs, les collectionneurs, les archivistes et tous ceux qui
 </p>
 
 <p align="center">
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-macos-universal.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-macOS-000000?logo=apple&logoColor=white" alt="Télécharger pour macOS">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Windows-x86_64.zip">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Windows-0078D6?logo=windows11&logoColor=white" alt="Télécharger pour Windows">
   </a>&#8203; &nbsp;
-  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest/download/PerfectGrid-v0.1.2-Linux-x86_64.AppImage">
+  <a href="https://github.com/worstgirlinamerica/PerfectGrid/releases/latest">
     <img src="https://custom-icon-badges.demolab.com/badge/Download-Linux-E95420?logo=linux&logoColor=white" alt="Télécharger pour Linux">
   </a>
 </p>
@@ -45,12 +47,13 @@ Conçue pour les monteurs, les collectionneurs, les archivistes et tous ceux qui
 ## Fonctionnalités
 
 - Génération de planches contact de haute qualité avec affichage avancé des métadonnées vidéo (résolution, codecs, durée, taille de fichier, etc.)
-- Mises en page de grille entièrement personnalisables
-- Superposition optionnelle de timecodes
-- Sélection intelligente d'images avec **Refine Picks**
+- Mises en page en grille entièrement personnalisables
+- Superposition facultative du timecode
+- Sélection intelligente d’images avec **Refine Picks**
 - Enregistrement et réutilisation de préréglages personnalisés
 - Traitement par lots
 - Fonctionne sous Windows, macOS et Linux
+
 > Si vous rencontrez __une quelconque__ erreur, si quelque chose ne fonctionne pas ou si vous avez des questions, veuillez créer un [ticket](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) pour le signaler.
 
 ## Utilisation de base
@@ -69,27 +72,28 @@ Téléchargez la dernière version pour votre système d’exploitation depuis l
 
 ### macOS
 
-1. Téléchargez `PerfectGrid-v0.1.2-macos-universal.zip`.
-2. Double-cliquez pour extraire le fichier, puis faites glisser Perfect Grid dans le dossier Applications.
+1. Téléchargez le fichier zip pour macOS depuis la [dernière version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
+2. Double-cliquez pour l'extraire, puis faites glisser Perfect Grid dans le dossier Applications.
 3. Ouvrez `Perfect Grid.app`.
 
-> macOS bloquera l'application lors du premier lancement car elle n'est pas signée. Cliquez avec le bouton droit → **Ouvrir** → **Ouvrir** pour contourner ce blocage. Si l’application ne s’ouvre toujours pas, exécutez la commande suivante dans Terminal : `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS bloquera l’application lors du premier lancement car elle n’est pas signée. Cliquez avec le bouton droit → **Ouvrir** → **Ouvrir** pour contourner ce blocage. Si l’application ne s’ouvre toujours pas, exécutez la commande suivante dans Terminal : `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. Téléchargez `PerfectGrid-v0.1.2-Windows-x86_64.zip`.
+1. Téléchargez le fichier zip pour Windows à partir de la [dernière version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 2. Clic droit → **Extraire tout**, puis ouvrez le dossier.
 3. Double-cliquez sur `Perfect Grid.exe`.
 
-> Windows SmartScreen peut vous avertir car l'application n'est pas signée. Cliquez sur **Plus d'informations** → **Exécuter quand même**.
+> Windows SmartScreen peut vous avertir car l'application n'est pas signée numériquement. Cliquez sur **Plus d'informations** → **Exécuter quand même**.
 
 ### Linux
 
-1. Téléchargez `PerfectGrid-v0.1.2-Linux-x86_64.AppImage`.
+1. Téléchargez le fichier AppImage depuis la [dernière version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
 2. Rendez-le exécutable et lancez-le :
+
 ```bash
-chmod +x PerfectGrid-v0.1.2-Linux-x86_64.AppImage
-./PerfectGrid-v0.1.2-Linux-x86_64.AppImage
+chmod +x PerfectGrid-*-Linux-x86_64.AppImage
+./PerfectGrid-*-Linux-x86_64.AppImage
 ```
 
 Aucune installation n’est nécessaire : FFmpeg et toutes les dépendances sont incluses. Fonctionne sur la plupart des distributions x86_64 (Ubuntu 22.04 et versions ultérieures, Fedora, Arch, etc.).
@@ -102,7 +106,7 @@ Tout s’exécute localement. Pas d’analyse, pas de télémétrie, pas de tran
 
 ## Localisation
 
-L’interface utilisateur de l’application est disponible en 8 langues. L’affichage des noms de fichiers sur la feuille est géré par un système distinct : il dessine les noms de fichiers sous forme de pixels sur le fichier PNG exporté, ce qui nécessite une gestion des polices spécifique au script.
+L’interface utilisateur de l’application est disponible en 8 langues. L’affichage des noms de fichiers sur les feuilles est géré par un système distinct : il dessine les noms de fichiers sous forme de pixels sur le fichier PNG exporté, ce qui nécessite une gestion des polices spécifique au script.
 
 | Langue | Interface utilisateur | Sur la feuille |
 |---|---|---|
@@ -141,16 +145,16 @@ Pour une prise en charge complète des noms de fichiers en arabe/RTL lors de l�
 pip install arabic-reshaper python-bidi
 ```
 
-Les scripts de compilation se trouvent dans `scripts/`. GitHub Actions compile automatiquement les versions Windows et Linux lors des poussées (push) avec balise. La version macOS est compilée manuellement.
+Les scripts de compilation se trouvent dans `scripts/`. GitHub Actions génère automatiquement les versions Windows et Linux lors des poussées (push) avec balise. La version macOS est compilée manuellement.
 
 </details>
 
 ## Contribuer
 
-N’hésitez pas à nous signaler tout bug ou toute erreur en créant un [ticket](https://github.com/worstgirlinamerica/PerfectGrid/issues/new). 
-Les informations les plus utiles à fournir sont votre système d’exploitation, le format vidéo utilisé, ainsi que le module concerné par le problème : « preview », « refine », « export » ou « batch ».
+N’hésitez pas à nous signaler tout bug ou erreur en créant un [ticket](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
+Les informations les plus utiles à fournir sont votre système d’exploitation, le format vidéo concerné, ainsi que le contexte dans lequel le problème s’est produit (aperçu, affinage, exportation ou traitement par lots).
 
-Consultez le fichier [CONTRIBUTING.md](CONTRIBUTING.md) pour plus d’informations.
+Consultez le fichier [CONTRIBUTING.md](CONTRIBUTING.md) pour en savoir plus.
 
 ## Licence
 
