@@ -76,11 +76,11 @@ Laden Sie die neueste Version für Ihr Betriebssystem von der Seite [Veröffentl
 2. Doppelklicke zum Entpacken und ziehe „Perfect Grid“ anschließend in den Ordner „Programme“.
 3. Öffne `Perfect Grid.app`.
 
-> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Klicke mit der rechten Maustaste → **Öffnen** → **Öffnen**, um diese Sperre zu umgehen. Falls sich die App dennoch nicht öffnen lässt, führe folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS blockiert die App beim ersten Start, da sie nicht signiert ist. Klicken Sie mit der rechten Maustaste → **Öffnen** → **Öffnen**, um diese Sperre zu umgehen. Sollte sich die App dennoch nicht öffnen lassen, führen Sie folgenden Befehl im Terminal aus: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
-1. Lade die Windows-ZIP-Datei aus der [neuesten Version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) herunter.
+1. Lade die Windows-ZIP-Datei aus der [aktuellsten Version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) herunter.
 2. Klicke mit der rechten Maustaste → **Alle extrahieren** und öffne anschließend den Ordner.
 3. Doppelklicken Sie auf `Perfect Grid.exe`.
 
@@ -106,9 +106,9 @@ Alles läuft lokal. Keine Analysen, keine Telemetrie, keine Uploads. FFmpeg und 
 
 ## Lokalisierung
 
-Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf den Arbeitsblättern erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf das exportierte PNG gezeichnet, was eine skriptspezifische Schriftartverarbeitung erfordert.
+Die Benutzeroberfläche der App ist in 8 Sprachen verfügbar. Die Darstellung der Dateinamen auf dem Blatt erfolgt über ein separates System – dabei werden die Dateinamen als Pixel auf das exportierte PNG gezeichnet, was eine skriptspezifische Schriftartverarbeitung erfordert.
 
-| Sprache | Benutzeroberfläche | Auf dem Arbeitsblatt |
+| Sprache | Benutzeroberfläche | Auf dem Blatt |
 |---|---|---|
 | Englisch | Ja | Ja |
 | Chinesisch (中文) | Ja | Ja (macOS, Windows) |
@@ -145,14 +145,14 @@ Für vollständige Unterstützung arabischer/RTL-Dateinamen bei der Ausführung 
 pip install arabic-reshaper python-bidi
 ```
 
-Die Build-Skripte befinden sich in `scripts/`. GitHub Actions erstellt bei mit Tags versehenen Pushes automatisch Windows- und Linux-Versionen. Die macOS-Version wird manuell erstellt.
+Die Build-Skripte befinden sich in `scripts/`. GitHub Actions erstellt Windows- und Linux-Versionen automatisch bei mit Tags versehenen Pushes. Die macOS-Version wird manuell erstellt.
 
 </details>
 
 ## Mitwirken
 
-Bitte teilen Sie uns mit, wenn Sie auf Fehler oder Probleme stoßen, indem Sie ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) erstellen.
-Die hilfreichsten Informationen sind dabei Ihr Betriebssystem, das Videoformat und die Angabe, ob das Problem in der Vorschau, bei der Verfeinerung, beim Export oder im Batch-Modus aufgetreten ist.
+Bitte gib Feedback, wenn du auf Fehler oder Probleme stößt, indem du ein [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) erstellst.
+Die hilfreichsten Informationen sind dein Betriebssystem, das Videoformat und ob das Problem bei der Vorschau, der Verfeinerung, dem Export oder der Stapelverarbeitung aufgetreten ist.
 
 Weitere Informationen finden Sie in [CONTRIBUTING.md](CONTRIBUTING.md).
 

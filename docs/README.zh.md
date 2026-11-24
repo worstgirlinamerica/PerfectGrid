@@ -27,9 +27,9 @@ Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频�
 专为剪辑师、收藏家、档案管理员以及任何希望快速直观地概览视频内容的人士打造。
 
 <p align="center">
-  <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="使用 Perfect Grid 制作的预览表示例">
+  <img src="https://i.imgur.com/HVf0JjP.jpeg" alt="使用 Perfect Grid 制作的预览样张示例">
   <br>
-  <em>使用 Perfect Grid 生成的联系表示例。</em>
+  <em>使用 Perfect Grid 生成的样张示例。</em>
 </p>
 
 <p align="center">
@@ -61,8 +61,8 @@ Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频�
 1. 打开 Perfect Grid。
 2. 将视频拖拽到窗口中。
 3. 调整网格布局和样式。如果更改了布局，请点击 **刷新预览** 以重新生成缩略图。
-4. 预览画质故意设置较低——导出时始终采用您选择的画质设置。
-5. （可选）在 **范围** 选项卡下，使用 **优化选取** 功能进行更智能的帧选择。
+4. 预览画质会刻意降低——导出时始终采用您选择的画质设置。
+5. （可选）在 **范围** 选项卡下，使用 **优化选帧** 功能进行更智能的帧选择。
 6. 在 **范围** 下选择导出质量：**快速 (1080p)**、**精细 (1440p)** 或 **最高 (4K)**。
 7. 点击 **导出 PNG**。
 
@@ -76,7 +76,7 @@ Perfect Grid 是一款免费的开源桌面应用程序，用于从本地视频�
 2. 双击解压，然后将 Perfect Grid 拖拽到“应用程序”文件夹中。
 3. 打开 `Perfect Grid.app`。
 
-> 由于该应用未签名，macOS 会在首次启动时阻止其运行。请右键点击 → **打开** → **打开** 以绕过此限制。如果仍无法打开，请在终端中运行以下命令：`xattr -cr "/Applications/Perfect Grid.app"`
+> 由于该应用未签名，macOS 会在首次启动时阻止其运行。请右键单击 → **打开** → **打开** 以绕过此限制。如果仍无法打开，请在终端中运行以下命令：`xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
@@ -123,7 +123,7 @@ chmod +x PerfectGrid-*-Linux-x86_64.AppImage
 | 泰语 | — | — |
 | 天城文（印地语等） | — | — |
 
-> 目前不支持 Linux 系统中非 ASCII 文件名的显示——非拉丁字符集的文件名将显示为方块。此问题将在下个版本中修复！
+> 目前不支持 Linux 系统中非 ASCII 文件名的显示——非拉丁字符集的文件名将显示为方块。此问题将在下一个版本中修复！
 
 ## 注意事项
 
@@ -139,7 +139,7 @@ python -m pip install -r requirements.txt
 PYTHONPATH=src python -m perfect_grid.app
 ```
 
-若从源代码运行并需完整支持阿拉伯语/从右到左（RTL）文件名：
+若从源代码运行并需完全支持阿拉伯语/从右到左（RTL）文件名：
 
 ```bash
 pip install arabic-reshaper python-bidi
@@ -151,8 +151,8 @@ pip install arabic-reshaper python-bidi
 
 ## 贡献
 
-如果您遇到任何错误或问题，请通过创建 [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 告知我们。
-请务必提供以下关键信息：您的操作系统、视频格式，以及问题发生在预览、精修、导出还是批量处理阶段。
+如果您遇到任何错误或问题，请通过创建 [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new) 提供反馈。
+请务必包含以下关键信息：您的操作系统、视频格式，以及问题发生在预览、优化、导出还是批处理阶段。
 
 更多详情请参阅 [CONTRIBUTING.md](CONTRIBUTING.md)。
 

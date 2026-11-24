@@ -106,7 +106,7 @@ Tudo é executado localmente. Sem análises, sem telemetria, sem envios. O FFmpe
 
 ## Localização
 
-A interface do utilizador da aplicação está disponível em 8 idiomas. A representação dos nomes dos ficheiros na folha é um sistema separado — desenha os nomes dos ficheiros como píxeis no PNG exportado, o que requer um tratamento de tipos de letra específico do script.
+A interface do utilizador da aplicação está disponível em 8 idiomas. A renderização dos nomes de ficheiros nas folhas é um sistema separado — desenha os nomes de ficheiros como píxeis no PNG exportado, o que requer um tratamento de tipos de letra específico do script.
 
 | Idioma | IU | Na folha |
 |---|---|---|
@@ -139,7 +139,7 @@ python -m pip install -r requirements.txt
 PYTHONPATH=src python -m perfect_grid.app
 ```
 
-Para suporte completo a nomes de ficheiros em árabe/RTL ao executar a partir do código-fonte:
+Para suporte completo a nomes de ficheiros em árabe/RTL ao compilar a partir do código-fonte:
 
 ```bash
 pip install arabic-reshaper python-bidi
@@ -151,7 +151,7 @@ Os scripts de compilação encontram-se em `scripts/`. O GitHub Actions compila 
 
 ## Contribuir
 
-Por favor, informe-nos se encontrar algum bug ou erro, criando uma [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
+Por favor, envie o seu feedback caso detete algum bug ou erro, criando uma [Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
 As informações mais úteis a incluir são o seu sistema operativo, o formato de vídeo e se o problema ocorreu na pré-visualização, no refinamento, na exportação ou no processamento em lote.
 
 Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para mais informações.

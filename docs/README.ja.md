@@ -22,7 +22,7 @@
   <a href="docs/README.ar.md">アラビア語</a>
 </p>
 
-Perfect Gridは、ローカルの動画ファイルから動画コンタクトシートやプレビューサムネイルを作成するための、無料のオープンソースデスクトップアプリです。動画を読み込み、レイアウトを選択するだけで、高品質なPNG形式のコンタクトシートをエクスポートできます。
+Perfect Gridは、ローカルの動画ファイルから動画コンタクトシートやプレビューサムネイルを作成するための、無料のオープンソースデスクトップアプリです。動画をドラッグ＆ドロップし、レイアウトを選択するだけで、高品質なPNG形式のコンタクトシートをエクスポートできます。
 
 編集者、コレクター、アーキビスト、そして動画の概要を素早く視覚的に把握したいすべての方のために開発されました。
 
@@ -54,7 +54,7 @@ Perfect Gridは、ローカルの動画ファイルから動画コンタクト�
 - バッチ処理
 - Windows、macOS、Linuxで動作
 
-> __いかなる__エラーが発生した場合、動作しない箇所がある場合、またはご質問がある場合は、[Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)を作成して報告してください。
+> どのようなエラーが発生した場合でも、動作しない箇所がある場合、またはご質問がある場合は、[Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)を作成して報告してください。
 
 ## 基本的な使い方
 
@@ -68,7 +68,7 @@ Perfect Gridは、ローカルの動画ファイルから動画コンタクト�
 
 ## インストール
 
-[リリース](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest)ページから、お使いのOSに対応した最新リリースをダウンロードしてください。
+[リリース](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest) ページから、お使いのOSに対応した最新リリースをダウンロードしてください。
 
 ### macOS
 
@@ -84,7 +84,7 @@ Perfect Gridは、ローカルの動画ファイルから動画コンタクト�
 2. 右クリック → **すべて展開** を選択し、フォルダを開きます。
 3. `Perfect Grid.exe` をダブルクリックします。
 
-> アプリにコード署名がないため、Windows SmartScreen から警告が表示される場合があります。**詳細情報** → **それでも実行** をクリックしてください。
+> アプリはコード署名されていないため、Windows SmartScreen から警告が表示される場合があります。**詳細情報** → **それでも実行** をクリックしてください。
 
 ### Linux
 
@@ -106,7 +106,7 @@ chmod +x PerfectGrid-*-Linux-x86_64.AppImage
 
 ## ローカライズ
 
-アプリの UI は 8 言語に対応しています。シート上のファイル名の表示は別のシステムで処理されます。エクスポートされた PNG ファイル上にファイル名をピクセルとして描画するため、スクリプト固有のフォント処理が必要となります。
+アプリの UI は 8 言語に対応しています。シート上のファイル名の表示は別のシステムで処理されており、エクスポートされた PNG ファイル上にファイル名をピクセルとして描画するため、スクリプト固有のフォント処理が必要です。
 
 | 言語 | UI | シート上 |
 |---|---|---|
@@ -129,7 +129,7 @@ chmod +x PerfectGrid-*-Linux-x86_64.AppImage
 
 - MP4、MOV、MKV、AVI、WebM、および FFmpeg が読み込めるすべての形式に対応しています。
 - 古いハードウェアでは、AV1 および VP9 のデコードに時間がかかる場合があります。
-- macOS ビルドは署名されていません — 上記のインストールに関する注意事項を参照してください。
+- macOS 向けビルドは署名されていません — 上記のインストールに関する注意事項を参照してください。
 
 <details>
 <summary>開発者向け</summary>
@@ -145,16 +145,16 @@ PYTHONPATH=src python -m perfect_grid.app
 pip install arabic-reshaper python-bidi
 ```
 
-ビルドスクリプトは `scripts/` ディレクトリにあります。GitHub Actions では、タグ付きプッシュ時に Windows および Linux 版が自動的にビルドされます。macOS 版は手動でビルドしてください。
+ビルドスクリプトは `scripts/` ディレクトリにあります。GitHub Actions は、タグ付きプッシュ時に Windows および Linux 版を自動的にビルドします。macOS 版は手動でビルドされます。
 
 </details>
 
 ## 貢献について
 
-バグやエラーが発生した場合は、[Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)を作成してご報告ください。
-報告の際には、お使いのOS、動画形式、および問題がプレビュー、リファイン、エクスポート、バッチのどの段階で発生したかといった情報を記載していただけると大変助かります。
+バグやエラーが発生した場合は、[Issue](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)を作成してフィードバックをお寄せください。
+記載していただくと特に役立つ情報として、お使いのOS、動画形式、および問題が「プレビュー」「リファイン」「エクスポート」、あるいは「バッチ」のどの段階で発生したかがあります。
 
-詳細については、[CONTRIBUTING.md](CONTRIBUTING.md) をご覧ください。
+詳細は [CONTRIBUTING.md](CONTRIBUTING.md) をご覧ください。
 
 ## ライセンス
 

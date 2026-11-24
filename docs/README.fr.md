@@ -81,7 +81,7 @@ Téléchargez la dernière version pour votre système d’exploitation depuis l
 ### Windows
 
 1. Téléchargez le fichier zip pour Windows à partir de la [dernière version](https://github.com/worstgirlinamerica/PerfectGrid/releases/latest).
-2. Clic droit → **Extraire tout**, puis ouvrez le dossier.
+2. Cliquez avec le bouton droit → **Extraire tout**, puis ouvrez le dossier.
 3. Double-cliquez sur `Perfect Grid.exe`.
 
 > Windows SmartScreen peut vous avertir car l'application n'est pas signée numériquement. Cliquez sur **Plus d'informations** → **Exécuter quand même**.
@@ -139,20 +139,20 @@ python -m pip install -r requirements.txt
 PYTHONPATH=src python -m perfect_grid.app
 ```
 
-Pour une prise en charge complète des noms de fichiers en arabe/RTL lors de l’exécution à partir du code source :
+Pour une prise en charge complète des noms de fichiers en arabe/RTL lors de la compilation à partir du code source :
 
 ```bash
 pip install arabic-reshaper python-bidi
 ```
 
-Les scripts de compilation se trouvent dans `scripts/`. GitHub Actions génère automatiquement les versions Windows et Linux lors des poussées (push) avec balise. La version macOS est compilée manuellement.
+Les scripts de compilation se trouvent dans `scripts/`. GitHub Actions compile automatiquement les versions Windows et Linux lors des poussées (push) avec balise. La version macOS est compilée manuellement.
 
 </details>
 
 ## Contribuer
 
-N’hésitez pas à nous signaler tout bug ou erreur en créant un [ticket](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
-Les informations les plus utiles à fournir sont votre système d’exploitation, le format vidéo concerné, ainsi que le contexte dans lequel le problème s’est produit (aperçu, affinage, exportation ou traitement par lots).
+Merci de nous faire part de vos retours si vous rencontrez des bugs ou des erreurs en créant un [ticket](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
+Les informations les plus utiles à fournir sont votre système d’exploitation, le format vidéo, ainsi que le module concerné par le problème : « preview », « refine », « export » ou « batch ».
 
 Consultez le fichier [CONTRIBUTING.md](CONTRIBUTING.md) pour en savoir plus.
 

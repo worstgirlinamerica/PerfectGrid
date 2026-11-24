@@ -54,7 +54,7 @@ Perfect Grid는 로컬 동영상 파일로 동영상 콘택트 시트와 미리�
 - 일괄 처리
 - Windows, macOS 및 Linux에서 실행 가능
 
-> __어떤__ 오류가 발생하거나, 기능이 제대로 작동하지 않거나, 질문이 있는 경우 [이슈](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)를 생성하여 신고해 주세요.
+> __어떤__ 오류가 발생하거나, 기능이 제대로 작동하지 않거나, 궁금한 점이 있으시면 [이슈](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)를 생성하여 신고해 주세요.
 
 ## 기본 사용법
 
@@ -76,7 +76,7 @@ Perfect Grid는 로컬 동영상 파일로 동영상 콘택트 시트와 미리�
 2. 더블 클릭하여 압축을 풀고, Perfect Grid를 ‘응용 프로그램’ 폴더로 드래그하세요.
 3. `Perfect Grid.app`을 실행하세요.
 
-> 서명이 되어 있지 않아 macOS에서 앱을 처음 실행할 때 차단됩니다. 마우스 오른쪽 버튼을 클릭 → **열기** → **열기**를 선택하여 차단 메시지를 해제하세요. 그래도 열리지 않으면 터미널에서 다음 명령어를 실행하세요: `xattr -cr "/Applications/Perfect Grid.app"`
+> macOS는 서명이 되어 있지 않은 앱이므로 첫 실행 시 차단합니다. 마우스 오른쪽 버튼을 클릭 → **열기** → **열기**를 선택하여 차단 해제하세요. 그래도 열리지 않으면 터미널에서 다음 명령어를 실행하세요: `xattr -cr "/Applications/Perfect Grid.app"`
 
 ### Windows
 
@@ -84,7 +84,7 @@ Perfect Grid는 로컬 동영상 파일로 동영상 콘택트 시트와 미리�
 2. 마우스 오른쪽 버튼 클릭 → **모두 추출**을 선택한 후, 폴더를 여세요.
 3. `Perfect Grid.exe`를 더블 클릭하세요.
 
-> 앱에 코드 서명이 되어 있지 않아 Windows SmartScreen에서 경고가 표시될 수 있습니다. **자세히 보기** → **어쨌든 실행**을 클릭하세요.
+> 앱에 코드 서명이 되어 있지 않아 Windows SmartScreen에서 경고가 표시될 수 있습니다. **추가 정보** → **어쨌든 실행**을 클릭하세요.
 
 ### 리눅스
 
@@ -106,9 +106,9 @@ chmod +x PerfectGrid-*-Linux-x86_64.AppImage
 
 ## 현지화
 
-앱 UI는 8개 언어로 제공됩니다. 시트 파일 이름 렌더링은 별도의 시스템으로, 내보낸 PNG 파일에 파일 이름을 픽셀로 그려 넣기 때문에 스크립트별 글꼴 처리가 필요합니다.
+앱 UI는 8개 언어로 제공됩니다. 시트 파일명 렌더링은 별도의 시스템으로, 내보낸 PNG 파일에 파일명을 픽셀로 그려 넣기 때문에 스크립트별 글꼴 처리가 필요합니다.
 
-| 언어 | UI | 시트 상 |
+| 언어 | UI | 시트 내 |
 |---|---|---|
 | 영어 | 예 | 예 |
 | 중국어 (中文) | 예 | 예 (macOS, Windows) |
@@ -139,7 +139,7 @@ python -m pip install -r requirements.txt
 PYTHONPATH=src python -m perfect_grid.app
 ```
 
-소스 코드에서 실행 시 아랍어/RTL 파일 이름을 완전히 지원하려면:
+소스 코드에서 실행할 때 아랍어/RTL 파일 이름을 완벽하게 지원하려면:
 
 ```bash
 pip install arabic-reshaper python-bidi
@@ -151,7 +151,7 @@ pip install arabic-reshaper python-bidi
 
 ## 기여
 
-버그나 오류가 발생하면 [이슈](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)를 생성하여 알려주세요.
+버그나 오류가 발생하면 [이슈](https://github.com/worstgirlinamerica/PerfectGrid/issues/new)를 생성하여 피드백을 제공해 주세요.
 포함하면 가장 유용한 정보는 사용 중인 OS, 비디오 형식, 그리고 문제가 미리보기, 다듬기, 내보내기 또는 일괄 처리 단계 중 어디에서 발생했는지입니다.
 
 자세한 내용은 [CONTRIBUTING.md](CONTRIBUTING.md)를 참조하세요.

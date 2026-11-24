@@ -61,7 +61,7 @@ Diseñada para editores, coleccionistas, archiveros y cualquier persona que dese
 1. Abre Perfect Grid.
 2. Arrastra un vídeo a la ventana.
 3. Ajusta la disposición y el estilo de la cuadrícula. Si cambias la disposición, haz clic en **Actualizar vista previa** para volver a generar las miniaturas.
-4. Las vistas previas son de menor calidad a propósito; las exportaciones siempre utilizan la configuración de calidad que hayas seleccionado.
+4. Las vistas previas tienen una calidad inferior a propósito; las exportaciones siempre utilizan la configuración de calidad que hayas seleccionado.
 5. (Opcional) En la pestaña **Rango**, utiliza **Perfeccionar selección** para una selección de fotogramas más inteligente.
 6. Elige una calidad de exportación en **Rango**: **Rápida (1080p)**, **Detallada (1440p)** o **Máxima (4K)**.
 7. Haz clic en **Exportar PNG**.
@@ -106,7 +106,7 @@ Todo se ejecuta localmente. Sin análisis, sin telemetría, sin subidas de archi
 
 ## Localización
 
-La interfaz de usuario de la aplicación está disponible en 8 idiomas. La representación de los nombres de archivo en la hoja es un sistema independiente: dibuja los nombres de archivo como píxeles en el PNG exportado, lo que requiere un manejo de fuentes específico para el script.
+La interfaz de usuario de la aplicación está disponible en 8 idiomas. La representación de los nombres de archivo en las hojas es un sistema independiente: dibuja los nombres de archivo como píxeles en el PNG exportado, lo que requiere un manejo de fuentes específico para el script.
 
 | Idioma | IU | En la hoja |
 |---|---|---|
@@ -128,8 +128,8 @@ La interfaz de usuario de la aplicación está disponible en 8 idiomas. La repre
 ## Notas
 
 - Admite MP4, MOV, MKV, AVI, WebM y cualquier formato que FFmpeg pueda leer.
-- La decodificación de AV1 y VP9 puede resultar lenta en equipos antiguos.
-- Las versiones para macOS no están firmadas; consulta la nota de instalación anterior.
+- La decodificación de AV1 y VP9 puede resultar lenta en hardware antiguo.
+- Las compilaciones para macOS no están firmadas; consulta la nota de instalación anterior.
 
 <details>
 <summary>Para desarrolladores</summary>
@@ -151,7 +151,7 @@ Los scripts de compilación se encuentran en `scripts/`. GitHub Actions compila 
 
 ## Cómo colaborar
 
-Si detectas algún fallo o error, háznoslo saber creando una [incidencia](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
+Si detectas algún fallo o error, por favor, envía tus comentarios creando una [incidencia](https://github.com/worstgirlinamerica/PerfectGrid/issues/new).
 La información más útil que puedes incluir es tu sistema operativo, el formato de vídeo y si el problema se produjo en la vista previa, el refinado, la exportación o el procesamiento por lotes.
 
 Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para obtener más información.
